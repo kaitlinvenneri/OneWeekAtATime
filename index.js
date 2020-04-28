@@ -125,3 +125,17 @@
             }
         });
     })
+
+    app.get('/task/get-task', (req, res) => {
+        const {id} = req.query;
+
+        const GET_TASK_QUERY = `SELECT * FROM task WHERE taskid = '${id}';`
+
+        connection.query(GET_TASK_QUERY, (err) => {
+            if(err) {
+                return res.send(err)
+            } else {
+                return res.send('successfully got task')
+            }
+        });
+    })
