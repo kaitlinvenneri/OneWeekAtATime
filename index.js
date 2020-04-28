@@ -59,9 +59,9 @@
     app.get('/task/schedule', (req, res) => {
         const {id, date} = req.query;
 
-        const INSERT_TASK_QUERY = `UPDATE task SET scheduleddate = '${date}' WHERE taskid = '${id}';`
+        const SCHEDULE_TASK_QUERY = `UPDATE task SET scheduleddate = '${date}' WHERE taskid = '${id}';`
 
-        connection.query(INSERT_TASK_QUERY, (err) => {
+        connection.query(SCHEDULE_TASK_QUERY, (err) => {
             if(err) {
                 return res.send(err)
             } else {
@@ -73,9 +73,9 @@
     app.get('/task/mark-complete', (req, res) => {
         const {id} = req.query;
 
-        const INSERT_TASK_QUERY = `UPDATE task SET completionstatus = '1' WHERE taskid = '${id}';`
+        const MARK_TASK_COMPLETE_QUERY = `UPDATE task SET completionstatus = '1' WHERE taskid = '${id}';`
 
-        connection.query(INSERT_TASK_QUERY, (err) => {
+        connection.query(MARK_TASK_COMPLETE_QUERY, (err) => {
             if(err) {
                 return res.send(err)
             } else {
@@ -87,9 +87,9 @@
     app.get('/task/mark-incomplete', (req, res) => {
         const {id} = req.query;
 
-        const INSERT_TASK_QUERY = `UPDATE task SET completionstatus = '0' WHERE taskid = '${id}';`
+        const MARK_TASK_INCOMPLETE_QUERY = `UPDATE task SET completionstatus = '0' WHERE taskid = '${id}';`
 
-        connection.query(INSERT_TASK_QUERY, (err) => {
+        connection.query(MARK_TASK_INCOMPLETE_QUERY, (err) => {
             if(err) {
                 return res.send(err)
             } else {
@@ -101,9 +101,9 @@
     app.get('/task/delete', (req, res) => {
         const {id} = req.query;
 
-        const INSERT_TASK_QUERY = `DELETE from task WHERE taskid = '${id}';`
+        const DELETE_TASK_QUERY = `DELETE from task WHERE taskid = '${id}';`
 
-        connection.query(INSERT_TASK_QUERY, (err) => {
+        connection.query(DELETE_TASK_QUERY, (err) => {
             if(err) {
                 return res.send(err)
             } else {
@@ -115,9 +115,9 @@
     app.get('/task/update-title', (req, res) => {
         const {id, title} = req.query;
 
-        const INSERT_TASK_QUERY = `UPDATE task SET title = '${title}' WHERE taskid = '${id}';`
+        const UPDATE_TITLE_TASK_QUERY = `UPDATE task SET title = '${title}' WHERE taskid = '${id}';`
 
-        connection.query(INSERT_TASK_QUERY, (err) => {
+        connection.query(UPDATE_TITLE_TASK_QUERY, (err) => {
             if(err) {
                 return res.send(err)
             } else {
