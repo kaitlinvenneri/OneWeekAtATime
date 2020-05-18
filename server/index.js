@@ -42,6 +42,20 @@
         });
     })
 
+    app.get('/scheduled-tasks', (req, res) => {
+        const SELECT_ALL_TASKS_QUERY = `SELECT * FROM scheduledtask`
+
+        connection.query(SELECT_ALL_TASKS_QUERY, (err, results) => {
+            if(err) {
+                return res.send(err)
+            } else {
+                return res.json({
+                    data: results
+                })
+            }
+        });
+    })
+
     app.get('/task/add', (req, res) => {
         const {title} = req.query;
 
@@ -59,7 +73,7 @@
     app.get('/task/schedule', (req, res) => {
         const {id, date} = req.query;
 
-        const SCHEDULE_TASK_QUERY = `UPDATE task SET scheduleddate = '${date}' WHERE taskid = '${id}';`
+        const SCHEDULE_TASK_QUERY = `INSERT INTO scheduledtask(taskid,scheduleddate) VALUES('${id}', '${date}')`
 
         connection.query(SCHEDULE_TASK_QUERY, (err) => {
             if(err) {
@@ -70,7 +84,7 @@
         });
     })
 
-    app.get('/task/mark-complete', (req, res) => {
+    app.get('/task/mark-task-complete', (req, res) => {
         const {id} = req.query;
 
         const MARK_TASK_COMPLETE_QUERY = `UPDATE task SET completionstatus = '1' WHERE taskid = '${id}';`
@@ -84,7 +98,21 @@
         });
     })
 
-    app.get('/task/mark-incomplete', (req, res) => {
+    app.get('/task/mark-scheduled-complete', (req, res) => {
+        const {id} = req.query;
+
+        const MARK_SCHEDULED_COMPLETE_QUERY = `UPDATE scheduledtask SET completionstatus = '1' WHERE scheduledid = '${id}';`
+
+        connection.query(MARK_SCHEDULED_COMPLETE_QUERY, (err) => {
+            if(err) {
+                return res.send(err)
+            } else {
+                return res.send('successfully marked scheduled task as complete')
+            }
+        });
+    })
+
+    app.get('/task/mark-task-incomplete', (req, res) => {
         const {id} = req.query;
 
         const MARK_TASK_INCOMPLETE_QUERY = `UPDATE task SET completionstatus = '0' WHERE taskid = '${id}';`
@@ -94,6 +122,20 @@
                 return res.send(err)
             } else {
                 return res.send('successfully marked task as incomplete')
+            }
+        });
+    })
+
+    app.get('/task/mark-scheduled-incomplete', (req, res) => {
+        const {id} = req.query;
+
+        const MARK_SCHEDULED_INCOMPLETE_QUERY = `UPDATE scheduledtask SET completionstatus = '0' WHERE scheduledid = '${id}';`
+
+        connection.query(MARK_SCHEDULED_INCOMPLETE_QUERY, (err) => {
+            if(err) {
+                return res.send(err)
+            } else {
+                return res.send('successfully marked scheduled task as incomplete')
             }
         });
     })
