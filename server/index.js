@@ -157,9 +157,9 @@
     app.get('/scheduled-task/delete', (req, res) => {
         const {id} = req.query;
 
-        const DELETE_TASK_QUERY = `DELETE from scheduledtask WHERE scheduledid = '${id}';`
+        const DELETE_SCHEDULED_TASK_QUERY = `DELETE from scheduledtask WHERE scheduledid = '${id}';`
 
-        connection.query(DELETE_TASK_QUERY, (err) => {
+        connection.query(DELETE_SCHEDULED_TASK_QUERY, (err) => {
             if(err) {
                 return res.send(err)
             } else {
