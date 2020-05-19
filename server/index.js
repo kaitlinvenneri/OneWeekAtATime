@@ -154,6 +154,20 @@
         });
     })
 
+    app.get('/scheduled-task/delete', (req, res) => {
+        const {id} = req.query;
+
+        const DELETE_TASK_QUERY = `DELETE from scheduledtask WHERE scheduledid = '${id}';`
+
+        connection.query(DELETE_TASK_QUERY, (err) => {
+            if(err) {
+                return res.send(err)
+            } else {
+                return res.send('successfully deleted scheduled task')
+            }
+        });
+    })
+
     app.get('/task/update-title', (req, res) => {
         const {id, title} = req.query;
 
