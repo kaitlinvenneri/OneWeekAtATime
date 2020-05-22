@@ -1,0 +1,16 @@
+{
+  "name": "database-scripts",
+  "version": "1.0.0",
+  "description": "**This folder contains scripts to perform database actions.**",
+  "main": "create_db_with_tables.js",
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "readline": "^1.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
