@@ -13,7 +13,6 @@ if(args[0] === 'grading'){
     username = "vennerik";
     dbPassword = "0885662";
     dbName = "vennerik";
-    grading = true;
 }
 
 //Creating connection variable for connecting to database
