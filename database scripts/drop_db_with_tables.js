@@ -1,27 +1,51 @@
 var mysql = require('mysql');
 
+let hostname = "localhost";
+let username = "root";
+let dbPassword = "password";
+let dbName = "planningApp";
+let grading = false;
+
+const args = process.argv.slice(2)
+if(args[0] === 'grading'){
+    hostname = "dursley.socs.uoguelph.ca";
+    username = "vennerik";
+    dbPassword = "0885662";
+    dbName = "vennerik";
+    grading = true;
+}
+
 var connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "password"
+    host: hostname,
+    user: username,
+    password: dbPassword
 });
 
 
 connection.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
-    connection.query("DROP TABLE IF EXISTS planningapp.ScheduledTask", function (err) {
+
+    const DROP_SCHEDULED_TASK_TABLE_QUERY = `DROP TABLE IF EXISTS ${dbName}.ScheduledTask;`
+
+    connection.query(DROP_SCHEDULED_TASK_TABLE_QUERY, function (err) {
         if (err) throw err;
         console.log("Scheduled Task Table Dropped");
     });
 
-    connection.query("DROP TABLE IF EXISTS planningapp.Task", function (err) {
+    const DROP_TASK_TABLE_QUERY = `DROP TABLE IF EXISTS ${dbName}.Task;`
+
+    connection.query(DROP_TASK_TABLE_QUERY, function (err) {
         if (err) throw err;
         console.log("Task Table Dropped");
     });
 
-    connection.query("DROP DATABASE planningapp", function (err) {
-        if (err) throw err;
-        console.log("Planning App Database Dropped");
-    });
+    if (!grading) {
+        const DROP_DATABASE_QUERY = `DROP DATABASE IF EXISTS ${dbName};`
+
+        connection.query(DROP_DATABASE_QUERY, function (err) {
+            if (err) throw err;
+            console.log("Planning App Database Dropped");
+        });
+    }
 });
