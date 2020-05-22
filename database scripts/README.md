@@ -4,6 +4,11 @@
 
 **This folder contains scripts to perform database actions.**
 
+<u>Prior to Running Scripts:</u>
+
+To Install necessary node modules:
+> npm install within the current directory
+
 <u>To Run Scripts for Grading:</u> 
 
 To Create the Database Locally if it does not exist & create empty tables:
