@@ -9,6 +9,8 @@
 To Install necessary node modules:
 > npm install (within the current directory)
 
+<hr>
+
 <ins>To Run Server for Grading:</ins> 
 
 To Run Server locally on port 4000:
@@ -20,6 +22,8 @@ To Run Server locally on port 4000:
 
 To Run Server locally on port 4000:
 > node index.js
+
+<hr>
 
 Note: if nodemon is installed, this is recommended to use this during 
 development to run the server to continuously reload upon saving:

@@ -9,6 +9,8 @@
 To Install necessary node modules:
 > npm install (within the current directory)
 
+<hr>
+
 <ins>To Run Scripts for Grading:</ins> 
 
 To Create the Database Locally if it does not exist & create empty tables:
