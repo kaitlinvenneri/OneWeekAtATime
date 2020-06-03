@@ -15,7 +15,7 @@ class Tasks extends Component {
         </thead>
         <tbody>
           {tasks.map((task) => (
-            <tr>
+            <tr key={task.Taskid}>
               <td>{task.Title}</td>
               <td>
                 <button onClick={onSchedule} className="btn btn-info btn-sm">

@@ -13,8 +13,15 @@ class App extends Component {
     //this.getTasks();
   }
 
-  handleTaskDelete = (taskId) => {
-    //TODO: Figure out how to actually delete task from db at this point (componentDidUpdate?)
+  handleTaskDelete = async (taskId) => {
+    let options = {
+      params: {
+        id: taskId,
+      },
+    };
+
+    await axios.get("http://localhost:4000/task/delete", options);
+
     const tasks = this.state.tasks.filter((task) => task.Taskid !== taskId);
     this.setState({ tasks });
   };
