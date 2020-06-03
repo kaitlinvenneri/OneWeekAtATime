@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Tasks from "./components/Tasks";
+import addTaskForm from "./components/AddTaskForm";
+import AddTaskForm from "./components/AddTaskForm";
 
 class App extends Component {
   state = {
@@ -14,6 +16,7 @@ class App extends Component {
   }
 
   handleTaskDelete = async (taskId) => {
+    //TODO: Change this to be an optimistic update (it's pessimistic currently)
     let options = {
       params: {
         id: taskId,
@@ -38,6 +41,7 @@ class App extends Component {
           onSchedule={this.handleTaskScheduling}
           onDelete={this.handleTaskDelete}
         />
+        <AddTaskForm />
       </div>
     );
   }

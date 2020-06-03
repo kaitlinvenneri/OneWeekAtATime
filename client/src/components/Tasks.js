@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+//TODO: Refactor out the table to make the table a reusable component
 class Tasks extends Component {
   render() {
     const { tasks, onSchedule, onDelete } = this.props;
