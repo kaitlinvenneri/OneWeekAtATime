@@ -13,26 +13,41 @@ const AddTaskTitle = styled.h3`
 `;
 
 class AddTaskForm extends Component {
-  state = {};
+  state = {
+    task: {
+      title: "",
+    },
+  };
+
   render() {
+    const { onAdd } = this.props;
+
     return (
       <FormContainer>
         <AddTaskTitle>Add Task</AddTaskTitle>
         <form>
-          <div class="form-row align-items-center">
-            <label class="col-auto pl-3" for="taskInput">
+          <div className="form-row align-items-center">
+            <label className="col-auto pl-3" htmlFor="taskInput">
               Task Description:
             </label>
-            <div class="col-7">
+            <div className="col-7">
               <input
                 type="text"
-                class="form-control mb-2"
+                className="form-control mb-2"
                 id="taskInput"
                 placeholder="Write grocery list."
+                value={this.state.task.title}
+                onChange={(e) =>
+                  this.setState({ task: { title: e.target.value } })
+                }
               ></input>
             </div>
-            <div class="col-auto">
-              <button type="submit" class="btn btn-primary mb-2">
+            <div className="col-auto">
+              <button
+                onClick={() => onAdd(this.state.task.title)}
+                type="submit"
+                className="btn btn-primary mb-2"
+              >
                 Add
               </button>
             </div>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Tasks from "./components/Tasks";
-import addTaskForm from "./components/AddTaskForm";
 import AddTaskForm from "./components/AddTaskForm";
 
 class App extends Component {
@@ -33,6 +32,22 @@ class App extends Component {
     //TODO: Make this happen
   };
 
+  handleTaskAdding = async (taskTitle) => {
+    //TODO: Change this to be an optimistic update (it's pessimistic currently)
+    let options = {
+      params: {
+        title: taskTitle,
+      },
+    };
+
+    await axios
+      .get("http://localhost:4000/task/add", options)
+      .then(async () => {
+        const { data: tasks } = await axios.get("http://localhost:4000/tasks");
+        this.setState({ tasks });
+      });
+  };
+
   render() {
     return (
       <div className="App">
@@ -41,7 +56,7 @@ class App extends Component {
           onSchedule={this.handleTaskScheduling}
           onDelete={this.handleTaskDelete}
         />
-        <AddTaskForm />
+        <AddTaskForm onAdd={this.handleTaskAdding} />
       </div>
     );
   }
