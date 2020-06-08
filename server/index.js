@@ -17,6 +17,31 @@ let username = "root";
 let dbPassword = "password";
 let dbName = "planningApp";
 
+//Function to handle escaping characters prior to attempting to put them into the database
+function mysql_real_escape_string(str) {
+  return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
+    switch (char) {
+      case "\0":
+        return "\\0";
+      case "\x08":
+        return "\\b";
+      case "\x09":
+        return "\\t";
+      case "\x1a":
+        return "\\z";
+      case "\n":
+        return "\\n";
+      case "\r":
+        return "\\r";
+      case '"':
+      case "'":
+      case "\\":
+      case "%":
+        return "\\" + char;
+    }
+  });
+}
+
 //Modifying database connection variables if server is being run for grading purposes
 const args = process.argv.slice(2);
 if (args[0] === "grading") {
@@ -79,8 +104,9 @@ app.get("/scheduled-tasks", (req, res) => {
 //Endpoint to add a task
 app.get("/task/add", (req, res) => {
   const { title } = req.query;
+  const formattedTitle = mysql_real_escape_string(title);
 
-  const INSERT_TASK_QUERY = `INSERT INTO Task(title) VALUES('${title}')`;
+  const INSERT_TASK_QUERY = `INSERT INTO Task(title) VALUES('${formattedTitle}')`;
 
   connection.query(INSERT_TASK_QUERY, (err) => {
     if (err) {
