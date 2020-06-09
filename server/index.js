@@ -57,6 +57,7 @@ var connection = mysql.createConnection({
   user: username,
   password: dbPassword,
   database: dbName,
+  dateStrings: true,
 });
 
 //Connecting to the database
