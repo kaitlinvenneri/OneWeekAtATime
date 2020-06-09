@@ -88,7 +88,10 @@ class App extends Component {
           onSchedule={this.handleTaskScheduling}
           onDelete={this.handleTaskDelete}
         />
-        <ScheduledTasks scheduledTasks={this.state.scheduledTasks} />
+        <ScheduledTasks
+          tasks={this.state.tasks}
+          scheduledTasks={this.state.scheduledTasks}
+        />
       </div>
     );
   }
