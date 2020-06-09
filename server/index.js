@@ -133,6 +133,21 @@ app.get("/task/schedule", (req, res) => {
   });
 });
 
+//Endpoint to mark a task as scheduled
+app.get("/task/mark-scheduled", (req, res) => {
+  const { id } = req.query;
+
+  const MARK_TASK_SCHEDULED_QUERY = `UPDATE Task SET scheduledstatus = '1' WHERE taskid = '${id}';`;
+
+  connection.query(MARK_TASK_SCHEDULED_QUERY, (err) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send("successfully marked task as scheduled");
+    }
+  });
+});
+
 //Endpoint to mark a task as complete
 app.get("/task/mark-complete", (req, res) => {
   const { id } = req.query;
