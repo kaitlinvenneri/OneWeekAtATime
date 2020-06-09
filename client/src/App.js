@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
 import AddTaskForm from "./components/AddTaskForm";
-import Tasks from "./components/Tasks";
+import UnscheduledTaskTable from "./components/UnscheduledTaskTable";
 import ScheduledTaskTable from "./components/ScheduledTaskTable";
 
 class App extends Component {
   state = {
     tasks: [],
+    unscheduledTasks: [],
     scheduledTasks: [],
   };
 
@@ -17,10 +18,21 @@ class App extends Component {
           tasks: response.data,
         }),
         async () => {
-          const { data: scheduledTasks } = await axios.get(
-            "http://localhost:4000/scheduled-tasks"
-          );
-          this.setState({ scheduledTasks });
+          await axios
+            .get("http://localhost:4000/scheduled-tasks")
+            .then((response) => {
+              this.setState(
+                (state) => ({
+                  scheduledTasks: response.data,
+                }),
+                () => {
+                  const unscheduledTasks = this.state.tasks.filter(
+                    (task) => task.scheduledStatus === 0
+                  );
+                  this.setState({ unscheduledTasks });
+                }
+              );
+            });
         }
       );
     });
@@ -57,6 +69,9 @@ class App extends Component {
     await axios
       .get("http://localhost:4000/task/schedule", options)
       .then(async () => {
+        await axios.get("http://localhost:4000/task/mark-scheduled", options);
+      })
+      .then(async () => {
         const { data: tasks } = await axios.get("http://localhost:4000/tasks");
         this.setState({ tasks });
       })
@@ -65,6 +80,12 @@ class App extends Component {
           "http://localhost:4000/scheduled-tasks"
         );
         this.setState({ scheduledTasks });
+      })
+      .then(async () => {
+        const unscheduledTasks = this.state.tasks.filter(
+          (task) => task.scheduledStatus === 0
+        );
+        this.setState({ unscheduledTasks });
       });
   };
 
@@ -88,8 +109,8 @@ class App extends Component {
     return (
       <div className="App">
         <AddTaskForm onAdd={this.handleTaskAdding} />
-        <Tasks
-          tasks={this.state.tasks}
+        <UnscheduledTaskTable
+          tasks={this.state.unscheduledTasks}
           onSchedule={this.handleTaskScheduling}
           onDelete={this.handleTaskDelete}
         />
