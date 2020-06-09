@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import AddTaskForm from "./components/AddTaskForm";
 import Tasks from "./components/Tasks";
-import ScheduledTasks from "./components/ScheduledTasks";
+import ScheduledTaskTable from "./components/ScheduledTaskTable";
 
 class App extends Component {
   state = {
@@ -38,6 +38,11 @@ class App extends Component {
 
     const tasks = this.state.tasks.filter((task) => task.Taskid !== taskId);
     this.setState({ tasks });
+
+    const scheduledTasks = this.state.scheduledTasks.filter(
+      (scheduledTask) => scheduledTask.Taskid !== taskId
+    );
+    this.setState({ scheduledTasks });
   };
 
   handleTaskScheduling = async (taskId, taskDate) => {
@@ -88,7 +93,7 @@ class App extends Component {
           onSchedule={this.handleTaskScheduling}
           onDelete={this.handleTaskDelete}
         />
-        <ScheduledTasks
+        <ScheduledTaskTable
           tasks={this.state.tasks}
           scheduledTasks={this.state.scheduledTasks}
         />
