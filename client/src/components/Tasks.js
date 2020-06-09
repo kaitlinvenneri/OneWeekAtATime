@@ -17,14 +17,14 @@ class Tasks extends Component {
         </thead>
         <tbody>
           {tasks.map((task) => (
-            <tr key={task.Taskid}>
-              <td>{task.Title}</td>
+            <tr key={task.taskId}>
+              <td>{task.title}</td>
               <td>
                 <ScheduleTaskForm task={task} onSchedule={onSchedule} />
               </td>
               <td>
                 <button
-                  onClick={() => onDelete(task.Taskid)}
+                  onClick={() => onDelete(task.taskId)}
                   className="btn btn-danger btn-sm"
                 >
                   Delete

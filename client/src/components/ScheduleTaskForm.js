@@ -9,12 +9,12 @@ class ScheduleTaskForm extends Component {
     return (
       <div>
         <input
-          key={task.Taskid}
+          key={task.taskId}
           type="date"
           onChange={(e) => this.setState({ date: e.target.value })}
         />
         <button
-          onClick={() => onSchedule(task.Taskid, this.state.date)}
+          onClick={() => onSchedule(task.taskId, this.state.date)}
           value={this.state.date}
           type="submit"
           className="btn btn-info btn-sm"

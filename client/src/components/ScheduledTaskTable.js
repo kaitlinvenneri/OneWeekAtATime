@@ -14,32 +14,32 @@ class ScheduledTaskTable extends Component {
 
     let i;
     for (i = 0; i < tasks.length; i++) {
-      taskMap.set(tasks[i].Taskid, tasks[i].Title);
+      taskMap.set(tasks[i].taskId, tasks[i].title);
     }
 
     for (i = 0; i < scheduledTasks.length; i++) {
-      if (scheduledTaskMap.has(scheduledTasks[i].Taskid)) {
-        let datesToAdd = scheduledTaskMap.get(scheduledTasks[i].Taskid).dates;
+      if (scheduledTaskMap.has(scheduledTasks[i].taskId)) {
+        let datesToAdd = scheduledTaskMap.get(scheduledTasks[i].taskId).dates;
         let dateWithScheduledId = {
-          id: scheduledTasks[i].Scheduledid,
-          date: scheduledTasks[i].ScheduledDate,
+          id: scheduledTasks[i].scheduledId,
+          date: scheduledTasks[i].scheduledDate,
         };
         datesToAdd.push(dateWithScheduledId);
-        scheduledTaskMap.set(scheduledTasks[i].Taskid, {
-          id: scheduledTasks[i].Taskid,
-          title: taskMap.get(scheduledTasks[i].Taskid),
+        scheduledTaskMap.set(scheduledTasks[i].taskId, {
+          id: scheduledTasks[i].taskId,
+          title: taskMap.get(scheduledTasks[i].taskId),
           dates: datesToAdd,
         });
       } else {
         let datesToAdd = [];
         let dateWithScheduledId = {
-          id: scheduledTasks[i].Scheduledid,
-          date: scheduledTasks[i].ScheduledDate,
+          id: scheduledTasks[i].scheduledId,
+          date: scheduledTasks[i].scheduledDate,
         };
         datesToAdd.push(dateWithScheduledId);
-        scheduledTaskMap.set(scheduledTasks[i].Taskid, {
-          id: scheduledTasks[i].Taskid,
-          title: taskMap.get(scheduledTasks[i].Taskid),
+        scheduledTaskMap.set(scheduledTasks[i].taskId, {
+          id: scheduledTasks[i].taskId,
+          title: taskMap.get(scheduledTasks[i].taskId),
           dates: datesToAdd,
         });
       }

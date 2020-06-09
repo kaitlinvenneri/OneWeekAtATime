@@ -36,11 +36,11 @@ class App extends Component {
 
     await axios.get("http://localhost:4000/task/delete", options);
 
-    const tasks = this.state.tasks.filter((task) => task.Taskid !== taskId);
+    const tasks = this.state.tasks.filter((task) => task.taskId !== taskId);
     this.setState({ tasks });
 
     const scheduledTasks = this.state.scheduledTasks.filter(
-      (scheduledTask) => scheduledTask.Taskid !== taskId
+      (scheduledTask) => scheduledTask.taskId !== taskId
     );
     this.setState({ scheduledTasks });
   };
