@@ -3,12 +3,14 @@ import axios from "axios";
 import AddTaskForm from "./components/AddTaskForm";
 import UnscheduledTaskTable from "./components/UnscheduledTaskTable";
 import ScheduledTaskTable from "./components/ScheduledTaskTable";
+import WeekView from "./components/WeekView";
 
 class App extends Component {
   state = {
     tasks: [],
     unscheduledTasks: [],
     scheduledTasks: [],
+    weekScheduled: [],
   };
 
   async componentDidMount() {
@@ -25,11 +27,16 @@ class App extends Component {
                 (state) => ({
                   scheduledTasks: response.data,
                 }),
-                () => {
+                async () => {
                   const unscheduledTasks = this.state.tasks.filter(
                     (task) => task.scheduledStatus === 0
                   );
                   this.setState({ unscheduledTasks });
+
+                  const { data: weekScheduled } = await axios.get(
+                    "http://localhost:4000/week"
+                  );
+                  this.setState({ weekScheduled });
                 }
               );
             });
@@ -114,10 +121,8 @@ class App extends Component {
           onSchedule={this.handleTaskScheduling}
           onDelete={this.handleTaskDelete}
         />
-        <ScheduledTaskTable
-          tasks={this.state.tasks}
-          scheduledTasks={this.state.scheduledTasks}
-        />
+        <ScheduledTaskTable scheduledTasks={this.state.scheduledTasks} />
+        <WeekView weekScheduled={this.state.weekScheduled} />
       </div>
     );
   }

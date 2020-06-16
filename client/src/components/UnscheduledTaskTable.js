@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ScheduleTaskForm from "./ScheduleTaskForm";
 
-//TODO: Refactor out the table to make the table a reusable component?
 class UnscheduledTaskTable extends Component {
   render() {
     const { tasks, onSchedule, onDelete } = this.props;
