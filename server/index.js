@@ -88,9 +88,9 @@ app.get("/tasks", (req, res) => {
   });
 });
 
-//Endpoint to view all scheduled tasks
+//Endpoint to view all scheduled tasks with task titles from the task table
 app.get("/scheduled-tasks", (req, res) => {
-  const SELECT_ALL_TASKS_QUERY = `SELECT * FROM ScheduledTask`;
+  const SELECT_ALL_TASKS_QUERY = `SELECT scheduledTask.*, task.title FROM ScheduledTask LEFT JOIN task ON scheduledTask.taskId = task.taskId`;
 
   connection.query(SELECT_ALL_TASKS_QUERY, (err, results) => {
     if (err) {
@@ -265,6 +265,73 @@ app.get("/task/get-task", (req, res) => {
     } else {
       res.setHeader("Content-Type", "application/json");
       res.end(JSON.stringify(results));
+    }
+  });
+});
+
+//Endpoint to get a week of scheduled tasks by sending in a single date within the week desired
+app.get("/week", (req, res) => {
+  //const { date } = req.query;
+
+  let date = "2020/06/07";
+
+  let startDate = new Date(date);
+  let dayOfWeek = startDate.getUTCDay();
+
+  if (dayOfWeek !== 1) {
+    if (dayOfWeek === 0) {
+      startDate.setUTCDate(startDate.getUTCDate() - 6);
+    } else {
+      startDate.setUTCDate(startDate.getUTCDate() - dayOfWeek + 1);
+    }
+  }
+
+  let dateArray = [];
+  dateArray.push(startDate);
+  let startDateString = startDate.toISOString().split("T")[0];
+  let dateStrings = [];
+  dateStrings.push(startDateString);
+
+  let i;
+  for (i = 1; i < 7; i++) {
+    let tempDate = new Date();
+    let prevIndex = i - 1;
+    tempDate.setUTCDate(dateArray[prevIndex].getUTCDate() + 1);
+    dateArray.push(tempDate);
+    let tempDateString = tempDate.toISOString().split("T")[0];
+    dateStrings.push(tempDateString);
+  }
+
+  const GET_SCHEDULED_TASKS_IN_RANGE_QUERY = `SELECT scheduledTask.*, task.title FROM scheduledTask LEFT JOIN task ON scheduledTask.taskId = task.taskId WHERE scheduledDate between '${dateStrings[0]}' and '${dateStrings[6]}' order by scheduledDate asc;`;
+
+  connection.query(GET_SCHEDULED_TASKS_IN_RANGE_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      let dateMap = new Map();
+      for (i = 0; i < dateStrings.length; i++) {
+        dateMap.set(dateStrings[i], []);
+      }
+
+      for (i = 0; i < results.length; i++) {
+        let resultItem = results[i];
+        let tasksForDate = dateMap.get(resultItem.scheduledDate);
+        tasksForDate.push(resultItem);
+        dateMap.set(resultItem.scheduledDate, tasksForDate);
+      }
+
+      let dateArray = [];
+
+      for (i = 0; i < dateStrings.length; i++) {
+        let dateObj = {
+          date: dateStrings[i],
+          scheduledTasks: dateMap.get(dateStrings[i]),
+        };
+        dateArray.push(dateObj);
+      }
+
+      res.setHeader("Content-Type", "application/json");
+      res.end(JSON.stringify(dateArray));
     }
   });
 });
