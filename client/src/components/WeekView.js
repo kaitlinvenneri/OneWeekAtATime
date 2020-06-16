@@ -18,7 +18,25 @@ class WeekView extends Component {
         columns.push(
           <td key={i}>
             {day.scheduledTasks.map((task) => (
-              <div key={task.scheduledId}>{task.title}</div>
+              <div
+                className="border rounded mb-3 pt-3 pl-3 pr-3"
+                key={task.scheduledId}
+              >
+                <div className="form-group form-check d-flex">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id={task.scheduledId}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor={task.scheduledId}
+                  >
+                    {task.title}
+                  </label>
+                  <button className="btn btn-sm btn-danger py-0 ml-1">x</button>
+                </div>
+              </div>
             ))}
           </td>
         );
