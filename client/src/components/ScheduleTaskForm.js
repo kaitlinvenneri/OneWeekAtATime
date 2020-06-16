@@ -7,7 +7,7 @@ class ScheduleTaskForm extends Component {
   render() {
     const { task, onSchedule } = this.props;
     return (
-      <div>
+      <div className="d-flex">
         <input
           key={task.taskId}
           type="date"
