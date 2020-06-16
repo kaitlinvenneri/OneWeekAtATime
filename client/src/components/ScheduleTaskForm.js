@@ -17,7 +17,7 @@ class ScheduleTaskForm extends Component {
           onClick={() => onSchedule(task.taskId, this.state.date)}
           value={this.state.date}
           type="submit"
-          className="btn btn-info btn-sm"
+          className="btn btn-info btn-sm ml-2"
         >
           Schedule
         </button>
