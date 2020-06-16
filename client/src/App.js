@@ -93,6 +93,12 @@ class App extends Component {
           (task) => task.scheduledStatus === 0
         );
         this.setState({ unscheduledTasks });
+      })
+      .then(async () => {
+        const { data: weekScheduled } = await axios.get(
+          "http://localhost:4000/week"
+        );
+        this.setState({ weekScheduled });
       });
   };
 
