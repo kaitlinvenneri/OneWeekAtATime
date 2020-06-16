@@ -269,11 +269,13 @@ app.get("/task/get-task", (req, res) => {
   });
 });
 
-//Endpoint to get a week of scheduled tasks by sending in a single date within the week desired
+//Endpoint to get a week of scheduled tasks for the current date
 app.get("/week", (req, res) => {
   //const { date } = req.query;
+  //TODO: Modify this endpoint to get the week for a date sent in?
 
-  let date = "2020/06/07";
+  //Currently just gets the week for the current date
+  let date = new Date();
 
   let startDate = new Date(date);
   let dayOfWeek = startDate.getUTCDay();
