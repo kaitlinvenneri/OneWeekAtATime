@@ -148,6 +148,21 @@ app.get("/task/mark-scheduled", (req, res) => {
   });
 });
 
+//Endpoint to mark a task as unscheduled
+app.get("/task/mark-unscheduled", (req, res) => {
+  const { id } = req.query;
+
+  const MARK_TASK_UNSCHEDULED_QUERY = `UPDATE Task SET scheduledstatus = '0' WHERE taskid = '${id}';`;
+
+  connection.query(MARK_TASK_UNSCHEDULED_QUERY, (err) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send("successfully marked task as unscheduled");
+    }
+  });
+});
+
 //Endpoint to mark a task as complete
 app.get("/task/mark-complete", (req, res) => {
   const { id } = req.query;
@@ -225,15 +240,18 @@ app.get("/task/delete", (req, res) => {
 
 //Endpoint to delete a scheduled task (unschedule a task for the date within the scheduled task)
 app.get("/scheduled-task/delete", (req, res) => {
-  const { id } = req.query;
+  const { scheduledId, taskId } = req.query;
 
-  const DELETE_SCHEDULED_TASK_QUERY = `DELETE from ScheduledTask WHERE scheduledid = '${id}';`;
+  const DELETE_SCHEDULED_TASK_QUERY = `DELETE from scheduledTask WHERE scheduledId = '${scheduledId}';`;
 
   connection.query(DELETE_SCHEDULED_TASK_QUERY, (err) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully deleted scheduled task");
+      task = { taskId: taskId };
+
+      //return the taskId
+      return res.send(task);
     }
   });
 });
@@ -258,6 +276,22 @@ app.get("/task/get-task", (req, res) => {
   const { id } = req.query;
 
   const GET_TASK_QUERY = `SELECT * FROM Task WHERE taskid = '${id}';`;
+
+  connection.query(GET_TASK_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      res.setHeader("Content-Type", "application/json");
+      res.end(JSON.stringify(results));
+    }
+  });
+});
+
+//Endpoint to get all scheduled tasks with a given task id and view attributes in JSON format
+app.get("/scheduled-tasks/get-by-task-id", (req, res) => {
+  const { id } = req.query;
+
+  const GET_TASK_QUERY = `SELECT * FROM scheduledTask WHERE taskid = '${id}';`;
 
   connection.query(GET_TASK_QUERY, (err, results) => {
     if (err) {

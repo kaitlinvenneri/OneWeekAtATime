@@ -5,7 +5,7 @@ class WeekView extends Component {
   state = {};
 
   getColumns = () => {
-    const { weekScheduled } = this.props;
+    const { weekScheduled, onDelete } = this.props;
 
     let columns = [];
 
@@ -19,7 +19,11 @@ class WeekView extends Component {
         columns.push(
           <td key={i}>
             {day.scheduledTasks.map((task) => (
-              <WeekViewTask task={task} key={task.scheduledId} />
+              <WeekViewTask
+                task={task}
+                onDelete={onDelete}
+                key={task.scheduledId}
+              />
             ))}
           </td>
         );

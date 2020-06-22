@@ -34,7 +34,7 @@ class WeekViewTask extends Component {
   };
 
   render() {
-    const { task } = this.props;
+    const { task, onDelete } = this.props;
 
     const labelStyle = {
       textDecoration: "line-through",
@@ -57,7 +57,12 @@ class WeekViewTask extends Component {
           >
             {task.title}
           </label>
-          <button className="btn btn-sm btn-danger py-0 ml-1">x</button>
+          <button
+            onClick={() => onDelete(task.scheduledId, task.taskId)}
+            className="btn btn-sm btn-danger py-0 ml-1"
+          >
+            x
+          </button>
         </div>
       </div>
     );
