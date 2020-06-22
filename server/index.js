@@ -285,9 +285,9 @@ app.get("/week", (req, res) => {
 
   if (dayOfWeek !== 1) {
     if (dayOfWeek === 0) {
-      startDate.setDate(startDate.getDate() - 6);
+      startDate.setUTCDate(startDate.getDate() - 6);
     } else {
-      startDate.setDate(startDate.getDate() - dayOfWeek + 1);
+      startDate.setUTCDate(startDate.getDate() - dayOfWeek + 1);
     }
   }
 
