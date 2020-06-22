@@ -274,17 +274,20 @@ app.get("/week", (req, res) => {
   //const { date } = req.query;
   //TODO: Modify this endpoint to get the week for a date sent in?
 
+  //TODO: IMPORTANT NOTE: If I want this to work for a date sent in, I'm going to need to use get and set with UTC also
+  //This solution only works for when I'm trying to set the week based on the current date locally!!!
+
   //Currently just gets the week for the current date
   let date = new Date();
 
   let startDate = new Date(date);
-  let dayOfWeek = startDate.getUTCDay();
+  let dayOfWeek = startDate.getDay();
 
   if (dayOfWeek !== 1) {
     if (dayOfWeek === 0) {
-      startDate.setUTCDate(startDate.getUTCDate() - 6);
+      startDate.setDate(startDate.getDate() - 6);
     } else {
-      startDate.setUTCDate(startDate.getUTCDate() - dayOfWeek + 1);
+      startDate.setDate(startDate.getDate() - dayOfWeek + 1);
     }
   }
 
