@@ -41,8 +41,8 @@ class WeekViewTask extends Component {
     };
 
     return (
-      <div className="border rounded mb-3 pt-3 pl-3 pr-3">
-        <div className="form-group form-check d-flex">
+      <div className="border rounded mb-3 pt-3 pl-3 pr-3 bg-light">
+        <div className="form-group form-check d-flex flex-wrap">
           <input
             type="checkbox"
             className="form-check-input"

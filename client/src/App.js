@@ -180,18 +180,24 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <br />
+        <h3 className="text-center">This Week:</h3>
+        <WeekView
+          weekScheduled={this.state.weekScheduled}
+          onDelete={this.handleTaskUnscheduling}
+        />
+        <br />
         <AddTaskForm onAdd={this.handleTaskAdding} />
+        <br />
         <UnscheduledTaskTable
           tasks={this.state.unscheduledTasks}
           onSchedule={this.handleTaskScheduling}
           onDelete={this.handleTaskDelete}
         />
+        <br />
         <ScheduledTaskTable
           scheduledTasks={this.state.scheduledTasks}
-          onDelete={this.handleTaskUnscheduling}
-        />
-        <WeekView
-          weekScheduled={this.state.weekScheduled}
+          onSchedule={this.handleTaskScheduling}
           onDelete={this.handleTaskUnscheduling}
         />
       </div>

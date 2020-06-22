@@ -6,10 +6,10 @@ class UnscheduledTaskTable extends Component {
     const { tasks, onSchedule, onDelete } = this.props;
 
     return (
-      <table className="table">
+      <table className="table table-bordered table-warning">
         <thead>
           <tr>
-            <th>Unscheduled Tasks</th>
+            <th>Tasks</th>
             <th></th>
             <th></th>
           </tr>

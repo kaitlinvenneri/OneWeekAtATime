@@ -99,7 +99,7 @@ class WeekView extends Component {
     }
 
     return (
-      <table className="table table-bordered">
+      <table className="table table-bordered table-success">
         <thead>
           <tr>
             <th scope="col" className="text-center">

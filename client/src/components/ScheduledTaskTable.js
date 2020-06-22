@@ -45,12 +45,12 @@ class ScheduledTaskTable extends Component {
     scheduledTaskArray = Array.from(scheduledTaskMap.values());
 
     return (
-      <table className="table">
+      <table className="table table-bordered table-info">
         <thead>
           <tr>
-            <th>Scheduled Tasks</th>
-            <th />
-            <th />
+            <th>Tasks</th>
+            <th>Scheduled on</th>
+            <th>Schedule for more dates</th>
           </tr>
         </thead>
         <tbody>
@@ -58,7 +58,6 @@ class ScheduledTaskTable extends Component {
             <tr key={scheduledTask.taskId}>
               <td>{scheduledTask.title}</td>
               <td>
-                <b>Scheduled on:</b>
                 {scheduledTask.dates.map((date, i) => (
                   <div className="d-flex align-items-center" key={i}>
                     {date.date}
@@ -72,7 +71,6 @@ class ScheduledTaskTable extends Component {
                 ))}
               </td>
               <td>
-                <b>Schedule for more dates:</b>
                 <ScheduleTaskForm
                   task={scheduledTask}
                   onSchedule={onSchedule}

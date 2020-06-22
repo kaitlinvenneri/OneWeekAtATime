@@ -6,6 +6,7 @@ const FormContainer = styled.div`
   border-radius: 10px;
   padding: 10px;
   margin: 10px 10px 10px 10px;
+  background-color: rgb(191, 207, 211);
 `;
 
 const AddTaskTitle = styled.h3`
