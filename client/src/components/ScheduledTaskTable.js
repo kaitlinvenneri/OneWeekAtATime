@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import ScheduleTaskForm from "./ScheduleTaskForm";
 
 class ScheduledTaskTable extends Component {
   render() {
-    const { scheduledTasks, onDelete } = this.props;
+    const { scheduledTasks, onDelete, onSchedule } = this.props;
 
     let scheduledTaskMap = new Map();
     let scheduledTaskArray = [];
@@ -19,7 +20,7 @@ class ScheduledTaskTable extends Component {
         datesToAdd.push(dateWithScheduledId);
 
         scheduledTaskMap.set(scheduledTasks[i].taskId, {
-          id: scheduledTasks[i].taskId,
+          taskId: scheduledTasks[i].taskId,
           title: scheduledTasks[i].title,
           dates: datesToAdd,
         });
@@ -34,7 +35,7 @@ class ScheduledTaskTable extends Component {
         datesToAdd.push(dateWithScheduledId);
 
         scheduledTaskMap.set(scheduledTasks[i].taskId, {
-          id: scheduledTasks[i].taskId,
+          taskId: scheduledTasks[i].taskId,
           title: scheduledTasks[i].title,
           dates: datesToAdd,
         });
@@ -48,14 +49,16 @@ class ScheduledTaskTable extends Component {
         <thead>
           <tr>
             <th>Scheduled Tasks</th>
-            <th></th>
+            <th />
+            <th />
           </tr>
         </thead>
         <tbody>
           {scheduledTaskArray.map((scheduledTask) => (
-            <tr key={scheduledTask.id}>
+            <tr key={scheduledTask.taskId}>
               <td>{scheduledTask.title}</td>
               <td>
+                <b>Scheduled on:</b>
                 {scheduledTask.dates.map((date, i) => (
                   <div className="d-flex align-items-center" key={i}>
                     {date.date}
@@ -67,6 +70,13 @@ class ScheduledTaskTable extends Component {
                     </button>
                   </div>
                 ))}
+              </td>
+              <td>
+                <b>Schedule for more dates:</b>
+                <ScheduleTaskForm
+                  task={scheduledTask}
+                  onSchedule={onSchedule}
+                />
               </td>
             </tr>
           ))}
