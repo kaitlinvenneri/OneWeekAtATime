@@ -186,7 +186,10 @@ class App extends Component {
           onSchedule={this.handleTaskScheduling}
           onDelete={this.handleTaskDelete}
         />
-        <ScheduledTaskTable scheduledTasks={this.state.scheduledTasks} />
+        <ScheduledTaskTable
+          scheduledTasks={this.state.scheduledTasks}
+          onDelete={this.handleTaskUnscheduling}
+        />
         <WeekView
           weekScheduled={this.state.weekScheduled}
           onDelete={this.handleTaskUnscheduling}

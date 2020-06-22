@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class ScheduledTaskTable extends Component {
   render() {
-    const { scheduledTasks } = this.props;
+    const { scheduledTasks, onDelete } = this.props;
 
     let scheduledTaskMap = new Map();
     let scheduledTaskArray = [];
@@ -57,7 +57,15 @@ class ScheduledTaskTable extends Component {
               <td>{scheduledTask.title}</td>
               <td>
                 {scheduledTask.dates.map((date, i) => (
-                  <div key={i}>{date.date}</div>
+                  <div className="d-flex align-items-center" key={i}>
+                    {date.date}
+                    <button
+                      onClick={() => onDelete(date.id, scheduledTask.id)}
+                      className="btn btn-sm btn-danger py-0 ml-1"
+                    >
+                      x
+                    </button>
+                  </div>
                 ))}
               </td>
             </tr>
