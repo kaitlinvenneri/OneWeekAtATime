@@ -62,7 +62,7 @@ class ScheduledTaskTable extends Component {
                   <div className="d-flex align-items-center" key={i}>
                     {date.date}
                     <button
-                      onClick={() => onDelete(date.id, scheduledTask.id)}
+                      onClick={() => onDelete(date.id, scheduledTask.taskId)}
                       className="btn btn-sm btn-danger py-0 ml-1"
                     >
                       x
