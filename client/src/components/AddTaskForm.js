@@ -3,10 +3,9 @@ import styled from "styled-components";
 
 const FormContainer = styled.div`
   border: 1px solid silver;
-  border-radius: 10px;
   padding: 10px;
-  margin: 10px 10px 10px 10px;
   background-color: rgb(191, 207, 211);
+  width: 98%;
 `;
 
 const AddTaskTitle = styled.h3`
@@ -24,7 +23,7 @@ class AddTaskForm extends Component {
     const { onAdd } = this.props;
 
     return (
-      <FormContainer>
+      <FormContainer className="mx-auto">
         <AddTaskTitle>Add Task</AddTaskTitle>
         <form>
           <div className="form-row align-items-center">

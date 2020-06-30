@@ -45,10 +45,13 @@ class ScheduledTaskTable extends Component {
     scheduledTaskArray = Array.from(scheduledTaskMap.values());
 
     return (
-      <table className="table table-bordered table-info">
+      <table
+        className="table table-bordered table-info mx-auto"
+        style={{ width: "98%" }}
+      >
         <thead>
           <tr>
-            <th>Tasks</th>
+            <th>Unscheduled Tasks</th>
             <th>Scheduled on</th>
             <th>Schedule for more dates</th>
           </tr>
