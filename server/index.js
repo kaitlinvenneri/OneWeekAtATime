@@ -335,7 +335,7 @@ app.get("/week", (req, res) => {
   for (i = 1; i < 7; i++) {
     let tempDate = new Date();
     let prevIndex = i - 1;
-    tempDate.setUTCDate(dateArray[prevIndex].getUTCDate() + 1);
+    tempDate.setTime(dateArray[prevIndex].getTime() + 86400000);
     dateArray.push(tempDate);
     let tempDateString = tempDate.toISOString().split("T")[0];
     dateStrings.push(tempDateString);
