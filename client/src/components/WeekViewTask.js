@@ -41,27 +41,38 @@ class WeekViewTask extends Component {
     };
 
     return (
-      <div className="border rounded mb-3 pt-3 pl-3 pr-3 bg-light d-inline-flex">
-        <div className="form-group form-check d-flex flex-row flex-wrap">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id={task.scheduledId}
-            checked={this.state.completionStatus}
-            onChange={this.changeSelectedState}
-          />
-          <label
-            className="form-check-label"
-            htmlFor={task.scheduledId}
-            style={task.completionStatus === 1 ? labelStyle : null}
-          >
-            {task.title}
-          </label>
+      <div className="border rounded mb-3 pt-2 pl-3 pr-3 bg-light d-flex flex-column">
+        <label
+          className="label mb-2"
+          htmlFor={task.scheduledId}
+          style={task.completionStatus === 1 ? labelStyle : null}
+        >
+          {task.title}
+        </label>
+        <div className="d-flex flex-row flex-wrap justify-content-around">
+          {this.state.completionStatus === 0 ? (
+            <button
+              className="btn btn-success mb-3"
+              id={task.scheduledId}
+              onClick={this.changeSelectedState}
+            >
+              Check
+            </button>
+          ) : (
+            <button
+              className="btn btn-warning mb-3"
+              id={task.scheduledId}
+              onClick={this.changeSelectedState}
+            >
+              Uncheck
+            </button>
+          )}
+
           <button
             onClick={() => onDelete(task.scheduledId, task.taskId)}
-            className="btn btn-sm btn-danger py-0 ml-1"
+            className="btn btn-danger mb-3"
           >
-            x
+            Unschedule
           </button>
         </div>
       </div>
