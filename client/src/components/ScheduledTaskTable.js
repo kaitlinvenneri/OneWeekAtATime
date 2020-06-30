@@ -51,7 +51,7 @@ class ScheduledTaskTable extends Component {
       >
         <thead>
           <tr>
-            <th>Unscheduled Tasks</th>
+            <th>Scheduled Tasks</th>
             <th>Scheduled on</th>
             <th>Schedule for more dates</th>
           </tr>

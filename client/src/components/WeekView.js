@@ -100,7 +100,7 @@ class WeekView extends Component {
 
     return (
       <table
-        className="table table-bordered table-success mx-auto"
+        className="table table-bordered table-success mx-auto mb-4"
         style={{ width: "98%" }}
       >
         <thead>

@@ -23,7 +23,7 @@ class AddTaskForm extends Component {
     const { onAdd } = this.props;
 
     return (
-      <FormContainer className="mx-auto">
+      <FormContainer className="mx-auto mb-4">
         <AddTaskTitle>Add Task</AddTaskTitle>
         <form>
           <div className="form-row align-items-center">

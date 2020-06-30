@@ -7,7 +7,7 @@ class UnscheduledTaskTable extends Component {
 
     return (
       <table
-        className="table table-bordered table-warning mx-auto"
+        className="table table-bordered table-warning mx-auto mb-4"
         style={{ width: "98%" }}
       >
         <thead>
