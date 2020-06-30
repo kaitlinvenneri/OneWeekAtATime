@@ -99,28 +99,31 @@ class WeekView extends Component {
     }
 
     return (
-      <table className="table table-bordered table-success w-auto">
+      <table
+        className="table table-bordered table-success mx-auto"
+        style={{ width: "98%" }}
+      >
         <thead>
           <tr>
-            <th scope="col" className="text-center">
+            <th scope="col" className="text-center" style={{ width: "14%" }}>
               Monday {dateStrings[0]}
             </th>
-            <th scope="col" className="text-center">
+            <th scope="col" className="text-center" style={{ width: "14%" }}>
               Tuesday {dateStrings[1]}
             </th>
-            <th scope="col" className="text-center">
+            <th scope="col" className="text-center" style={{ width: "14%" }}>
               Wednesday {dateStrings[2]}
             </th>
-            <th scope="col" className="text-center">
+            <th scope="col" className="text-center" style={{ width: "14%" }}>
               Thursday {dateStrings[3]}
             </th>
-            <th scope="col" className="text-center">
+            <th scope="col" className="text-center" style={{ width: "14%" }}>
               Friday {dateStrings[4]}
             </th>
-            <th scope="col" className="text-center">
+            <th scope="col" className="text-center" style={{ width: "14%" }}>
               Saturday {dateStrings[5]}
             </th>
-            <th scope="col" className="text-center">
+            <th scope="col" className="text-center" style={{ width: "14%" }}>
               Sunday {dateStrings[6]}
             </th>
           </tr>
