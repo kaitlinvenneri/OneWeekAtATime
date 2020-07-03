@@ -4,6 +4,7 @@ import AddTaskForm from "./components/AddTaskForm";
 import UnscheduledTaskTable from "./components/UnscheduledTaskTable";
 import ScheduledTaskTable from "./components/ScheduledTaskTable";
 import WeekView from "./components/WeekView";
+import NavBar from "./components/NavBar";
 
 class App extends Component {
   state = {
@@ -180,6 +181,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <NavBar />
         <br />
         <h3 className="text-center">This Week:</h3>
         <WeekView
