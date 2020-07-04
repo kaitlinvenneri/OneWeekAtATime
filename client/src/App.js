@@ -183,11 +183,11 @@ class App extends Component {
       <div className="App">
         <NavBar />
         <br />
-        <h3 className="text-center">This Week:</h3>
         <WeekView
           weekScheduled={this.state.weekScheduled}
           onDelete={this.handleTaskUnscheduling}
         />
+        <br />
         <AddTaskForm onAdd={this.handleTaskAdding} />
         <UnscheduledTaskTable
           tasks={this.state.unscheduledTasks}

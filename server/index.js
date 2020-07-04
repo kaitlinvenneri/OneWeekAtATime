@@ -341,6 +341,71 @@ app.get("/week", (req, res) => {
     dateStrings.push(tempDateString);
   }
 
+  weekdayStrings = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  //TODO: Factor out into another function
+  let longDateStrings = [];
+
+  for (i = 0; i < dateStrings.length; i++) {
+    let dateComps = dateStrings[i].split("-");
+    let year = dateComps[0];
+    let month = dateComps[1];
+    let day = dateComps[2];
+    let monthString;
+
+    switch (month) {
+      case "01":
+        monthString = "January";
+        break;
+      case "02":
+        monthString = "February";
+        break;
+      case "03":
+        monthString = "March";
+        break;
+      case "04":
+        monthString = "April";
+        break;
+      case "05":
+        monthString = "May";
+        break;
+      case "06":
+        monthString = "June";
+        break;
+      case "07":
+        monthString = "July";
+        break;
+      case "08":
+        monthString = "August";
+        break;
+      case "09":
+        monthString = "September";
+        break;
+      case "10":
+        monthString = "October";
+        break;
+      case "11":
+        monthString = "November";
+        break;
+      case "12":
+        monthString = "December";
+        break;
+      default:
+        monthString = "oops";
+    }
+
+    let longDateString = monthString + " " + day + ", " + year;
+    longDateStrings.push(longDateString);
+  }
+
   const GET_SCHEDULED_TASKS_IN_RANGE_QUERY = `SELECT scheduledTask.*, task.title FROM scheduledTask LEFT JOIN task ON scheduledTask.taskId = task.taskId WHERE scheduledDate between '${dateStrings[0]}' and '${dateStrings[6]}' order by scheduledDate asc;`;
 
   connection.query(GET_SCHEDULED_TASKS_IN_RANGE_QUERY, (err, results) => {
@@ -363,7 +428,8 @@ app.get("/week", (req, res) => {
 
       for (i = 0; i < dateStrings.length; i++) {
         let dateObj = {
-          date: dateStrings[i],
+          weekday: weekdayStrings[i],
+          date: longDateStrings[i],
           scheduledTasks: dateMap.get(dateStrings[i]),
         };
         dateArray.push(dateObj);
