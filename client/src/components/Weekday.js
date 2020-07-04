@@ -12,7 +12,7 @@ class Weekday extends Component {
           <br />
           {day.date}
         </h5>
-        <div className="card-body">
+        <div className="card-body pl-2 pr-2 pb-2 pt-0">
           {day.scheduledTasks.map((task) => (
             <WeekViewTask
               task={task}
