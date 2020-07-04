@@ -182,7 +182,6 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <br />
         <WeekView
           weekScheduled={this.state.weekScheduled}
           onDelete={this.handleTaskUnscheduling}
