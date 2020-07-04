@@ -48,7 +48,7 @@ class WeekViewTask extends Component {
               width="1.25em"
               height="1.25em"
               viewBox="0 0 16 16"
-              className="bi bi-check-square-fill my-1"
+              className="bi bi-calendar-check-fill my-1"
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
               onClick={this.changeSelectedState}
@@ -56,7 +56,7 @@ class WeekViewTask extends Component {
             >
               <path
                 fillRule="evenodd"
-                d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM0 5h16v9a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5zm10.854 3.854a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"
               />
             </svg>
           ) : (
@@ -64,7 +64,7 @@ class WeekViewTask extends Component {
               width="1.25em"
               height="1.25em"
               viewBox="0 0 16 16"
-              className="bi bi-check-square my-1"
+              className="bi bi-calendar-check my-1"
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
               onClick={this.changeSelectedState}
@@ -72,11 +72,15 @@ class WeekViewTask extends Component {
             >
               <path
                 fillRule="evenodd"
-                d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+                d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"
               />
               <path
                 fillRule="evenodd"
-                d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"
+                d="M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1-3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"
+              />
+              <path
+                fillRule="evenodd"
+                d="M3.5 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zm9 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5z"
               />
             </svg>
           )}
@@ -84,7 +88,7 @@ class WeekViewTask extends Component {
             width="1.25em"
             height="1.25em"
             viewBox="0 0 16 16"
-            className="bi bi-x-square-fill mb-1"
+            className="bi bi-calendar-minus mb-1"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
             onClick={() => onDelete(task.scheduledId, task.taskId)}
@@ -92,7 +96,15 @@ class WeekViewTask extends Component {
           >
             <path
               fillRule="evenodd"
-              d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm9.854 4.854a.5.5 0 0 0-.708-.708L8 7.293 4.854 4.146a.5.5 0 1 0-.708.708L7.293 8l-3.147 3.146a.5.5 0 0 0 .708.708L8 8.707l3.146 3.147a.5.5 0 0 0 .708-.708L8.707 8l3.147-3.146z"
+              d="M5.5 9.5A.5.5 0 0 1 6 9h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"
+            />
+            <path
+              fillRule="evenodd"
+              d="M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1-3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"
+            />
+            <path
+              fillRule="evenodd"
+              d="M3.5 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zm9 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5z"
             />
           </svg>
           <svg
