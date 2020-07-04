@@ -96,7 +96,6 @@ class WeekViewTask extends Component {
         </div>
         <label
           className="label mb-2"
-          htmlFor={task.scheduledId}
           style={task.completionStatus === 1 ? labelStyle : null}
         >
           {task.title}
