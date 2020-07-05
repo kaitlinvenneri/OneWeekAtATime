@@ -8,9 +8,7 @@ class NavBar extends Component {
         className="navbar navbar-expand-lg navbar-light"
         style={{ backgroundColor: "#e3f2fd" }}
       >
-        <a className="navbar-brand" href="#">
-          Planning App
-        </a>
+        <div className="navbar-brand">Planning App</div>
       </nav>
     );
   }
