@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import AddTaskForm from "./components/AddTaskForm";
-import UnscheduledTaskTable from "./components/UnscheduledTaskTable";
-import ScheduledTaskTable from "./components/ScheduledTaskTable";
+// import AddTaskForm from "./components/AddTaskForm";
+// import UnscheduledTaskTable from "./components/UnscheduledTaskTable";
+// import ScheduledTaskTable from "./components/ScheduledTaskTable";
 import WeekView from "./components/WeekView";
 import NavBar from "./components/NavBar";
+import ToDoList from "./components/ToDoList";
 
 class App extends Component {
   state = {
@@ -186,8 +187,8 @@ class App extends Component {
           weekScheduled={this.state.weekScheduled}
           onDelete={this.handleTaskUnscheduling}
         />
-        <br />
-        <AddTaskForm onAdd={this.handleTaskAdding} />
+        <ToDoList />
+        {/* <AddTaskForm onAdd={this.handleTaskAdding} /> 
         <UnscheduledTaskTable
           tasks={this.state.unscheduledTasks}
           onSchedule={this.handleTaskScheduling}
@@ -197,7 +198,7 @@ class App extends Component {
           scheduledTasks={this.state.scheduledTasks}
           onSchedule={this.handleTaskScheduling}
           onDelete={this.handleTaskUnscheduling}
-        />
+        /> */}
       </div>
     );
   }
