@@ -42,7 +42,7 @@ class WeekViewTask extends Component {
 
     return (
       <div
-        className="mt-2 pt-1 pl-2 pr-3 d-flex flex-row"
+        className="mt-2 pt-1 pl-2 pr-3 d-flex flex-column"
         style={{
           backgroundColor: "#e1e6ea",
           borderStyle: "solid",
@@ -51,13 +51,19 @@ class WeekViewTask extends Component {
           borderWidth: "1px",
         }}
       >
-        <div className="d-flex flex-column flex-wrap justify-content-start mr-2">
+        <label
+          className="label mb-2"
+          style={task.completionStatus === 1 ? labelStyle : null}
+        >
+          {task.title}
+        </label>
+        <div className="d-flex flex-row justify-content-start mr-2">
           {this.state.completionStatus === 0 ? (
             <svg
               width="1.25em"
               height="1.25em"
               viewBox="0 0 16 16"
-              className="bi bi-calendar-check my-1"
+              className="bi bi-calendar-check mr-2"
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
               onClick={this.changeSelectedState}
@@ -81,7 +87,7 @@ class WeekViewTask extends Component {
               width="1.25em"
               height="1.25em"
               viewBox="0 0 16 16"
-              className="bi bi-calendar-check-fill my-1"
+              className="bi bi-calendar-check-fill mr-2"
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
               onClick={this.changeSelectedState}
@@ -97,7 +103,7 @@ class WeekViewTask extends Component {
             width="1.25em"
             height="1.25em"
             viewBox="0 0 16 16"
-            className="bi bi-calendar-minus mb-1"
+            className="bi bi-calendar-minus mr-2"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
             onClick={() => onDelete(task.scheduledId, task.taskId)}
@@ -136,12 +142,6 @@ class WeekViewTask extends Component {
             <rect width="2" height="2" x="11" y="6" rx=".5" />
           </svg>
         </div>
-        <label
-          className="label mb-2"
-          style={task.completionStatus === 1 ? labelStyle : null}
-        >
-          {task.title}
-        </label>
       </div>
     );
   }
