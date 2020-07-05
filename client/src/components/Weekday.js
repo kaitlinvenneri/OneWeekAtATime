@@ -6,8 +6,14 @@ class Weekday extends Component {
   render() {
     const { day, onDelete } = this.props;
     return (
-      <div className="card mx-auto" style={{ width: "14%" }}>
-        <h5 className="card-header text-center">
+      <div
+        className="card mx-auto"
+        style={{ width: "14%", borderColor: "#083a5e" }}
+      >
+        <h5
+          className="card-header text-center"
+          style={{ backgroundColor: "#0c66a6", color: "white" }}
+        >
           {day.weekday}
           <br />
           {day.date}
