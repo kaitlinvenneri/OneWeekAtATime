@@ -15,6 +15,26 @@ class ToDoList extends Component {
     });
   }
 
+  handleChangingTaskCompletionStatus = async (task) => {
+    let options = {
+      params: {
+        id: task.taskId,
+      },
+    };
+
+    if (task.completionStatus === 1) {
+      await axios.get("http://localhost:4000/task/mark-incomplete", options);
+    } else {
+      await axios.get("http://localhost:4000/task/mark-complete", options);
+    }
+
+    await axios.get("http://localhost:4000/tasks").then((response) => {
+      this.setState((state) => ({
+        tasks: response.data,
+      }));
+    });
+  };
+
   handleTaskDelete = async (taskId) => {
     //TODO: Change this to be an optimistic update (it's pessimistic currently)
     let options = {
@@ -144,9 +164,13 @@ class ToDoList extends Component {
             </td>
           </tr>
           {this.state.tasks.map((task) => (
-            <tr>
+            <tr key={task.taskId}>
               <td>
-                <ToDoItem task={task} onDelete={this.handleTaskDelete} />
+                <ToDoItem
+                  task={task}
+                  onDelete={this.handleTaskDelete}
+                  onChangeCompletion={this.handleChangingTaskCompletionStatus}
+                />
               </td>
             </tr>
           ))}
