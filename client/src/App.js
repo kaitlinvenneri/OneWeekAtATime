@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route path="/todos" component={ToDoPage} />
+          <Route path="/todo-list" component={ToDoPage} />
           <Route path="/" component={PlannerPage} />
         </Switch>
       </div>

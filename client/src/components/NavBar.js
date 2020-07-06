@@ -19,9 +19,11 @@ class NavBar extends Component {
               Planner
             </Link>
           </li>
-          <li className={active === "To Dos" ? "nav-item active" : "nav-item"}>
-            <Link className="nav-link" to="/todos">
-              To Dos
+          <li
+            className={active === "To Do List" ? "nav-item active" : "nav-item"}
+          >
+            <Link className="nav-link" to="/todo-list">
+              To Do List
             </Link>
           </li>
         </ul>

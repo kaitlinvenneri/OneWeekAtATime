@@ -7,7 +7,7 @@ class ToDoPage extends Component {
   render() {
     return (
       <div>
-        <NavBar active="To Dos" />
+        <NavBar active="To Do List" />
         <ToDoList />
       </div>
     );
