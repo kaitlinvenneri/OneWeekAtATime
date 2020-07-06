@@ -40,7 +40,7 @@ class WeekView extends Component {
             width="2em"
             height="2em"
             viewBox="0 0 16 16"
-            className="bi bi-calendar-week mr-2"
+            className="bi bi-calendar-event mr-2"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
             style={{ cursor: "pointer" }}
@@ -53,7 +53,7 @@ class WeekView extends Component {
               fillRule="evenodd"
               d="M3.5 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zm9 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5z"
             />
-            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+            <rect width="2" height="2" x="11" y="6" rx=".5" />
           </svg>
           <svg
             width="1.7em"

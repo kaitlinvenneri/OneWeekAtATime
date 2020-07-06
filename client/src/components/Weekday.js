@@ -31,7 +31,7 @@ class Weekday extends Component {
           width="2em"
           height="2em"
           viewBox="0 0 16 16"
-          className="bi bi-journal-plus ml-2 mb-2"
+          className="bi bi-journal-plus ml-1 mb-1"
           fill="#002080"
           xmlns="http://www.w3.org/2000/svg"
           style={{ cursor: "pointer" }}
