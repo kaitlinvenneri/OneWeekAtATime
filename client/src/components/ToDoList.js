@@ -5,18 +5,20 @@ class ToDoList extends Component {
   state = {};
   render() {
     return (
-      <table className="table w-auto mx-auto">
+      <table className="table table-striped table-borderless w-auto mx-auto">
         <thead>
           <tr>
-            <th scope="col">To Do</th>
+            <th scope="col" style={{ fontSize: "20px" }}>
+              To Do
+            </th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
               <svg
-                width="1.5em"
-                height="1.5em"
+                width="2em"
+                height="2em"
                 viewBox="0 0 16 16"
                 className="bi bi-journal-plus"
                 fill="currentColor"

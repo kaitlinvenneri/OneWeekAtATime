@@ -6,12 +6,12 @@ class ToDoItem extends Component {
     const { text } = this.props;
 
     return (
-      <div className="d-flex flex-row justify-content-between">
+      <div className="d-flex flex-row justify-content-between ml-1">
         <div className="d-inline-flex flex-row align-items-center">
           <div>
             <svg
-              width="1em"
-              height="1em"
+              width="1.25em"
+              height="1.25em"
               viewBox="0 0 16 16"
               className="bi bi-check-square mr-2"
               fill="currentColor"
@@ -28,12 +28,14 @@ class ToDoItem extends Component {
               />
             </svg>
           </div>
-          <div className="mt-1">{text}</div>
+          <div className="mt-1" style={{ fontSize: "20px" }}>
+            {text}
+          </div>
         </div>
         <div className="d-inline-flex flex-row ml-2 mt-2">
           <svg
-            width="1.05em"
-            height="1.1em"
+            width="1.3em"
+            height="1.3em"
             viewBox="0 0 16 16"
             className="bi bi-pencil-square mr-1"
             fill="currentColor"
@@ -47,8 +49,8 @@ class ToDoItem extends Component {
             />
           </svg>
           <svg
-            width="1em"
-            height="1em"
+            width="1.25em"
+            height="1.25em"
             viewBox="0 0 16 16"
             className="bi bi-calendar-plus mx-1"
             fill="currentColor"
@@ -73,8 +75,8 @@ class ToDoItem extends Component {
             />
           </svg>
           <svg
-            width="1em"
-            height="1em"
+            width="1.25em"
+            height="1.25em"
             viewBox="0 0 16 16"
             className="bi bi-calendar-week mx-1"
             fill="currentColor"
@@ -92,8 +94,8 @@ class ToDoItem extends Component {
             <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
           </svg>
           <svg
-            width="1em"
-            height="1em"
+            width="1.25em"
+            height="1.25em"
             viewBox="0 0 16 16"
             className="bi bi-x-square ml-1"
             fill="currentColor"
