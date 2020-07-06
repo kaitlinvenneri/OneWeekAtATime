@@ -36,7 +36,6 @@ class ToDoList extends Component {
   };
 
   handleTaskDelete = async (taskId) => {
-    //TODO: Change this to be an optimistic update (it's pessimistic currently)
     let options = {
       params: {
         id: taskId,

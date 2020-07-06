@@ -12,7 +12,6 @@ class WeekViewTask extends Component {
       task.completionStatus = 0;
     }
     this.setState({ completionStatus: task.completionStatus });
-    //console.log(task.completionStatus);
 
     let options = {
       params: {
