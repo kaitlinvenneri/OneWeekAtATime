@@ -3,7 +3,6 @@ import NavBar from "./../components/NavBar";
 import ToDoList from "./../components/ToDoList";
 
 class ToDoPage extends Component {
-  state = {};
   render() {
     return (
       <div>

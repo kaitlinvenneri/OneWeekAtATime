@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class ToDoItem extends Component {
   state = {};
   render() {
-    const { text } = this.props;
+    const { task, onDelete } = this.props;
 
     return (
       <div className="d-flex flex-row justify-content-between ml-1">
@@ -29,7 +29,7 @@ class ToDoItem extends Component {
             </svg>
           </div>
           <div className="mt-1" style={{ fontSize: "20px" }}>
-            {text}
+            {task.title}
           </div>
         </div>
         <div className="d-inline-flex flex-row ml-2 mt-2">
@@ -101,6 +101,7 @@ class ToDoItem extends Component {
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
             style={{ cursor: "pointer" }}
+            onClick={() => onDelete(task.taskId)}
           >
             <path
               fillRule="evenodd"
