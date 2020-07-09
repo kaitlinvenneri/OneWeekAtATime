@@ -1,16 +1,18 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class TodoViewScheduled extends Component {
   render() {
+    const { editing } = this.props;
+
     return (
       <svg
         width="1.25em"
         height="1.25em"
         viewBox="0 0 16 16"
         className="bi bi-calendar-week mx-1"
-        fill="currentColor"
+        fill={editing === true ? 'grey' : 'currentColor'}
         xmlns="http://www.w3.org/2000/svg"
-        style={{ cursor: "pointer" }}
+        style={editing === true ? {} : { cursor: 'pointer' }}
       >
         <path
           fillRule="evenodd"

@@ -1,18 +1,18 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class TodoDelete extends Component {
   render() {
-    const { onDelete, task } = this.props;
+    const { editing, onDelete, task } = this.props;
     return (
       <svg
         width="1.25em"
         height="1.25em"
         viewBox="0 0 16 16"
         className="bi bi-x-square ml-1"
-        fill="currentColor"
+        fill={editing === true ? 'grey' : 'currentColor'}
         xmlns="http://www.w3.org/2000/svg"
-        style={{ cursor: "pointer" }}
-        onClick={() => onDelete(task.taskId)}
+        style={editing === true ? {} : { cursor: 'pointer' }}
+        onClick={editing === true ? null : () => onDelete(task.taskId)}
       >
         <path
           fillRule="evenodd"

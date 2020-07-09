@@ -1,19 +1,27 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class TodoUnchecked extends Component {
   render() {
-    const { onClick, task } = this.props;
+    const { editing, onClick, task } = this.props;
+
+    let classString = '';
+
+    if (editing) {
+      classString = 'bi bi-check-square mr-1';
+    } else {
+      classString = 'bi bi-check-square mr-2';
+    }
 
     return (
       <svg
         width="1.25em"
         height="1.25em"
         viewBox="0 0 16 16"
-        className="bi bi-check-square mr-2"
-        fill="currentColor"
+        className={classString}
+        fill={editing === true ? 'grey' : 'currentColor'}
         xmlns="http://www.w3.org/2000/svg"
-        style={{ cursor: "pointer" }}
-        onClick={() => onClick(task)}
+        style={editing === true ? {} : { cursor: 'pointer' }}
+        onClick={editing === true ? null : () => onClick(task)}
       >
         <path
           fillRule="evenodd"

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class TodoChecked extends Component {
   render() {
@@ -12,7 +12,7 @@ class TodoChecked extends Component {
         className="bi bi-check-square-fill mr-2"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ cursor: "pointer" }}
+        style={{ cursor: 'pointer' }}
         onClick={() => onClick(task)}
       >
         <path
