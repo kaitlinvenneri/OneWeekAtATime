@@ -117,7 +117,7 @@ class ToDoItem extends Component {
             </div>
           )}
         </div>
-        <div className="d-inline-flex flex-row ml-3 mt-2">
+        <div className="d-inline-flex flex-row ml-3 mt-1">
           {this.state.task.completionStatus === 1 ? (
             <></>
           ) : (
