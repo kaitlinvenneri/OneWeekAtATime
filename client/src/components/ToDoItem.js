@@ -104,7 +104,6 @@ class ToDoItem extends Component {
                 style={{
                   fontSize: '20px',
                   height: '35px',
-                  borderColor: 'black',
                   color: 'black',
                 }}
                 onChange={(e) => this.setState({ newTitle: e.target.value })}
