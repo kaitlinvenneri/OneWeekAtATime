@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import axios from "axios";
-import ToDoItem from "./ToDoItem";
-import TodoAdd from "./../svgs/TodoAdd";
+import React, { Component } from 'react';
+import axios from 'axios';
+import ToDoItem from './ToDoItem';
+import AddTaskForm from './AddTaskForm';
 
 class ToDoList extends Component {
   state = {
@@ -9,7 +9,7 @@ class ToDoList extends Component {
   };
 
   async componentDidMount() {
-    await axios.get("http://localhost:4000/tasks").then((response) => {
+    await axios.get('http://localhost:4000/tasks').then((response) => {
       this.setState((state) => ({
         tasks: response.data,
       }));
@@ -24,12 +24,12 @@ class ToDoList extends Component {
     };
 
     if (task.completionStatus === 1) {
-      await axios.get("http://localhost:4000/task/mark-incomplete", options);
+      await axios.get('http://localhost:4000/task/mark-incomplete', options);
     } else {
-      await axios.get("http://localhost:4000/task/mark-complete", options);
+      await axios.get('http://localhost:4000/task/mark-complete', options);
     }
 
-    await axios.get("http://localhost:4000/tasks").then((response) => {
+    await axios.get('http://localhost:4000/tasks').then((response) => {
       this.setState((state) => ({
         tasks: response.data,
       }));
@@ -47,7 +47,7 @@ class ToDoList extends Component {
 
     this.setState({ tasks });
 
-    await axios.get("http://localhost:4000/task/delete", options);
+    await axios.get('http://localhost:4000/task/delete', options);
   };
 
   handleTaskScheduling = async (taskId, taskDate) => {
@@ -60,12 +60,12 @@ class ToDoList extends Component {
     };
 
     await axios
-      .get("http://localhost:4000/task/schedule", options)
+      .get('http://localhost:4000/task/schedule', options)
       .then(async () => {
-        await axios.get("http://localhost:4000/task/mark-scheduled", options);
+        await axios.get('http://localhost:4000/task/mark-scheduled', options);
       })
       .then(async () => {
-        const { data: tasks } = await axios.get("http://localhost:4000/tasks");
+        const { data: tasks } = await axios.get('http://localhost:4000/tasks');
         this.setState({ tasks });
       });
   };
@@ -78,12 +78,10 @@ class ToDoList extends Component {
       },
     };
 
-    await axios
-      .get("http://localhost:4000/task/add", options)
-      .then(async () => {
-        const { data: tasks } = await axios.get("http://localhost:4000/tasks");
-        this.setState({ tasks });
-      });
+    await axios.get('http://localhost:4000/task/add', options).then(async () => {
+      const { data: tasks } = await axios.get('http://localhost:4000/tasks');
+      this.setState({ tasks });
+    });
   };
 
   handleTaskUnscheduling = async (scheduledId, taskId) => {
@@ -95,7 +93,7 @@ class ToDoList extends Component {
     };
 
     await axios
-      .get("http://localhost:4000/scheduled-task/delete", options)
+      .get('http://localhost:4000/scheduled-task/delete', options)
       .then(async (response) => {
         let unscheduleNeeded = false;
 
@@ -107,7 +105,7 @@ class ToDoList extends Component {
 
         //Get all instances of scheduled tasks with this taskId
         const { data: scheduledTasks } = await axios.get(
-          "http://localhost:4000/scheduled-tasks/get-by-task-id",
+          'http://localhost:4000/scheduled-tasks/get-by-task-id',
           taskOptions
         );
 
@@ -118,14 +116,11 @@ class ToDoList extends Component {
 
         //Unschedule the task (mark scheduledStatus 0)
         if (unscheduleNeeded) {
-          await axios.get(
-            "http://localhost:4000/task/mark-unscheduled",
-            taskOptions
-          );
+          await axios.get('http://localhost:4000/task/mark-unscheduled', taskOptions);
         }
       })
       .then(async () => {
-        const { data: tasks } = await axios.get("http://localhost:4000/tasks");
+        const { data: tasks } = await axios.get('http://localhost:4000/tasks');
         this.setState({ tasks });
       });
   };
@@ -134,7 +129,7 @@ class ToDoList extends Component {
       <table className="table table-striped table-borderless w-auto mx-auto">
         <thead>
           <tr>
-            <th scope="col" style={{ fontSize: "20px" }}>
+            <th scope="col" style={{ fontSize: '20px' }}>
               To Do
             </th>
           </tr>
@@ -142,7 +137,7 @@ class ToDoList extends Component {
         <tbody>
           <tr>
             <td>
-              <TodoAdd />
+              <AddTaskForm onAdd={this.handleTaskAdding} />
             </td>
           </tr>
           {this.state.tasks.map((task) => (

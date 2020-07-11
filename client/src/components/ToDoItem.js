@@ -15,7 +15,10 @@ class ToDoItem extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.task !== prevProps.task || this.props.task !== prevState.task) {
+    if (
+      this.props.task !== prevProps.task ||
+      this.props.task !== prevState.task
+    ) {
       this.setState({ task: this.props.task });
     }
   }
@@ -98,10 +101,19 @@ class ToDoItem extends Component {
                 value={this.state.newTitle}
                 size="50"
                 maxlength="50"
-                style={{ fontSize: '20px', height: '35px', borderColor: 'black', color: 'black' }}
+                style={{
+                  fontSize: '20px',
+                  height: '35px',
+                  borderColor: 'black',
+                  color: 'black',
+                }}
                 onChange={(e) => this.setState({ newTitle: e.target.value })}
               ></input>
-              <button className="btn btn-sm btn-outline-success ml-2" onClick={this.handleEditSave}>
+              <button
+                className="btn btn-sm btn-outline-success ml-2"
+                onClick={this.handleEditSave}
+                disabled={this.state.newTitle.length === 0}
+              >
                 Save
               </button>
               <button
@@ -122,7 +134,10 @@ class ToDoItem extends Component {
             <></>
           ) : (
             <div>
-              <TodoEdit editing={this.state.inEditState} onClick={this.handleEditButton} />
+              <TodoEdit
+                editing={this.state.inEditState}
+                onClick={this.handleEditButton}
+              />
               <TodoSchedule editing={this.state.inEditState} />
               <TodoViewScheduled editing={this.state.inEditState} />
             </div>
