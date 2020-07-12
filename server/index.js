@@ -1,6 +1,6 @@
-const mysql = require("mysql");
-const express = require("express");
-const cors = require("cors");
+const mysql = require('mysql');
+const express = require('express');
+const cors = require('cors');
 const app = express();
 
 //cors needed for React integration since frontend exists on its own server
@@ -8,47 +8,47 @@ app.use(cors());
 
 //server reachable at http://localhost:4000
 app.listen(4000, () => {
-  console.log("Listening on port 4000");
+  console.log('Listening on port 4000');
 });
 
 //Setting the default connection variables for the database (assuming grading flag not provided)
-let hostname = "localhost";
-let username = "root";
-let dbPassword = "password";
-let dbName = "planningApp";
+let hostname = 'localhost';
+let username = 'root';
+let dbPassword = 'password';
+let dbName = 'planningApp';
 
 //Function to handle escaping characters prior to attempting to put them into the database
 function mysql_real_escape_string(str) {
   return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
     switch (char) {
-      case "\0":
-        return "\\0";
-      case "\x08":
-        return "\\b";
-      case "\x09":
-        return "\\t";
-      case "\x1a":
-        return "\\z";
-      case "\n":
-        return "\\n";
-      case "\r":
-        return "\\r";
+      case '\0':
+        return '\\0';
+      case '\x08':
+        return '\\b';
+      case '\x09':
+        return '\\t';
+      case '\x1a':
+        return '\\z';
+      case '\n':
+        return '\\n';
+      case '\r':
+        return '\\r';
       case '"':
       case "'":
-      case "\\":
-      case "%":
-        return "\\" + char;
+      case '\\':
+      case '%':
+        return '\\' + char;
     }
   });
 }
 
 //Modifying database connection variables if server is being run for grading purposes
 const args = process.argv.slice(2);
-if (args[0] === "grading") {
-  hostname = "dursley.socs.uoguelph.ca";
-  username = "vennerik";
-  dbPassword = "0885662";
-  dbName = "vennerik";
+if (args[0] === 'grading') {
+  hostname = 'dursley.socs.uoguelph.ca';
+  username = 'vennerik';
+  dbPassword = '0885662';
+  dbName = 'vennerik';
 }
 
 //Creating connection variable for connecting to database
@@ -65,45 +65,45 @@ connection.connect((err) => {
   if (err) {
     throw err;
   } else {
-    console.log("Connected to database!");
+    console.log('Connected to database!');
   }
 });
 
 //Endpoint for homepage
-app.get("/", (req, res) => {
-  res.send("homepage");
+app.get('/', (req, res) => {
+  res.send('homepage');
 });
 
 //Endpoint to view all tasks
-app.get("/tasks", (req, res) => {
-  const SELECT_ALL_TASKS_QUERY = `SELECT * FROM Task`;
+app.get('/tasks', (req, res) => {
+  const SELECT_ALL_TASKS_QUERY = `SELECT * FROM Task order by taskId desc;`;
 
   connection.query(SELECT_ALL_TASKS_QUERY, (err, results) => {
     if (err) {
       return res.send(err);
     } else {
-      res.setHeader("Content-Type", "application/json");
+      res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify(results));
     }
   });
 });
 
 //Endpoint to view all scheduled tasks with task titles from the task table
-app.get("/scheduled-tasks", (req, res) => {
+app.get('/scheduled-tasks', (req, res) => {
   const SELECT_ALL_TASKS_QUERY = `SELECT scheduledTask.*, task.title FROM ScheduledTask LEFT JOIN task ON scheduledTask.taskId = task.taskId`;
 
   connection.query(SELECT_ALL_TASKS_QUERY, (err, results) => {
     if (err) {
       return res.send(err);
     } else {
-      res.setHeader("Content-Type", "application/json");
+      res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify(results));
     }
   });
 });
 
 //Endpoint to add a task
-app.get("/task/add", (req, res) => {
+app.get('/task/add', (req, res) => {
   const { title } = req.query;
   const formattedTitle = mysql_real_escape_string(title);
 
@@ -113,13 +113,13 @@ app.get("/task/add", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully added task");
+      return res.send('successfully added task');
     }
   });
 });
 
 //Endpoint to schedule a task
-app.get("/task/schedule", (req, res) => {
+app.get('/task/schedule', (req, res) => {
   const { id, date } = req.query;
 
   const SCHEDULE_TASK_QUERY = `INSERT INTO ScheduledTask(taskid,scheduleddate) VALUES('${id}', '${date}')`;
@@ -128,13 +128,13 @@ app.get("/task/schedule", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully scheduled task");
+      return res.send('successfully scheduled task');
     }
   });
 });
 
 //Endpoint to mark a task as scheduled
-app.get("/task/mark-scheduled", (req, res) => {
+app.get('/task/mark-scheduled', (req, res) => {
   const { id } = req.query;
 
   const MARK_TASK_SCHEDULED_QUERY = `UPDATE Task SET scheduledstatus = '1' WHERE taskid = '${id}';`;
@@ -143,13 +143,13 @@ app.get("/task/mark-scheduled", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully marked task as scheduled");
+      return res.send('successfully marked task as scheduled');
     }
   });
 });
 
 //Endpoint to mark a task as unscheduled
-app.get("/task/mark-unscheduled", (req, res) => {
+app.get('/task/mark-unscheduled', (req, res) => {
   const { id } = req.query;
 
   const MARK_TASK_UNSCHEDULED_QUERY = `UPDATE Task SET scheduledstatus = '0' WHERE taskid = '${id}';`;
@@ -158,13 +158,13 @@ app.get("/task/mark-unscheduled", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully marked task as unscheduled");
+      return res.send('successfully marked task as unscheduled');
     }
   });
 });
 
 //Endpoint to mark a task as complete
-app.get("/task/mark-complete", (req, res) => {
+app.get('/task/mark-complete', (req, res) => {
   const { id } = req.query;
 
   const MARK_TASK_COMPLETE_QUERY = `UPDATE Task SET completionstatus = '1' WHERE taskid = '${id}';`;
@@ -173,13 +173,13 @@ app.get("/task/mark-complete", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully marked task as complete");
+      return res.send('successfully marked task as complete');
     }
   });
 });
 
 //Endpoint to mark a scheduled task as complete
-app.get("/scheduled-task/mark-complete", (req, res) => {
+app.get('/scheduled-task/mark-complete', (req, res) => {
   const { id } = req.query;
 
   const MARK_SCHEDULED_COMPLETE_QUERY = `UPDATE ScheduledTask SET completionstatus = '1' WHERE scheduledid = '${id}';`;
@@ -188,13 +188,13 @@ app.get("/scheduled-task/mark-complete", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully marked scheduled task as complete");
+      return res.send('successfully marked scheduled task as complete');
     }
   });
 });
 
 //Endpoint to mark a task as incomplete
-app.get("/task/mark-incomplete", (req, res) => {
+app.get('/task/mark-incomplete', (req, res) => {
   const { id } = req.query;
 
   const MARK_TASK_INCOMPLETE_QUERY = `UPDATE Task SET completionstatus = '0' WHERE taskid = '${id}';`;
@@ -203,13 +203,13 @@ app.get("/task/mark-incomplete", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully marked task as incomplete");
+      return res.send('successfully marked task as incomplete');
     }
   });
 });
 
 //Endpoint to mark a scheduled task as incomplete
-app.get("/scheduled-task/mark-incomplete", (req, res) => {
+app.get('/scheduled-task/mark-incomplete', (req, res) => {
   const { id } = req.query;
 
   const MARK_SCHEDULED_INCOMPLETE_QUERY = `UPDATE ScheduledTask SET completionstatus = '0' WHERE scheduledid = '${id}';`;
@@ -218,13 +218,13 @@ app.get("/scheduled-task/mark-incomplete", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully marked scheduled task as incomplete");
+      return res.send('successfully marked scheduled task as incomplete');
     }
   });
 });
 
 //Endpoint to delete a task
-app.get("/task/delete", (req, res) => {
+app.get('/task/delete', (req, res) => {
   const { id } = req.query;
 
   const DELETE_TASK_QUERY = `DELETE from Task WHERE taskid = '${id}';`;
@@ -233,13 +233,13 @@ app.get("/task/delete", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully deleted task");
+      return res.send('successfully deleted task');
     }
   });
 });
 
 //Endpoint to delete a scheduled task (unschedule a task for the date within the scheduled task)
-app.get("/scheduled-task/delete", (req, res) => {
+app.get('/scheduled-task/delete', (req, res) => {
   const { scheduledId, taskId } = req.query;
 
   const DELETE_SCHEDULED_TASK_QUERY = `DELETE from scheduledTask WHERE scheduledId = '${scheduledId}';`;
@@ -257,7 +257,7 @@ app.get("/scheduled-task/delete", (req, res) => {
 });
 
 //Endpoint to update the title of a task
-app.get("/task/update-title", (req, res) => {
+app.get('/task/update-title', (req, res) => {
   const { id, title } = req.query;
 
   const UPDATE_TITLE_TASK_QUERY = `UPDATE Task SET title = '${title}' WHERE taskid = '${id}';`;
@@ -266,13 +266,13 @@ app.get("/task/update-title", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully updated the title of the task");
+      return res.send('successfully updated the title of the task');
     }
   });
 });
 
 //Endpoint to get a task by id and view attributes in JSON format
-app.get("/task/get-task", (req, res) => {
+app.get('/task/get-task', (req, res) => {
   const { id } = req.query;
 
   const GET_TASK_QUERY = `SELECT * FROM Task WHERE taskid = '${id}';`;
@@ -281,14 +281,14 @@ app.get("/task/get-task", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      res.setHeader("Content-Type", "application/json");
+      res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify(results));
     }
   });
 });
 
 //Endpoint to get all scheduled tasks with a given task id and view attributes in JSON format
-app.get("/scheduled-tasks/get-by-task-id", (req, res) => {
+app.get('/scheduled-tasks/get-by-task-id', (req, res) => {
   const { id } = req.query;
 
   const GET_TASK_QUERY = `SELECT * FROM scheduledTask WHERE taskid = '${id}';`;
@@ -297,14 +297,14 @@ app.get("/scheduled-tasks/get-by-task-id", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      res.setHeader("Content-Type", "application/json");
+      res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify(results));
     }
   });
 });
 
 //Endpoint to get a week of scheduled tasks for the current date
-app.get("/week", (req, res) => {
+app.get('/week', (req, res) => {
   //const { date } = req.query;
   //TODO: Modify this endpoint to get the week for a date sent in?
 
@@ -327,7 +327,7 @@ app.get("/week", (req, res) => {
 
   let dateArray = [];
   dateArray.push(startDate);
-  let startDateString = startDate.toISOString().split("T")[0];
+  let startDateString = startDate.toISOString().split('T')[0];
   let dateStrings = [];
   dateStrings.push(startDateString);
 
@@ -337,72 +337,72 @@ app.get("/week", (req, res) => {
     let prevIndex = i - 1;
     tempDate.setTime(dateArray[prevIndex].getTime() + 86400000);
     dateArray.push(tempDate);
-    let tempDateString = tempDate.toISOString().split("T")[0];
+    let tempDateString = tempDate.toISOString().split('T')[0];
     dateStrings.push(tempDateString);
   }
 
   weekdayStrings = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
   ];
 
   //TODO: Factor out into another function
   let longDateStrings = [];
 
   for (i = 0; i < dateStrings.length; i++) {
-    let dateComps = dateStrings[i].split("-");
+    let dateComps = dateStrings[i].split('-');
     let year = dateComps[0];
     let month = dateComps[1];
     let day = dateComps[2];
     let monthString;
 
     switch (month) {
-      case "01":
-        monthString = "January";
+      case '01':
+        monthString = 'January';
         break;
-      case "02":
-        monthString = "February";
+      case '02':
+        monthString = 'February';
         break;
-      case "03":
-        monthString = "March";
+      case '03':
+        monthString = 'March';
         break;
-      case "04":
-        monthString = "April";
+      case '04':
+        monthString = 'April';
         break;
-      case "05":
-        monthString = "May";
+      case '05':
+        monthString = 'May';
         break;
-      case "06":
-        monthString = "June";
+      case '06':
+        monthString = 'June';
         break;
-      case "07":
-        monthString = "July";
+      case '07':
+        monthString = 'July';
         break;
-      case "08":
-        monthString = "August";
+      case '08':
+        monthString = 'August';
         break;
-      case "09":
-        monthString = "September";
+      case '09':
+        monthString = 'September';
         break;
-      case "10":
-        monthString = "October";
+      case '10':
+        monthString = 'October';
         break;
-      case "11":
-        monthString = "November";
+      case '11':
+        monthString = 'November';
         break;
-      case "12":
-        monthString = "December";
+      case '12':
+        monthString = 'December';
         break;
       default:
-        monthString = "oops";
+        monthString = 'oops';
     }
 
-    let longDateString = monthString + " " + day + ", " + year;
+    let longDateString = monthString + ' ' + day + ', ' + year;
     longDateStrings.push(longDateString);
   }
 
@@ -435,7 +435,7 @@ app.get("/week", (req, res) => {
         dateArray.push(dateObj);
       }
 
-      res.setHeader("Content-Type", "application/json");
+      res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify(dateArray));
     }
   });
