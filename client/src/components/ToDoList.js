@@ -78,10 +78,12 @@ class ToDoList extends Component {
       },
     };
 
-    await axios.get('http://localhost:4000/task/add', options).then(async () => {
-      const { data: tasks } = await axios.get('http://localhost:4000/tasks');
-      this.setState({ tasks });
-    });
+    await axios
+      .get('http://localhost:4000/task/add', options)
+      .then(async () => {
+        const { data: tasks } = await axios.get('http://localhost:4000/tasks');
+        this.setState({ tasks });
+      });
   };
 
   handleTaskUnscheduling = async (scheduledId, taskId) => {
@@ -116,7 +118,10 @@ class ToDoList extends Component {
 
         //Unschedule the task (mark scheduledStatus 0)
         if (unscheduleNeeded) {
-          await axios.get('http://localhost:4000/task/mark-unscheduled', taskOptions);
+          await axios.get(
+            'http://localhost:4000/task/mark-unscheduled',
+            taskOptions
+          );
         }
       })
       .then(async () => {
@@ -147,6 +152,7 @@ class ToDoList extends Component {
                   task={task}
                   onDelete={this.handleTaskDelete}
                   onChangeCompletion={this.handleChangingTaskCompletionStatus}
+                  onSchedule={this.handleTaskScheduling}
                 />
               </td>
             </tr>

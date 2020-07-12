@@ -5,10 +5,10 @@ class TodoDelete extends Component {
     const { editing, onDelete, task } = this.props;
     return (
       <svg
-        width="1.35em"
-        height="1.35em"
+        width="1.3em"
+        height="1.3em"
         viewBox="0 0 16 16"
-        className="bi bi-trash"
+        className="bi bi-trash mt-1"
         fill={editing === true ? 'grey' : 'currentColor'}
         xmlns="http://www.w3.org/2000/svg"
         style={editing === true ? {} : { cursor: 'pointer' }}
