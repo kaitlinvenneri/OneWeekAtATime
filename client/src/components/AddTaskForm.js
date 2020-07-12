@@ -14,6 +14,12 @@ class AddTaskForm extends Component {
     });
   };
 
+  handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      this.handleAddClick();
+    }
+  };
+
   render() {
     return (
       <div className="d-flex flex-row align-items-center">
@@ -27,9 +33,10 @@ class AddTaskForm extends Component {
           placeholder="Write grocery list."
           value={this.state.title}
           size="50"
-          maxlength="50"
+          maxLength="50"
           style={{ fontSize: '20px', height: '35px', color: 'black' }}
           onChange={(e) => this.setState({ title: e.target.value })}
+          onKeyDown={this.handleKeyDown}
         ></input>
         <button
           onClick={this.handleAddClick}

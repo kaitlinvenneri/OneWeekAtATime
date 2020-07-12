@@ -63,6 +63,12 @@ class ToDoItem extends Component {
     );
   };
 
+  handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      this.handleEditSave();
+    }
+  };
+
   render() {
     const { onDelete, onChangeCompletion } = this.props;
 
@@ -97,16 +103,17 @@ class ToDoItem extends Component {
               <input
                 type="text"
                 className="form-control"
-                id="taskInput"
+                id="taskEditInput"
                 value={this.state.newTitle}
                 size="50"
-                maxlength="50"
+                maxLength="50"
                 style={{
                   fontSize: '20px',
                   height: '35px',
                   color: 'black',
                 }}
                 onChange={(e) => this.setState({ newTitle: e.target.value })}
+                onKeyDown={this.handleKeyDown}
               ></input>
               <button
                 className="btn btn-sm btn-outline-success ml-2"
