@@ -304,7 +304,7 @@ app.get('/scheduled-tasks/get-by-task-id', (req, res) => {
 });
 
 //Endpoint to get a week of scheduled tasks for the current date
-app.get('/week', (req, res) => {
+app.get('/current-week', (req, res) => {
   //const { date } = req.query;
   //TODO: Modify this endpoint to get the week for a date sent in?
 
@@ -429,7 +429,8 @@ app.get('/week', (req, res) => {
       for (i = 0; i < dateStrings.length; i++) {
         let dateObj = {
           weekday: weekdayStrings[i],
-          date: longDateStrings[i],
+          date: dateStrings[i],
+          dateString: longDateStrings[i],
           scheduledTasks: dateMap.get(dateStrings[i]),
         };
         dateArray.push(dateObj);

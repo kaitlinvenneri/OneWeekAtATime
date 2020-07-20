@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import axios from "axios";
-import NavBar from "./../components/NavBar";
-import WeekView from "./../components/WeekView";
+import React, { Component } from 'react';
+import axios from 'axios';
+import NavBar from './../components/NavBar';
+import WeekView from './../components/WeekView';
 
 class PlannerPage extends Component {
   state = {
@@ -10,14 +10,14 @@ class PlannerPage extends Component {
   };
 
   async componentDidMount() {
-    await axios.get("http://localhost:4000/tasks").then((response) => {
+    await axios.get('http://localhost:4000/tasks').then((response) => {
       this.setState((state) => ({
         tasks: response.data,
       }));
     });
 
     const { data: weekScheduled } = await axios.get(
-      "http://localhost:4000/week"
+      'http://localhost:4000/current-week'
     );
 
     this.setState({ weekScheduled });
@@ -33,7 +33,7 @@ class PlannerPage extends Component {
     const tasks = this.state.tasks.filter((task) => task.taskId !== taskId);
     this.setState({ tasks });
 
-    await axios.get("http://localhost:4000/task/delete", options);
+    await axios.get('http://localhost:4000/task/delete', options);
   };
 
   handleTaskScheduling = async (taskId, taskDate) => {
@@ -46,17 +46,17 @@ class PlannerPage extends Component {
     };
 
     await axios
-      .get("http://localhost:4000/task/schedule", options)
+      .get('http://localhost:4000/task/schedule', options)
       .then(async () => {
-        await axios.get("http://localhost:4000/task/mark-scheduled", options);
+        await axios.get('http://localhost:4000/task/mark-scheduled', options);
       })
       .then(async () => {
-        const { data: tasks } = await axios.get("http://localhost:4000/tasks");
+        const { data: tasks } = await axios.get('http://localhost:4000/tasks');
         this.setState({ tasks });
       })
       .then(async () => {
         const { data: weekScheduled } = await axios.get(
-          "http://localhost:4000/week"
+          'http://localhost:4000/current-week'
         );
         this.setState({ weekScheduled });
       });
@@ -71,9 +71,9 @@ class PlannerPage extends Component {
     };
 
     await axios
-      .get("http://localhost:4000/task/add", options)
+      .get('http://localhost:4000/task/add', options)
       .then(async () => {
-        const { data: tasks } = await axios.get("http://localhost:4000/tasks");
+        const { data: tasks } = await axios.get('http://localhost:4000/tasks');
         this.setState({ tasks });
       });
   };
@@ -87,7 +87,7 @@ class PlannerPage extends Component {
     };
 
     await axios
-      .get("http://localhost:4000/scheduled-task/delete", options)
+      .get('http://localhost:4000/scheduled-task/delete', options)
       .then(async (response) => {
         let unscheduleNeeded = false;
 
@@ -99,7 +99,7 @@ class PlannerPage extends Component {
 
         //Get all instances of scheduled tasks with this taskId
         const { data: scheduledTasks } = await axios.get(
-          "http://localhost:4000/scheduled-tasks/get-by-task-id",
+          'http://localhost:4000/scheduled-tasks/get-by-task-id',
           taskOptions
         );
 
@@ -111,18 +111,18 @@ class PlannerPage extends Component {
         //Unschedule the task (mark scheduledStatus 0)
         if (unscheduleNeeded) {
           await axios.get(
-            "http://localhost:4000/task/mark-unscheduled",
+            'http://localhost:4000/task/mark-unscheduled',
             taskOptions
           );
         }
       })
       .then(async () => {
-        const { data: tasks } = await axios.get("http://localhost:4000/tasks");
+        const { data: tasks } = await axios.get('http://localhost:4000/tasks');
         this.setState({ tasks });
       })
       .then(async () => {
         const { data: weekScheduled } = await axios.get(
-          "http://localhost:4000/week"
+          'http://localhost:4000/current-week'
         );
         this.setState({ weekScheduled });
       });
