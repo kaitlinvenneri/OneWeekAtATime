@@ -2,8 +2,18 @@ import React, { Component } from 'react';
 
 class ScheduleTaskForm extends Component {
   state = {
-    date: new Date().toISOString().substr(0, 10),
+    date: '',
   };
+
+  componentDidMount() {
+    let currDay = new Date();
+    currDay.setUTCDate(currDay.getDate());
+    let ISOstring = currDay.toISOString();
+    ISOstring = ISOstring.substr(0, 10);
+
+    this.setState({ date: ISOstring });
+  }
+
   render() {
     const { task, onSchedule, onCancelScheduling } = this.props;
 
