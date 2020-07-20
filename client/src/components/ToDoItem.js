@@ -88,7 +88,7 @@ class ToDoItem extends Component {
   };
 
   render() {
-    const { onDelete, onChangeCompletion, onSchedule } = this.props;
+    const { onDelete, onChangeCompletion } = this.props;
 
     let labelStyle = {};
 
