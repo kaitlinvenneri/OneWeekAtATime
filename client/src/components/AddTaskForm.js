@@ -15,7 +15,7 @@ class AddTaskForm extends Component {
   };
 
   handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && this.state.title.length > 0) {
       this.handleAddClick();
     }
   };

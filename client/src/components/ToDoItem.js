@@ -6,10 +6,12 @@ import TodoEdit from './../svgs/TodoEdit';
 import TodoSchedule from './../svgs/TodoSchedule';
 import TodoViewScheduled from './../svgs/TodoViewScheduled';
 import TodoDelete from '../svgs/TodoDelete';
+import ScheduleTaskForm from './ScheduleTaskForm';
 
 class ToDoItem extends Component {
   state = {
     inEditState: false,
+    scheduling: false,
     newTitle: this.props.task.title,
     task: this.props.task,
   };
@@ -67,6 +69,22 @@ class ToDoItem extends Component {
     if (e.key === 'Enter') {
       this.handleEditSave();
     }
+  };
+
+  handleScheduling = (taskId, date) => {
+    const { onSchedule } = this.props;
+
+    this.setState({ scheduling: false });
+
+    onSchedule(taskId, date);
+  };
+
+  handleScheduleButton = () => {
+    this.setState({ scheduling: true });
+  };
+
+  handleCancelScheduling = () => {
+    this.setState({ scheduling: false });
   };
 
   render() {
@@ -139,12 +157,22 @@ class ToDoItem extends Component {
           {this.state.task.completionStatus === 1 ? (
             <></>
           ) : (
-            <div>
+            <div className="d-flex flex-row align-items-center">
               <TodoEdit
                 editing={this.state.inEditState}
                 onClick={this.handleEditButton}
               />
-              <TodoSchedule editing={this.state.inEditState} />
+              {this.state.scheduling && (
+                <ScheduleTaskForm
+                  task={this.state.task}
+                  onSchedule={this.handleScheduling}
+                  onCancelScheduling={this.handleCancelScheduling}
+                />
+              )}
+              <TodoSchedule
+                editing={this.state.inEditState}
+                onClick={this.handleScheduleButton}
+              />
               <TodoViewScheduled editing={this.state.inEditState} />
             </div>
           )}

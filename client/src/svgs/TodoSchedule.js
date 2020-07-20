@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class TodoSchedule extends Component {
   render() {
-    const { editing } = this.props;
+    const { editing, onClick } = this.props;
     return (
       <svg
         width="1.25em"
@@ -12,6 +12,7 @@ class TodoSchedule extends Component {
         fill={editing === true ? 'grey' : 'currentColor'}
         xmlns="http://www.w3.org/2000/svg"
         style={editing === true ? {} : { cursor: 'pointer' }}
+        onClick={onClick}
       >
         <path
           fillRule="evenodd"
