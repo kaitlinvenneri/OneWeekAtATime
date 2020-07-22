@@ -5,77 +5,33 @@ import WeekView from './../components/WeekView';
 
 class PlannerPage extends Component {
   state = {
-    tasks: [],
     weekScheduled: [],
   };
 
   async componentDidMount() {
-    await axios.get('http://localhost:4000/tasks').then((response) => {
-      this.setState((state) => ({
-        tasks: response.data,
-      }));
-    });
+    this.getCurrentWeek();
+  }
 
+  getCurrentWeek = async () => {
     const { data: weekScheduled } = await axios.get(
       'http://localhost:4000/current-week'
     );
 
     this.setState({ weekScheduled });
-  }
-
-  handleTaskDelete = async (taskId) => {
-    let options = {
-      params: {
-        id: taskId,
-      },
-    };
-
-    const tasks = this.state.tasks.filter((task) => task.taskId !== taskId);
-    this.setState({ tasks });
-
-    await axios.get('http://localhost:4000/task/delete', options);
   };
 
-  handleTaskScheduling = async (taskId, taskDate) => {
-    //TODO: Change this to be an optimistic update (it's pessimistic currently)
+  getWeekFromDate = async () => {
     let options = {
       params: {
-        id: taskId,
-        date: taskDate,
+        date: this.state.weekScheduled[0].date,
       },
     };
 
-    await axios
-      .get('http://localhost:4000/task/schedule', options)
-      .then(async () => {
-        await axios.get('http://localhost:4000/task/mark-scheduled', options);
-      })
-      .then(async () => {
-        const { data: tasks } = await axios.get('http://localhost:4000/tasks');
-        this.setState({ tasks });
-      })
-      .then(async () => {
-        const { data: weekScheduled } = await axios.get(
-          'http://localhost:4000/current-week'
-        );
-        this.setState({ weekScheduled });
-      });
-  };
-
-  handleTaskAdding = async (taskTitle) => {
-    //TODO: Change this to be an optimistic update (it's pessimistic currently)
-    let options = {
-      params: {
-        title: taskTitle,
-      },
-    };
-
-    await axios
-      .get('http://localhost:4000/task/add', options)
-      .then(async () => {
-        const { data: tasks } = await axios.get('http://localhost:4000/tasks');
-        this.setState({ tasks });
-      });
+    const { data: weekScheduled } = await axios.get(
+      'http://localhost:4000/get-week-from-date',
+      options
+    );
+    this.setState({ weekScheduled });
   };
 
   handleTaskUnscheduling = async (scheduledId, taskId) => {
@@ -116,15 +72,8 @@ class PlannerPage extends Component {
           );
         }
       })
-      .then(async () => {
-        const { data: tasks } = await axios.get('http://localhost:4000/tasks');
-        this.setState({ tasks });
-      })
-      .then(async () => {
-        const { data: weekScheduled } = await axios.get(
-          'http://localhost:4000/current-week'
-        );
-        this.setState({ weekScheduled });
+      .then(() => {
+        this.getWeekFromDate();
       });
   };
 
