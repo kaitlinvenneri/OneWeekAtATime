@@ -475,6 +475,28 @@ app.get('/current-week', (req, res) => {
   );
 });
 
+//Endpoint to get a week of scheduled tasks for the current date
+app.get('/get-week-from-date', (req, res) => {
+  const { date } = req.query;
+
+  let startDate = new Date(date);
+
+  startDate.setDate(startDate.getDate());
+
+  let dateStrings = getWeekFromDate(startDate);
+
+  let weekdayStrings = getWeekdayStringArray();
+
+  let longDateStrings = getLongDateStringArray(dateStrings);
+
+  getScheduledTasksFromDBAndReturnResponse(
+    dateStrings,
+    weekdayStrings,
+    longDateStrings,
+    res
+  );
+});
+
 //Endpoint to get a week of scheduled tasks for the week following the date sent in
 app.get('/next-week', (req, res) => {
   const { date } = req.query;
@@ -482,7 +504,7 @@ app.get('/next-week', (req, res) => {
   let startDate = new Date(date);
 
   //Move date sent in forward one week
-  startDate.setDate(startDate.getUTCDate() + 7);
+  startDate.setDate(startDate.getDate() + 7);
 
   let dateStrings = getWeekFromDate(startDate);
 
