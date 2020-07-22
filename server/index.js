@@ -455,12 +455,7 @@ getScheduledTasksFromDBAndReturnResponse = (
   });
 };
 
-//Endpoint to get a week of scheduled tasks for the current date
-app.get('/current-week', (req, res) => {
-  //Currently just gets the week for the current date
-  let date = new Date();
-  date.setUTCDate(date.getDate());
-
+getWeekAndHandleResponding = (date, res) => {
   let dateStrings = getWeekFromDate(date);
 
   let weekdayStrings = getWeekdayStringArray();
@@ -473,6 +468,15 @@ app.get('/current-week', (req, res) => {
     longDateStrings,
     res
   );
+};
+
+//Endpoint to get a week of scheduled tasks for the current date
+app.get('/current-week', (req, res) => {
+  //Currently just gets the week for the current date
+  let date = new Date();
+  date.setUTCDate(date.getDate());
+
+  getWeekAndHandleResponding(date, res);
 });
 
 //Endpoint to get a week of scheduled tasks for the current date
@@ -483,18 +487,7 @@ app.get('/get-week-from-date', (req, res) => {
 
   startDate.setDate(startDate.getDate());
 
-  let dateStrings = getWeekFromDate(startDate);
-
-  let weekdayStrings = getWeekdayStringArray();
-
-  let longDateStrings = getLongDateStringArray(dateStrings);
-
-  getScheduledTasksFromDBAndReturnResponse(
-    dateStrings,
-    weekdayStrings,
-    longDateStrings,
-    res
-  );
+  getWeekAndHandleResponding(startDate, res);
 });
 
 //Endpoint to get a week of scheduled tasks for the week fbefore the date sent in
@@ -506,18 +499,7 @@ app.get('/previous-week', (req, res) => {
   //Move date sent in back one week
   startDate.setDate(startDate.getDate() - 7);
 
-  let dateStrings = getWeekFromDate(startDate);
-
-  let weekdayStrings = getWeekdayStringArray();
-
-  let longDateStrings = getLongDateStringArray(dateStrings);
-
-  getScheduledTasksFromDBAndReturnResponse(
-    dateStrings,
-    weekdayStrings,
-    longDateStrings,
-    res
-  );
+  getWeekAndHandleResponding(startDate, res);
 });
 
 //Endpoint to get a week of scheduled tasks for the week following the date sent in
@@ -529,16 +511,5 @@ app.get('/next-week', (req, res) => {
   //Move date sent in forward one week
   startDate.setDate(startDate.getDate() + 7);
 
-  let dateStrings = getWeekFromDate(startDate);
-
-  let weekdayStrings = getWeekdayStringArray();
-
-  let longDateStrings = getLongDateStringArray(dateStrings);
-
-  getScheduledTasksFromDBAndReturnResponse(
-    dateStrings,
-    weekdayStrings,
-    longDateStrings,
-    res
-  );
+  getWeekAndHandleResponding(startDate, res);
 });
