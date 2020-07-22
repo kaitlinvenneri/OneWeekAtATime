@@ -303,17 +303,7 @@ app.get('/scheduled-tasks/get-by-task-id', (req, res) => {
   });
 });
 
-//Endpoint to get a week of scheduled tasks for the current date
-app.get('/current-week', (req, res) => {
-  //const { date } = req.query;
-  //TODO: Modify this endpoint to get the week for a date sent in?
-
-  //TODO: IMPORTANT NOTE: If I want this to work for a date sent in, I'm going to need to use get and set with UTC also
-  //This solution only works for when I'm trying to set the week based on the current date locally!!!
-
-  //Currently just gets the week for the current date
-  let date = new Date();
-
+getWeekFromDate = (date) => {
   let startDate = new Date(date);
   let dayOfWeek = startDate.getDay();
 
@@ -341,7 +331,11 @@ app.get('/current-week', (req, res) => {
     dateStrings.push(tempDateString);
   }
 
-  weekdayStrings = [
+  return dateStrings;
+};
+
+getWeekdayStringArray = () => {
+  let weekdayStrings = [
     'Monday',
     'Tuesday',
     'Wednesday',
@@ -351,7 +345,10 @@ app.get('/current-week', (req, res) => {
     'Sunday',
   ];
 
-  //TODO: Factor out into another function
+  return weekdayStrings;
+};
+
+getLongDateStringArray = (dateStrings) => {
   let longDateStrings = [];
 
   for (i = 0; i < dateStrings.length; i++) {
@@ -406,6 +403,15 @@ app.get('/current-week', (req, res) => {
     longDateStrings.push(longDateString);
   }
 
+  return longDateStrings;
+};
+
+getScheduledTasksFromDBAndReturnResponse = (
+  dateStrings,
+  weekdayStrings,
+  longDateStrings,
+  res
+) => {
   const GET_SCHEDULED_TASKS_IN_RANGE_QUERY = `SELECT scheduledTask.*, task.title FROM scheduledTask LEFT JOIN task ON scheduledTask.taskId = task.taskId WHERE scheduledDate between '${dateStrings[0]}' and '${dateStrings[6]}' order by scheduledDate asc;`;
 
   connection.query(GET_SCHEDULED_TASKS_IN_RANGE_QUERY, (err, results) => {
@@ -440,4 +446,48 @@ app.get('/current-week', (req, res) => {
       res.end(JSON.stringify(dateArray));
     }
   });
+};
+
+//Endpoint to get a week of scheduled tasks for the current date
+app.get('/current-week', (res) => {
+  //Currently just gets the week for the current date
+  let date = new Date();
+
+  let dateStrings = getWeekFromDate(date);
+
+  let weekdayStrings = getWeekdayStringArray();
+
+  let longDateStrings = getLongDateStringArray(dateStrings);
+
+  getScheduledTasksFromDBAndReturnResponse(
+    dateStrings,
+    weekdayStrings,
+    longDateStrings,
+    res
+  );
+});
+
+//Endpoint to get a week of scheduled tasks for the week following the date sent in
+app.get('/current-week', (req, res) => {
+  //const { date } = req.query;
+  //TODO: Modify this endpoint to get the week for a date sent in?
+
+  //TODO: IMPORTANT NOTE: If I want this to work for a date sent in, I'm going to need to use get and set with UTC also
+  //This solution only works for when I'm trying to set the week based on the current date locally!!!
+
+  //Currently just gets the week for the current date
+  let date = new Date();
+
+  let dateStrings = getWeekFromDate(date);
+
+  let weekdayStrings = getWeekdayStringArray();
+
+  let longDateStrings = getLongDateStringArray(dateStrings);
+
+  getScheduledTasksFromDBAndReturnResponse(
+    dateStrings,
+    weekdayStrings,
+    longDateStrings,
+    res
+  );
 });
