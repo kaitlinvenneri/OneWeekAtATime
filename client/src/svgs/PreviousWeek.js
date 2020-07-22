@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 class PreviousWeek extends Component {
   render() {
+    const { onClick } = this.props;
+
     return (
       <svg
         width="1.7em"
@@ -11,6 +13,7 @@ class PreviousWeek extends Component {
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
         style={{ cursor: 'pointer' }}
+        onClick={onClick}
       >
         <path
           fillRule="evenodd"

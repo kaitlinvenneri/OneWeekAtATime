@@ -497,6 +497,29 @@ app.get('/get-week-from-date', (req, res) => {
   );
 });
 
+//Endpoint to get a week of scheduled tasks for the week fbefore the date sent in
+app.get('/previous-week', (req, res) => {
+  const { date } = req.query;
+
+  let startDate = new Date(date);
+
+  //Move date sent in back one week
+  startDate.setDate(startDate.getDate() - 7);
+
+  let dateStrings = getWeekFromDate(startDate);
+
+  let weekdayStrings = getWeekdayStringArray();
+
+  let longDateStrings = getLongDateStringArray(dateStrings);
+
+  getScheduledTasksFromDBAndReturnResponse(
+    dateStrings,
+    weekdayStrings,
+    longDateStrings,
+    res
+  );
+});
+
 //Endpoint to get a week of scheduled tasks for the week following the date sent in
 app.get('/next-week', (req, res) => {
   const { date } = req.query;

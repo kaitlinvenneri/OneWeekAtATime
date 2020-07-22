@@ -77,6 +77,20 @@ class PlannerPage extends Component {
       });
   };
 
+  handleSwitchingToPreviousWeek = async () => {
+    let options = {
+      params: {
+        date: this.state.weekScheduled[0].date,
+      },
+    };
+
+    const { data: weekScheduled } = await axios.get(
+      'http://localhost:4000/previous-week',
+      options
+    );
+    this.setState({ weekScheduled });
+  };
+
   handleSwitchingToNextWeek = async () => {
     let options = {
       params: {
@@ -98,6 +112,7 @@ class PlannerPage extends Component {
         <WeekView
           weekScheduled={this.state.weekScheduled}
           onDelete={this.handleTaskUnscheduling}
+          onPreviousWeekClick={this.handleSwitchingToPreviousWeek}
           onNextWeekClick={this.handleSwitchingToNextWeek}
           onGoToTodayClick={this.getCurrentWeek}
         />

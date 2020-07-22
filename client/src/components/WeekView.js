@@ -11,6 +11,7 @@ class WeekView extends Component {
     const {
       weekScheduled,
       onDelete,
+      onPreviousWeekClick,
       onNextWeekClick,
       onGoToTodayClick,
     } = this.props;
@@ -30,7 +31,7 @@ class WeekView extends Component {
 
           <SelectWeek />
 
-          <PreviousWeek />
+          <PreviousWeek onClick={onPreviousWeekClick} />
 
           <h3 className="mx-2">
             {firstDay} - {lastDay}
