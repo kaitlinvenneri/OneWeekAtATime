@@ -99,6 +99,7 @@ class PlannerPage extends Component {
           weekScheduled={this.state.weekScheduled}
           onDelete={this.handleTaskUnscheduling}
           onNextWeekClick={this.handleSwitchingToNextWeek}
+          onGoToTodayClick={this.getCurrentWeek}
         />
       </div>
     );
