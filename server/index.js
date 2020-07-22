@@ -307,11 +307,18 @@ getWeekFromDate = (date) => {
   let startDate = new Date(date);
   let dayOfWeek = startDate.getDay();
 
+  //Have to adjust dayOfWeek since I'm working with UTC dates and not just dates
+  if (dayOfWeek < 6) {
+    dayOfWeek++;
+  } else {
+    dayOfWeek = 0;
+  }
+
   if (dayOfWeek !== 1) {
     if (dayOfWeek === 0) {
-      startDate.setUTCDate(startDate.getDate() - 6);
+      startDate.setDate(startDate.getDate() - 6);
     } else {
-      startDate.setUTCDate(startDate.getDate() - dayOfWeek + 1);
+      startDate.setDate(startDate.getDate() - dayOfWeek + 1);
     }
   }
 
@@ -452,8 +459,32 @@ getScheduledTasksFromDBAndReturnResponse = (
 app.get('/current-week', (req, res) => {
   //Currently just gets the week for the current date
   let date = new Date();
+  date.setUTCDate(date.getDate());
 
   let dateStrings = getWeekFromDate(date);
+
+  let weekdayStrings = getWeekdayStringArray();
+
+  let longDateStrings = getLongDateStringArray(dateStrings);
+
+  getScheduledTasksFromDBAndReturnResponse(
+    dateStrings,
+    weekdayStrings,
+    longDateStrings,
+    res
+  );
+});
+
+//Endpoint to get a week of scheduled tasks for the week following the date sent in
+app.get('/next-week', (req, res) => {
+  const { date } = req.query;
+
+  let startDate = new Date(date);
+
+  //Move date sent in forward one week
+  startDate.setDate(startDate.getUTCDate() + 7);
+
+  let dateStrings = getWeekFromDate(startDate);
 
   let weekdayStrings = getWeekdayStringArray();
 

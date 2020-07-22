@@ -8,7 +8,7 @@ import SelectWeek from './../svgs/SelectWeek';
 class WeekView extends Component {
   state = {};
   render() {
-    const { weekScheduled, onDelete } = this.props;
+    const { weekScheduled, onDelete, onNextWeekClick } = this.props;
 
     let firstDay;
     let lastDay;
@@ -31,7 +31,7 @@ class WeekView extends Component {
             {firstDay} - {lastDay}
           </h3>
 
-          <NextWeek />
+          <NextWeek onClick={onNextWeekClick} />
         </div>
         <div className="d-flex flex-row">
           {weekScheduled.map((day) => (
