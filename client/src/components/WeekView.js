@@ -4,6 +4,7 @@ import PreviousWeek from './../svgs/PreviousWeek';
 import NextWeek from '../svgs/NextWeek';
 import CurrentWeek from './../svgs/CurrentWeek';
 import SelectWeek from './../svgs/SelectWeek';
+import WeekSelect from './WeekSelect';
 
 class WeekView extends Component {
   state = {};
@@ -30,6 +31,8 @@ class WeekView extends Component {
           <CurrentWeek onClick={onGoToTodayClick} />
 
           <SelectWeek />
+
+          <WeekSelect />
 
           <PreviousWeek onClick={onPreviousWeekClick} />
 
