@@ -7,6 +7,7 @@ import TodoSchedule from './../svgs/TodoSchedule';
 import TodoViewScheduled from './../svgs/TodoViewScheduled';
 import TodoDelete from '../svgs/TodoDelete';
 import ScheduleTaskForm from './ScheduleTaskForm';
+import PlusTask from '../svgs/PlusTask';
 
 class ToDoItem extends Component {
   state = {
@@ -87,8 +88,16 @@ class ToDoItem extends Component {
     this.setState({ scheduling: false });
   };
 
+  handleAddingtoWeekday = async () => {
+    const { weekday, onAddToWeekday, onSchedule } = this.props;
+
+    await onSchedule(this.state.task.taskId, weekday.date);
+
+    onAddToWeekday();
+  };
+
   render() {
-    const { onDelete, onChangeCompletion } = this.props;
+    const { onDelete, onChangeCompletion, fromPlanner } = this.props;
 
     let labelStyle = {};
 
@@ -102,7 +111,9 @@ class ToDoItem extends Component {
       <div className="d-flex flex-row justify-content-between ml-1">
         <div className="d-inline-flex flex-row align-items-center">
           <div>
-            {this.state.task.completionStatus === 1 ? (
+            {fromPlanner ? (
+              <PlusTask onClick={this.handleAddingtoWeekday} />
+            ) : this.state.task.completionStatus === 1 ? (
               <TodoChecked
                 editing={this.state.inEditState}
                 onClick={onChangeCompletion}
@@ -153,37 +164,39 @@ class ToDoItem extends Component {
             </div>
           )}
         </div>
-        <div className="d-inline-flex flex-row ml-3 mt-1">
-          {this.state.task.completionStatus === 1 ? (
-            <></>
-          ) : (
-            <div className="d-flex flex-row align-items-center">
-              <TodoEdit
-                editing={this.state.inEditState}
-                onClick={this.handleEditButton}
-              />
-              {this.state.scheduling && (
-                <ScheduleTaskForm
-                  task={this.state.task}
-                  onSchedule={this.handleScheduling}
-                  onCancelScheduling={this.handleCancelScheduling}
+        {!fromPlanner && (
+          <div className="d-inline-flex flex-row ml-3 mt-1">
+            {this.state.task.completionStatus === 1 ? (
+              <></>
+            ) : (
+              <div className="d-flex flex-row align-items-center">
+                <TodoEdit
+                  editing={this.state.inEditState}
+                  onClick={this.handleEditButton}
                 />
-              )}
-              <TodoSchedule
+                {this.state.scheduling && (
+                  <ScheduleTaskForm
+                    task={this.state.task}
+                    onSchedule={this.handleScheduling}
+                    onCancelScheduling={this.handleCancelScheduling}
+                  />
+                )}
+                <TodoSchedule
+                  editing={this.state.inEditState}
+                  onClick={this.handleScheduleButton}
+                />
+                <TodoViewScheduled editing={this.state.inEditState} />
+              </div>
+            )}
+            <div>
+              <TodoDelete
                 editing={this.state.inEditState}
-                onClick={this.handleScheduleButton}
+                onDelete={onDelete}
+                task={this.state.task}
               />
-              <TodoViewScheduled editing={this.state.inEditState} />
             </div>
-          )}
-          <div>
-            <TodoDelete
-              editing={this.state.inEditState}
-              onDelete={onDelete}
-              task={this.state.task}
-            />
           </div>
-        </div>
+        )}
       </div>
     );
   }
