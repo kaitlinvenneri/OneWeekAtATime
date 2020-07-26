@@ -64,7 +64,6 @@ class WeekSelect extends Component {
       <div className="SelectedWeekExample">
         <DayPicker
           selectedDays={selectedDays}
-          showWeekNumbers
           showOutsideDays
           modifiers={modifiers}
           onDayClick={this.handleDayChange}
@@ -72,12 +71,6 @@ class WeekSelect extends Component {
           onDayMouseLeave={this.handleDayLeave}
           onWeekClick={this.handleWeekClick}
         />
-        {selectedDays.length === 7 && (
-          <div>
-            {moment(selectedDays[0]).format('LL')} –{' '}
-            {moment(selectedDays[6]).format('LL')}
-          </div>
-        )}
 
         <Helmet>
           <style>{`
