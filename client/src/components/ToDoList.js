@@ -139,8 +139,8 @@ class ToDoList extends Component {
             <th scope="col" style={{ fontSize: '20px' }}>
               {fromPlanner ? (
                 <span>
-                  Choose a task to add to {weekday.weekday},{' '}
-                  {weekday.dateString}:
+                  Choose a task to add to {weekday.weekday} {weekday.dateString}
+                  :
                 </span>
               ) : (
                 'To Do'
