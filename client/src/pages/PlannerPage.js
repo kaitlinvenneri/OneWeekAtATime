@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import NavBar from './../components/NavBar';
 import WeekView from './../components/WeekView';
+import ToDoList from '../components/ToDoList';
 
 class PlannerPage extends Component {
   state = {
     weekScheduled: [],
+    addingToWeekday: false,
+    weekdayAddingTo: {},
   };
 
   async componentDidMount() {
@@ -105,6 +108,25 @@ class PlannerPage extends Component {
     this.setState({ weekScheduled });
   };
 
+  handleChooseToAddToWeekday = (day) => {
+    //console.log('clicked', day);
+
+    this.setState(
+      (state) => ({
+        weekdayAddingTo: day,
+      }),
+      () => {
+        this.setState({ addingToWeekday: true });
+      }
+    );
+  };
+
+  handleAddingToWeekday = () => {
+    this.getWeekFromDate();
+
+    this.setState({ addingToWeekday: false });
+  };
+
   render() {
     return (
       <div>
@@ -115,7 +137,15 @@ class PlannerPage extends Component {
           onPreviousWeekClick={this.handleSwitchingToPreviousWeek}
           onNextWeekClick={this.handleSwitchingToNextWeek}
           onGoToTodayClick={this.getCurrentWeek}
+          onAddToWeekday={this.handleChooseToAddToWeekday}
         />
+        {this.state.addingToWeekday && (
+          <ToDoList
+            fromPlanner={true}
+            weekday={this.state.weekdayAddingTo}
+            onAddToWeekday={this.handleAddingToWeekday}
+          />
+        )}
       </div>
     );
   }
