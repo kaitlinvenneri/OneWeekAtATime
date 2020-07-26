@@ -476,7 +476,12 @@ app.get('/current-week', (req, res) => {
   let date = new Date();
   date.setUTCDate(date.getDate());
 
-  getWeekAndHandleResponding(date, res);
+  let dateString = date.toISOString().split('T')[0];
+
+  let startDate = new Date(dateString);
+  startDate.setDate(startDate.getDate());
+
+  getWeekAndHandleResponding(startDate, res);
 });
 
 //Endpoint to get a week of scheduled tasks for the current date
