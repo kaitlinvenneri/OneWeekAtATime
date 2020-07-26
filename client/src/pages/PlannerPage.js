@@ -109,8 +109,6 @@ class PlannerPage extends Component {
   };
 
   handleChooseToAddToWeekday = (day) => {
-    //console.log('clicked', day);
-
     this.setState(
       (state) => ({
         weekdayAddingTo: day,
