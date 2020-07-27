@@ -115,13 +115,13 @@ class ToDoItem extends Component {
               <PlusTask onClick={this.handleAddingtoWeekday} />
             ) : this.state.task.completionStatus === 1 ? (
               <TodoChecked
-                editing={this.state.inEditState}
                 onClick={onChangeCompletion}
                 task={this.state.task}
               />
             ) : (
               <TodoUnchecked
                 editing={this.state.inEditState}
+                scheduling={this.state.scheduling}
                 onClick={onChangeCompletion}
                 task={this.state.task}
               />
@@ -171,6 +171,7 @@ class ToDoItem extends Component {
             ) : (
               <div className="d-flex flex-row align-items-center">
                 <TodoEdit
+                  scheduling={this.state.scheduling}
                   editing={this.state.inEditState}
                   onClick={this.handleEditButton}
                 />
@@ -182,14 +183,19 @@ class ToDoItem extends Component {
                   />
                 )}
                 <TodoSchedule
+                  scheduling={this.state.scheduling}
                   editing={this.state.inEditState}
                   onClick={this.handleScheduleButton}
                 />
-                <TodoViewScheduled editing={this.state.inEditState} />
+                <TodoViewScheduled
+                  scheduling={this.state.scheduling}
+                  editing={this.state.inEditState}
+                />
               </div>
             )}
             <div>
               <TodoDelete
+                scheduling={this.state.scheduling}
                 editing={this.state.inEditState}
                 onDelete={onDelete}
                 task={this.state.task}
