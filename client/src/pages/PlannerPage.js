@@ -23,10 +23,10 @@ class PlannerPage extends Component {
     this.setState({ weekScheduled });
   };
 
-  getWeekFromDate = async () => {
+  getWeekFromDate = async (date) => {
     let options = {
       params: {
-        date: this.state.weekScheduled[0].date,
+        date: date,
       },
     };
 
@@ -76,7 +76,7 @@ class PlannerPage extends Component {
         }
       })
       .then(() => {
-        this.getWeekFromDate();
+        this.getWeekFromDate(this.state.weekScheduled[0].date);
       });
   };
 
@@ -136,6 +136,7 @@ class PlannerPage extends Component {
           onNextWeekClick={this.handleSwitchingToNextWeek}
           onGoToTodayClick={this.getCurrentWeek}
           onAddToWeekday={this.handleChooseToAddToWeekday}
+          onGoToDate={this.getWeekFromDate}
         />
         {this.state.addingToWeekday && (
           <ToDoList

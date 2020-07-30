@@ -4,9 +4,27 @@ import PreviousWeek from './../svgs/PreviousWeek';
 import NextWeek from '../svgs/NextWeek';
 import CurrentWeek from './../svgs/CurrentWeek';
 import SelectWeek from './../svgs/SelectWeek';
+import GoToWeek from './GoToWeek';
 
 class WeekView extends Component {
-  state = {};
+  state = { selectingWeek: false };
+
+  handleGoToWeekButton = () => {
+    this.setState({ selectingWeek: true });
+  };
+
+  handleCancelGoToWeek = () => {
+    this.setState({ selectingWeek: false });
+  };
+
+  onGoToWeekSubmit = (date) => {
+    const { onGoToDate } = this.props;
+
+    this.setState({ selectingWeek: false });
+
+    onGoToDate(date);
+  };
+
   render() {
     const {
       weekScheduled,
@@ -27,10 +45,8 @@ class WeekView extends Component {
 
     return (
       <>
-        <div className="d-flex flex-row justify-content-center mt-2">
+        <div className="d-flex flex-row justify-content-center align-items-center my-2">
           <CurrentWeek onClick={onGoToTodayClick} />
-
-          <SelectWeek />
 
           <PreviousWeek onClick={onPreviousWeekClick} />
 
@@ -39,7 +55,17 @@ class WeekView extends Component {
           </h3>
 
           <NextWeek onClick={onNextWeekClick} />
+
+          <SelectWeek onClick={this.handleGoToWeekButton} />
+
+          {this.state.selectingWeek && (
+            <GoToWeek
+              onDateSelection={this.onGoToWeekSubmit}
+              onCancelGoToWeek={this.handleCancelGoToWeek}
+            />
+          )}
         </div>
+
         <div className="d-flex flex-row">
           {weekScheduled.map((day) => (
             <Weekday

@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 
 class SelectWeek extends Component {
   render() {
+    const { onClick } = this.props;
+
     return (
       <svg
         width="2em"
         height="2em"
         viewBox="0 0 16 16"
-        className="bi bi-calendar-event mr-2"
+        className="bi bi-calendar-event mx-2"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
         style={{ cursor: 'pointer' }}
+        onClick={onClick}
       >
         <path
           fillRule="evenodd"
