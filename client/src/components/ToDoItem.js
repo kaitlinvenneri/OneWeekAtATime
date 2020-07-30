@@ -4,7 +4,6 @@ import TodoChecked from './../svgs/TodoChecked';
 import TodoUnchecked from './../svgs/TodoUnchecked';
 import TodoEdit from './../svgs/TodoEdit';
 import TodoSchedule from './../svgs/TodoSchedule';
-import TodoViewScheduled from './../svgs/TodoViewScheduled';
 import TodoDelete from '../svgs/TodoDelete';
 import ScheduleTaskForm from './ScheduleTaskForm';
 import PlusTask from '../svgs/PlusTask';
@@ -186,10 +185,6 @@ class ToDoItem extends Component {
                   scheduling={this.state.scheduling}
                   editing={this.state.inEditState}
                   onClick={this.handleScheduleButton}
-                />
-                <TodoViewScheduled
-                  scheduling={this.state.scheduling}
-                  editing={this.state.inEditState}
                 />
               </div>
             )}
