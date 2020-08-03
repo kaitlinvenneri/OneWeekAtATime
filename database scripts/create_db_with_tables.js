@@ -34,7 +34,7 @@ connection.connect(function (err) {
     console.log('Database created');
   });
 
-  const CREATE_TASK_TABLE_QUERY = `CREATE TABLE IF NOT EXISTS ${dbName}.task ( taskId int NOT NULL AUTO_INCREMENT, title varchar(255) NOT NULL, completionStatus int DEFAULT 0, PRIMARY KEY (taskId));`;
+  const CREATE_TASK_TABLE_QUERY = `CREATE TABLE IF NOT EXISTS ${dbName}.task ( taskId int NOT NULL AUTO_INCREMENT, title varchar(50) NOT NULL, completionStatus int DEFAULT 0, PRIMARY KEY (taskId));`;
 
   connection.query(CREATE_TASK_TABLE_QUERY, function (err) {
     if (err) throw err;
