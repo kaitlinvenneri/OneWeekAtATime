@@ -133,36 +133,6 @@ app.get('/task/schedule', (req, res) => {
   });
 });
 
-//Endpoint to mark a task as scheduled
-app.get('/task/mark-scheduled', (req, res) => {
-  const { id } = req.query;
-
-  const MARK_TASK_SCHEDULED_QUERY = `UPDATE Task SET scheduledstatus = '1' WHERE taskid = '${id}';`;
-
-  connection.query(MARK_TASK_SCHEDULED_QUERY, (err) => {
-    if (err) {
-      return res.send(err);
-    } else {
-      return res.send('successfully marked task as scheduled');
-    }
-  });
-});
-
-//Endpoint to mark a task as unscheduled
-app.get('/task/mark-unscheduled', (req, res) => {
-  const { id } = req.query;
-
-  const MARK_TASK_UNSCHEDULED_QUERY = `UPDATE Task SET scheduledstatus = '0' WHERE taskid = '${id}';`;
-
-  connection.query(MARK_TASK_UNSCHEDULED_QUERY, (err) => {
-    if (err) {
-      return res.send(err);
-    } else {
-      return res.send('successfully marked task as unscheduled');
-    }
-  });
-});
-
 //Endpoint to mark a task as complete
 app.get('/task/mark-complete', (req, res) => {
   const { id } = req.query;
@@ -240,7 +210,7 @@ app.get('/task/delete', (req, res) => {
 
 //Endpoint to delete a scheduled task (unschedule a task for the date within the scheduled task)
 app.get('/scheduled-task/delete', (req, res) => {
-  const { scheduledId, taskId } = req.query;
+  const { scheduledId } = req.query;
 
   const DELETE_SCHEDULED_TASK_QUERY = `DELETE from scheduledTask WHERE scheduledId = '${scheduledId}';`;
 
@@ -248,10 +218,7 @@ app.get('/scheduled-task/delete', (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      task = { taskId: taskId };
-
-      //return the taskId
-      return res.send(task);
+      return res.send('successfully unscheduled task');
     }
   });
 });
