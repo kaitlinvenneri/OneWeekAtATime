@@ -46,7 +46,6 @@ class ToDoItem extends Component {
       },
     };
 
-    //TODO: ENSURE TITLE IS NOT TOO LONG before calling server to update task title
     await axios.get('http://localhost:4000/task/update-title', options);
   };
 
