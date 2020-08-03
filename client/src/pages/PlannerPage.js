@@ -120,7 +120,7 @@ class PlannerPage extends Component {
   };
 
   handleAddingToWeekday = () => {
-    this.getWeekFromDate();
+    this.getWeekFromDate(this.state.weekScheduled[0].date);
 
     this.setState({ addingToWeekday: false });
   };
