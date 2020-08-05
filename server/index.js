@@ -112,9 +112,13 @@ app.get('/task/add', (req, res) => {
 
     //Prevent titles with invalid lengths from being added to the database
     if (formattedTitle.length === 0 || formattedTitle.length > 50) {
-      res.send(
-        'Task could not be added. The title must be between 1 and 50 characters to be added.'
-      );
+      let error =
+        'Task could not be added. The title must be between 1 and 50 characters to be added.';
+
+      res.send(error);
+
+      //throw new error
+      throw new Error(error);
     } else {
       const INSERT_TASK_QUERY = `INSERT INTO Task(title) VALUES('${formattedTitle}')`;
 
@@ -128,7 +132,12 @@ app.get('/task/add', (req, res) => {
     }
   } else {
     //If no title is provided, send back error message
-    res.send('A task must have a title to be added.');
+    let error = 'A task must have a title to be added.';
+
+    res.send(error);
+
+    //throw new error
+    throw new Error(error);
   }
 });
 
@@ -136,15 +145,28 @@ app.get('/task/add', (req, res) => {
 app.get('/task/schedule', (req, res) => {
   const { id, date } = req.query;
 
-  const SCHEDULE_TASK_QUERY = `INSERT INTO ScheduledTask(taskid,scheduleddate) VALUES('${id}', '${date}')`;
+  let dateString = new Date(date);
 
-  connection.query(SCHEDULE_TASK_QUERY, (err) => {
-    if (err) {
-      return res.send(err);
-    } else {
-      return res.send('successfully scheduled task');
-    }
-  });
+  //Attempt to schedule task if date is valid
+  if (dateString instanceof Date && !isNaN(dateString.valueOf())) {
+    const SCHEDULE_TASK_QUERY = `INSERT INTO ScheduledTask(taskid,scheduleddate) VALUES('${id}', '${date}')`;
+
+    connection.query(SCHEDULE_TASK_QUERY, (err) => {
+      if (err) {
+        return res.send(err);
+      } else {
+        return res.send('successfully scheduled task');
+      }
+    });
+  } else {
+    let error =
+      'Task could not be scheduled since the date provided was invalid';
+
+    res.send(error);
+
+    //throw new error
+    throw new Error(error);
+  }
 });
 
 //Endpoint to mark a task as complete
