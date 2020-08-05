@@ -50,7 +50,7 @@ class WeekView extends Component {
 
           <PreviousWeek onClick={onPreviousWeekClick} />
 
-          <h3 className="mx-2">
+          <h3 className="mx-2 mt-2">
             {firstDay} - {lastDay}
           </h3>
 
