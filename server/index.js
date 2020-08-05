@@ -105,17 +105,31 @@ app.get('/scheduled-tasks', (req, res) => {
 //Endpoint to add a task
 app.get('/task/add', (req, res) => {
   const { title } = req.query;
-  const formattedTitle = mysql_real_escape_string(title);
 
-  const INSERT_TASK_QUERY = `INSERT INTO Task(title) VALUES('${formattedTitle}')`;
+  //Ensure title is sent in
+  if (title) {
+    const formattedTitle = mysql_real_escape_string(title);
 
-  connection.query(INSERT_TASK_QUERY, (err) => {
-    if (err) {
-      return res.send(err);
+    //Prevent titles with invalid lengths from being added to the database
+    if (formattedTitle.length === 0 || formattedTitle.length > 50) {
+      res.send(
+        'Task could not be added. The title must be between 1 and 50 characters to be added.'
+      );
     } else {
-      return res.send('successfully added task');
+      const INSERT_TASK_QUERY = `INSERT INTO Task(title) VALUES('${formattedTitle}')`;
+
+      connection.query(INSERT_TASK_QUERY, (err) => {
+        if (err) {
+          return res.send(err);
+        } else {
+          return res.send('successfully added task');
+        }
+      });
     }
-  });
+  } else {
+    //If no title is provided, send back error message
+    res.send('A task must have a title to be added.');
+  }
 });
 
 //Endpoint to schedule a task
