@@ -76,7 +76,7 @@ app.get('/', (req, res) => {
 
 //Endpoint to view all tasks
 app.get('/tasks', (req, res) => {
-  const SELECT_ALL_TASKS_QUERY = `SELECT * FROM Task order by taskId desc;`;
+  const SELECT_ALL_TASKS_QUERY = `SELECT * FROM task order by taskId desc;`;
 
   connection.query(SELECT_ALL_TASKS_QUERY, (err, results) => {
     if (err) {
@@ -90,7 +90,7 @@ app.get('/tasks', (req, res) => {
 
 //Endpoint to view all scheduled tasks with task titles from the task table
 app.get('/scheduled-tasks', (req, res) => {
-  const SELECT_ALL_TASKS_QUERY = `SELECT scheduledTask.*, task.title FROM ScheduledTask LEFT JOIN task ON scheduledTask.taskId = task.taskId`;
+  const SELECT_ALL_TASKS_QUERY = `SELECT scheduledTask.*, task.title FROM scheduledTask LEFT JOIN task ON scheduledTask.taskId = task.taskId`;
 
   connection.query(SELECT_ALL_TASKS_QUERY, (err, results) => {
     if (err) {
@@ -120,7 +120,7 @@ app.get('/task/add', (req, res) => {
       //throw new error
       throw new Error(error);
     } else {
-      const INSERT_TASK_QUERY = `INSERT INTO Task(title) VALUES('${formattedTitle}')`;
+      const INSERT_TASK_QUERY = `INSERT INTO task(title) VALUES('${formattedTitle}')`;
 
       connection.query(INSERT_TASK_QUERY, (err) => {
         if (err) {
@@ -149,7 +149,7 @@ app.get('/task/schedule', (req, res) => {
 
   //Attempt to schedule task if date is valid
   if (dateString instanceof Date && !isNaN(dateString.valueOf())) {
-    const SCHEDULE_TASK_QUERY = `INSERT INTO ScheduledTask(taskid,scheduleddate) VALUES('${id}', '${date}')`;
+    const SCHEDULE_TASK_QUERY = `INSERT INTO scheduledTask(taskid,scheduleddate) VALUES('${id}', '${date}')`;
 
     connection.query(SCHEDULE_TASK_QUERY, (err) => {
       if (err) {
@@ -173,7 +173,7 @@ app.get('/task/schedule', (req, res) => {
 app.get('/task/mark-complete', (req, res) => {
   const { id } = req.query;
 
-  const MARK_TASK_COMPLETE_QUERY = `UPDATE Task SET completionstatus = '1' WHERE taskid = '${id}';`;
+  const MARK_TASK_COMPLETE_QUERY = `UPDATE task SET completionstatus = '1' WHERE taskid = '${id}';`;
 
   connection.query(MARK_TASK_COMPLETE_QUERY, (err) => {
     if (err) {
@@ -188,7 +188,7 @@ app.get('/task/mark-complete', (req, res) => {
 app.get('/scheduled-task/mark-complete', (req, res) => {
   const { id } = req.query;
 
-  const MARK_SCHEDULED_COMPLETE_QUERY = `UPDATE ScheduledTask SET completionstatus = '1' WHERE scheduledid = '${id}';`;
+  const MARK_SCHEDULED_COMPLETE_QUERY = `UPDATE scheduledTask SET completionstatus = '1' WHERE scheduledid = '${id}';`;
 
   connection.query(MARK_SCHEDULED_COMPLETE_QUERY, (err) => {
     if (err) {
@@ -203,7 +203,7 @@ app.get('/scheduled-task/mark-complete', (req, res) => {
 app.get('/task/mark-incomplete', (req, res) => {
   const { id } = req.query;
 
-  const MARK_TASK_INCOMPLETE_QUERY = `UPDATE Task SET completionstatus = '0' WHERE taskid = '${id}';`;
+  const MARK_TASK_INCOMPLETE_QUERY = `UPDATE task SET completionstatus = '0' WHERE taskid = '${id}';`;
 
   connection.query(MARK_TASK_INCOMPLETE_QUERY, (err) => {
     if (err) {
@@ -218,7 +218,7 @@ app.get('/task/mark-incomplete', (req, res) => {
 app.get('/scheduled-task/mark-incomplete', (req, res) => {
   const { id } = req.query;
 
-  const MARK_SCHEDULED_INCOMPLETE_QUERY = `UPDATE ScheduledTask SET completionstatus = '0' WHERE scheduledid = '${id}';`;
+  const MARK_SCHEDULED_INCOMPLETE_QUERY = `UPDATE scheduledTask SET completionstatus = '0' WHERE scheduledid = '${id}';`;
 
   connection.query(MARK_SCHEDULED_INCOMPLETE_QUERY, (err) => {
     if (err) {
@@ -233,7 +233,7 @@ app.get('/scheduled-task/mark-incomplete', (req, res) => {
 app.get('/task/delete', (req, res) => {
   const { id } = req.query;
 
-  const DELETE_TASK_QUERY = `DELETE from Task WHERE taskid = '${id}';`;
+  const DELETE_TASK_QUERY = `DELETE from task WHERE taskid = '${id}';`;
 
   connection.query(DELETE_TASK_QUERY, (err) => {
     if (err) {
@@ -263,7 +263,7 @@ app.get('/scheduled-task/delete', (req, res) => {
 app.get('/task/update-title', (req, res) => {
   const { id, title } = req.query;
 
-  const UPDATE_TITLE_TASK_QUERY = `UPDATE Task SET title = '${title}' WHERE taskid = '${id}';`;
+  const UPDATE_TITLE_TASK_QUERY = `UPDATE task SET title = '${title}' WHERE taskid = '${id}';`;
 
   connection.query(UPDATE_TITLE_TASK_QUERY, (err) => {
     if (err) {
@@ -278,7 +278,7 @@ app.get('/task/update-title', (req, res) => {
 app.get('/task/get-task', (req, res) => {
   const { id } = req.query;
 
-  const GET_TASK_QUERY = `SELECT * FROM Task WHERE taskid = '${id}';`;
+  const GET_TASK_QUERY = `SELECT * FROM task WHERE taskid = '${id}';`;
 
   connection.query(GET_TASK_QUERY, (err, results) => {
     if (err) {
