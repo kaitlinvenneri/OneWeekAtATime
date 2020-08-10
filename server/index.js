@@ -306,6 +306,8 @@ app.get('/scheduled-tasks/get-by-task-id', (req, res) => {
   });
 });
 
+//Helper function to get an array of dates for a week, given any date within that week
+//Week returned is from Monday to Sunday
 getWeekFromDate = (date) => {
   let startDate = new Date(date);
   let dayOfWeek = startDate.getDay();
@@ -344,6 +346,7 @@ getWeekFromDate = (date) => {
   return dateStrings;
 };
 
+//Helper function to return strings of weekdays
 getWeekdayStringArray = () => {
   let weekdayStrings = [
     'Monday',
@@ -358,6 +361,7 @@ getWeekdayStringArray = () => {
   return weekdayStrings;
 };
 
+//Helper function to return week of dates as strings
 getLongDateStringArray = (dateStrings) => {
   let longDateStrings = [];
 
@@ -416,6 +420,8 @@ getLongDateStringArray = (dateStrings) => {
   return longDateStrings;
 };
 
+//Helper function to get scheduled tasks from the database for a given week of dates
+//This function also sends a response from the request sent in as an argument
 getScheduledTasksFromDBAndReturnResponse = (
   dateStrings,
   weekdayStrings,
@@ -458,6 +464,7 @@ getScheduledTasksFromDBAndReturnResponse = (
   });
 };
 
+//Helper function to get the week and handle responding to the request
 getWeekAndHandleResponding = (date, res) => {
   let dateStrings = getWeekFromDate(date);
 
