@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
+//Component for choosing a week to go to in the WeekView of the PlannerPage
 class GoToWeek extends Component {
   state = {
     date: '',
   };
 
   componentDidMount() {
+    //Default the date to go to to the current date
     let currDay = new Date();
     currDay.setUTCDate(currDay.getDate());
     let ISOstring = currDay.toISOString();

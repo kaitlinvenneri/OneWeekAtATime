@@ -3,12 +3,14 @@ import axios from 'axios';
 import ToDoItem from './ToDoItem';
 import AddTaskForm from './AddTaskForm';
 
+//To Do List Component on the To Do Page
 class ToDoList extends Component {
   state = {
     tasks: [],
   };
 
   async componentDidMount() {
+    //get tasks from the server
     await axios.get('http://localhost:4000/tasks').then((response) => {
       this.setState((state) => ({
         tasks: response.data,
@@ -23,12 +25,14 @@ class ToDoList extends Component {
       },
     };
 
+    //Update task completion status on server
     if (task.completionStatus === 1) {
       await axios.get('http://localhost:4000/task/mark-incomplete', options);
     } else {
       await axios.get('http://localhost:4000/task/mark-complete', options);
     }
 
+    //Retrieve updated tasks
     await axios.get('http://localhost:4000/tasks').then((response) => {
       this.setState((state) => ({
         tasks: response.data,
@@ -43,10 +47,12 @@ class ToDoList extends Component {
       },
     };
 
+    //Optimistic update of state prior to calling server
     const tasks = this.state.tasks.filter((task) => task.taskId !== taskId);
 
     this.setState({ tasks });
 
+    //Delete task on the server
     await axios.get('http://localhost:4000/task/delete', options);
   };
 
@@ -58,6 +64,7 @@ class ToDoList extends Component {
       },
     };
 
+    //Schedule task for given date on the server
     await axios.get('http://localhost:4000/task/schedule', options);
   };
 

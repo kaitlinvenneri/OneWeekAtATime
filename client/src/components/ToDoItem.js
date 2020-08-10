@@ -6,6 +6,7 @@ import TodoEdit from './../svgs/TodoEdit';
 import TodoDelete from '../svgs/TodoDelete';
 import PlusTask from '../svgs/PlusTask';
 
+//Component for To Do Item within the To Do List
 class ToDoItem extends Component {
   state = {
     inEditState: false,
@@ -13,6 +14,7 @@ class ToDoItem extends Component {
     task: this.props.task,
   };
 
+  //Update state if given new props from parent component
   componentDidUpdate(prevProps, prevState) {
     if (
       this.props.task !== prevProps.task ||
@@ -26,10 +28,12 @@ class ToDoItem extends Component {
     this.setState({ inEditState: !this.state.inEditState });
   };
 
+  //Handle editing the title of a task
   handleEditSave = async () => {
     let updatedTask = this.state.task;
     updatedTask.title = this.state.newTitle;
 
+    //Update the title of the task
     this.setState(
       (state) => ({
         task: updatedTask,
@@ -46,6 +50,7 @@ class ToDoItem extends Component {
       },
     };
 
+    //Save updated title of task to the database
     await axios.get('http://localhost:4000/task/update-title', options);
   };
 
@@ -67,6 +72,7 @@ class ToDoItem extends Component {
     }
   };
 
+  //Handle scheduling a task to a chosen date in the WeekView on the Planner Page
   handleAddingtoWeekday = async () => {
     const { weekday, onAddToWeekday, onSchedule } = this.props;
 
@@ -80,7 +86,9 @@ class ToDoItem extends Component {
 
     let labelStyle = {};
 
+    //Set label style based on if the task is completed or not
     if (this.state.task.completionStatus === 1) {
+      //if task is completed, cross it out
       labelStyle = { fontSize: '20px', textDecoration: 'line-through' };
     } else {
       labelStyle = { fontSize: '20px' };

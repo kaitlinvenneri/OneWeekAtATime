@@ -4,9 +4,11 @@ import WeekViewTaskChecked from './../svgs/WeekViewTaskChecked';
 import WeekViewTaskUnchecked from '../svgs/WeekViewTaskUnchecked';
 import WeekViewTaskDelete from '../svgs/WeekViewTaskDelete';
 
+//WeekViewTask component within the Weekday of the Weekview on the Planner Page
 class WeekViewTask extends Component {
   state = { completionStatus: this.props.task.completionStatus };
 
+  //Update completion state of scheduled task
   changeSelectedState = async () => {
     const { task } = this.props;
     if (task.completionStatus === 0) {

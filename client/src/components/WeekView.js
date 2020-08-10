@@ -6,6 +6,7 @@ import CurrentWeek from './../svgs/CurrentWeek';
 import SelectWeek from './../svgs/SelectWeek';
 import GoToWeek from './GoToWeek';
 
+//Weekview Component within the Planner Page
 class WeekView extends Component {
   state = { selectingWeek: false };
 

@@ -4,6 +4,7 @@ import NavBar from './../components/NavBar';
 import WeekView from './../components/WeekView';
 import ToDoList from '../components/ToDoList';
 
+//Planner Page Component
 class PlannerPage extends Component {
   state = {
     weekScheduled: [],
@@ -12,9 +13,11 @@ class PlannerPage extends Component {
   };
 
   async componentDidMount() {
+    //Get current week and tasks associated
     this.getCurrentWeek();
   }
 
+  //Get week based on current date, and associated tasks
   getCurrentWeek = async () => {
     const { data: weekScheduled } = await axios.get(
       'http://localhost:4000/current-week'
@@ -23,6 +26,7 @@ class PlannerPage extends Component {
     this.setState({ weekScheduled });
   };
 
+  //Get week based on date sent in, and associated tasks
   getWeekFromDate = async (date) => {
     let options = {
       params: {
@@ -37,6 +41,7 @@ class PlannerPage extends Component {
     this.setState({ weekScheduled });
   };
 
+  //Unschedule a task
   handleTaskUnscheduling = async (scheduledId) => {
     let options = {
       params: {
@@ -51,6 +56,7 @@ class PlannerPage extends Component {
       });
   };
 
+  //Switch to previous week
   handleSwitchingToPreviousWeek = async () => {
     let options = {
       params: {
@@ -65,6 +71,7 @@ class PlannerPage extends Component {
     this.setState({ weekScheduled });
   };
 
+  //Switch to next week
   handleSwitchingToNextWeek = async () => {
     let options = {
       params: {
@@ -90,6 +97,7 @@ class PlannerPage extends Component {
     );
   };
 
+  //Add task to chosen day of the week
   handleAddingToWeekday = () => {
     this.getWeekFromDate(this.state.weekScheduled[0].date);
 
