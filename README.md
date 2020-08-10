@@ -21,12 +21,12 @@ Frontend:
 1) Git clone this project
 2) Setup the database if running locally - if grading, the database already exists and should be empty.
 3) Navigate to the database scripts directory if you are testing/grading anything pertatining to the database.
-4) Navigate to the server directory if you are testing/grading the server.
-5) The client is not yet in a state that is ready for testing/grading (as of Milestone 1 completion).
+4) Navigate to the server directory if you are testing/grading the server or client.
+5) Navigate to the client directory if you are testing/grading the client.
 
 <hr>
 
-**Please Note: Testing instructions for each issue to be graded is provided within the issue description on gitlab.**
+**Instructions for database scripts, server, and client are provided in their respective directory READMEs.**
 
 <hr>
 
