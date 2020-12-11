@@ -52,7 +52,6 @@ class WeekViewTask extends Component {
       <div
         className="mt-2 pt-1 pl-2 pr-1 d-flex flex-column"
         style={{
-          backgroundColor: '#e1e6ea',
           borderStyle: 'solid',
           borderRadius: '5px',
           borderColor: '#3f4d5a',

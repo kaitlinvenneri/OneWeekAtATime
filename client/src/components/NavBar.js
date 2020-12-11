@@ -13,9 +13,9 @@ class NavBar extends Component {
         style={{ backgroundColor: '#e3f2fd' }}
       >
         <Link className="navbar-brand" to="/">
-          Planning App
+          One Week at a Time
         </Link>
-        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+        {/* <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
           <li className={active === 'Planner' ? 'nav-item active' : 'nav-item'}>
             <Link className="nav-link" to="/">
               Planner
@@ -28,7 +28,7 @@ class NavBar extends Component {
               To Do List
             </Link>
           </li>
-        </ul>
+        </ul> */}
       </nav>
     );
   }
