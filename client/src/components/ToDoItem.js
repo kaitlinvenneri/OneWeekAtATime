@@ -4,7 +4,6 @@ import TodoChecked from './../svgs/TodoChecked';
 import TodoUnchecked from './../svgs/TodoUnchecked';
 import TodoEdit from './../svgs/TodoEdit';
 import TodoDelete from '../svgs/TodoDelete';
-import PlusTask from '../svgs/PlusTask';
 
 //Component for To Do Item within the To Do List
 class ToDoItem extends Component {
@@ -82,7 +81,7 @@ class ToDoItem extends Component {
   };
 
   render() {
-    const { onDelete, onChangeCompletion, fromPlanner } = this.props;
+    const { onDelete, onChangeCompletion } = this.props;
 
     let labelStyle = {};
 
@@ -98,9 +97,7 @@ class ToDoItem extends Component {
       <div className="d-flex flex-row justify-content-between ml-1">
         <div className="d-inline-flex flex-row align-items-center">
           <div>
-            {fromPlanner ? (
-              <PlusTask onClick={this.handleAddingtoWeekday} />
-            ) : this.state.task.completionStatus === 1 ? (
+            {this.state.task.completionStatus === 1 ? (
               <TodoChecked
                 onClick={onChangeCompletion}
                 task={this.state.task}
@@ -150,7 +147,7 @@ class ToDoItem extends Component {
             </div>
           )}
         </div>
-        {!fromPlanner && (
+        {
           <div className="d-inline-flex flex-row ml-3 mt-1">
             {this.state.task.completionStatus === 1 ? (
               <></>
@@ -170,7 +167,7 @@ class ToDoItem extends Component {
               />
             </div>
           </div>
-        )}
+        }
       </div>
     );
   }

@@ -85,21 +85,14 @@ class ToDoList extends Component {
   };
 
   render() {
-    const { fromPlanner, weekday, onAddToWeekday } = this.props;
+    const { weekday, onAddToWeekday } = this.props;
 
     return (
       <table className="table table-striped table-borderless w-auto mx-auto">
         <thead>
           <tr>
             <th scope="col" style={{ fontSize: '20px' }}>
-              {fromPlanner ? (
-                <span>
-                  Choose a task to add to {weekday.weekday} {weekday.dateString}
-                  :
-                </span>
-              ) : (
-                'To Do'
-              )}
+              To Do
             </th>
           </tr>
         </thead>
@@ -117,7 +110,6 @@ class ToDoList extends Component {
                   onDelete={this.handleTaskDelete}
                   onChangeCompletion={this.handleChangingTaskCompletionStatus}
                   onSchedule={this.handleTaskScheduling}
-                  fromPlanner={fromPlanner}
                   weekday={weekday}
                   onAddToWeekday={onAddToWeekday}
                 />

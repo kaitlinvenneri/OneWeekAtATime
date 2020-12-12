@@ -8,7 +8,6 @@ import ToDoList from '../components/ToDoList';
 class PlannerPage extends Component {
   state = {
     weekScheduled: [],
-    addingToWeekday: false,
     weekdayAddingTo: {},
   };
 
@@ -117,13 +116,10 @@ class PlannerPage extends Component {
           onAddToWeekday={this.handleChooseToAddToWeekday}
           onGoToDate={this.getWeekFromDate}
         />
-        {this.state.addingToWeekday && (
-          <ToDoList
-            fromPlanner={true}
-            weekday={this.state.weekdayAddingTo}
-            onAddToWeekday={this.handleAddingToWeekday}
-          />
-        )}
+        <ToDoList
+          weekday={this.state.weekdayAddingTo}
+          onAddToWeekday={this.handleAddingToWeekday}
+        />
       </div>
     );
   }

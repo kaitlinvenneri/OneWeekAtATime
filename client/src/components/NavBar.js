@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 //Active link is highlighted when on the page associated with the link in the Nav Bar
 class NavBar extends Component {
   render() {
-    const { active } = this.props;
-
     return (
       <nav
         className="navbar navbar-expand navbar-light"
