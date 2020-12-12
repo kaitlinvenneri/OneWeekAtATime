@@ -88,36 +88,41 @@ class ToDoList extends Component {
     const { weekday, onAddToWeekday } = this.props;
 
     return (
-      <table className="table table-striped table-borderless w-auto mx-auto">
-        <thead>
-          <tr>
-            <th scope="col" style={{ fontSize: '20px' }}>
-              To Do
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <AddTaskForm onAdd={this.handleTaskAdding} />
-            </td>
-          </tr>
+      <div
+        className="card mx-auto mt-4"
+        style={{
+          width: '50%',
+          border: '3px solid #0c66a6',
+        }}
+      >
+        <h5
+          className="card-header text-center"
+          style={{
+            borderBottom: '3px solid #0c66a6',
+            backgroundColor: '#e3f2fd',
+            color: '#0c66a6',
+          }}
+        >
+          CIS*4300
+        </h5>
+        <div
+          className="card-body pl-2 pr-2 pb-2 pt-0"
+          style={{ backgroundColor: '#e3f2fd' }}
+        >
           {this.state.tasks.map((task) => (
-            <tr key={task.taskId}>
-              <td>
-                <ToDoItem
-                  task={task}
-                  onDelete={this.handleTaskDelete}
-                  onChangeCompletion={this.handleChangingTaskCompletionStatus}
-                  onSchedule={this.handleTaskScheduling}
-                  weekday={weekday}
-                  onAddToWeekday={onAddToWeekday}
-                />
-              </td>
-            </tr>
+            <ToDoItem
+              key={task.taskId}
+              task={task}
+              onDelete={this.handleTaskDelete}
+              onChangeCompletion={this.handleChangingTaskCompletionStatus}
+              onSchedule={this.handleTaskScheduling}
+              weekday={weekday}
+              onAddToWeekday={onAddToWeekday}
+            />
           ))}
-        </tbody>
-      </table>
+          <AddTaskForm onAdd={this.handleTaskAdding} />
+        </div>
+      </div>
     );
   }
 }

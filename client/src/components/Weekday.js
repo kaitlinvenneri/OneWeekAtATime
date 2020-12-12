@@ -34,7 +34,7 @@ class Weekday extends Component {
             />
           ))}
         </div>
-        <AddTaskToWeekday onClick={this.handleAddTaskToWeekday} />
+        {/* <AddTaskToWeekday onClick={this.handleAddTaskToWeekday} /> */}
       </div>
     );
   }

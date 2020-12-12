@@ -6,8 +6,8 @@ class TodoEdit extends Component {
 
     return (
       <svg
-        width="1.3em"
-        height="1.3em"
+        width="1.5em"
+        height="1.5em"
         viewBox="0 0 16 16"
         className="bi bi-pencil-square mr-1"
         fill={editing === false ? 'currentColor' : 'grey'}

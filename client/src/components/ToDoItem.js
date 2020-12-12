@@ -94,7 +94,16 @@ class ToDoItem extends Component {
     }
 
     return (
-      <div className="d-flex flex-row justify-content-between ml-1">
+      <div
+        className="mt-2 py-2 pl-2 pr-1 d-flex flex-row justify-content-between align-items-stretch"
+        style={{
+          borderStyle: 'solid',
+          borderRadius: '5px',
+          borderColor: '#3f4d5a',
+          borderWidth: '1px',
+          backgroundColor: 'white',
+        }}
+      >
         <div className="d-inline-flex flex-row align-items-center">
           <div>
             {this.state.task.completionStatus === 1 ? (
@@ -123,32 +132,33 @@ class ToDoItem extends Component {
                   fontSize: '20px',
                   height: '35px',
                   color: 'black',
+                  borderColor: 'grey',
                 }}
                 onChange={(e) => this.setState({ newTitle: e.target.value })}
                 onKeyDown={this.handleKeyDown}
               ></input>
               <button
-                className="btn btn-sm btn-outline-success ml-2"
+                className="btn btn-sm btn-success ml-2"
                 onClick={this.handleEditSave}
                 disabled={this.state.newTitle.length === 0}
               >
                 Save
               </button>
               <button
-                className="btn btn-sm btn-outline-danger ml-2"
+                className="btn btn-sm btn-danger ml-2"
                 onClick={this.handleEditCancel}
               >
                 Cancel
               </button>
             </div>
           ) : (
-            <div className="mt-1 ml-2" style={labelStyle}>
+            <div className="ml-2" style={labelStyle}>
               {this.state.task.title}
             </div>
           )}
         </div>
         {
-          <div className="d-inline-flex flex-row ml-3 mt-1">
+          <div className="d-inline-flex flex-row ml-3">
             {this.state.task.completionStatus === 1 ? (
               <></>
             ) : (
@@ -159,7 +169,7 @@ class ToDoItem extends Component {
                 />
               </div>
             )}
-            <div>
+            <div className="d-flex flex-row align-items-center">
               <TodoDelete
                 editing={this.state.inEditState}
                 onDelete={onDelete}

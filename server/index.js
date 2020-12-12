@@ -76,7 +76,7 @@ app.get('/', (req, res) => {
 
 //Endpoint to view all tasks
 app.get('/tasks', (req, res) => {
-  const SELECT_ALL_TASKS_QUERY = `SELECT * FROM task order by taskId desc;`;
+  const SELECT_ALL_TASKS_QUERY = `SELECT * FROM task order by taskId asc;`;
 
   connection.query(SELECT_ALL_TASKS_QUERY, (err, results) => {
     if (err) {
