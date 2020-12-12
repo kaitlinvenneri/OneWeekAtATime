@@ -26,13 +26,17 @@ class Weekday extends Component {
           {day.dateString}
         </h5>
         <div className="card-body pl-2 pr-2 pb-2 pt-0">
-          {day.scheduledTasks.map((task) => (
-            <WeekViewTask
-              task={task}
-              onDelete={onDelete}
-              key={task.scheduledId}
-            />
-          ))}
+          {day.scheduledTasks.length === 0 ? (
+            <div className="p-5"></div>
+          ) : (
+            day.scheduledTasks.map((task) => (
+              <WeekViewTask
+                task={task}
+                onDelete={onDelete}
+                key={task.scheduledId}
+              />
+            ))
+          )}
         </div>
         {/* <AddTaskToWeekday onClick={this.handleAddTaskToWeekday} /> */}
       </div>
