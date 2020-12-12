@@ -4,7 +4,7 @@ var mysql = require('mysql');
 let hostname = 'localhost';
 let username = 'root';
 let dbPassword = 'password';
-let dbName = 'planningApp';
+let dbName = 'oneWeekAtATime';
 
 //Modifying database connection variables if server is being run for grading purposes
 const args = process.argv.slice(2);

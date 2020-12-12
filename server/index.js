@@ -15,7 +15,7 @@ app.listen(4000, () => {
 let hostname = 'localhost';
 let username = 'root';
 let dbPassword = 'password';
-let dbName = 'planningApp';
+let dbName = 'oneWeekAtATime';
 
 //Function to handle escaping characters prior to attempting to put them into the database
 function mysql_real_escape_string(str) {
