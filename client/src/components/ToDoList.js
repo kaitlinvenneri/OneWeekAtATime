@@ -27,6 +27,10 @@ class ToDoList extends Component {
   // }
 
   async componentDidMount() {
+    this.getListTasks();
+  }
+
+  getListTasks = async () => {
     const { category } = this.props;
 
     let options = {
@@ -35,7 +39,7 @@ class ToDoList extends Component {
       },
     };
 
-    //get tasks from the server
+    //get tasks from the server that correspond with this list (category)
     await axios
       .get('http://localhost:4000/category/tasks', options)
       .then((response) => {
@@ -43,7 +47,7 @@ class ToDoList extends Component {
           tasks: response.data,
         }));
       });
-  }
+  };
 
   handleChangingTaskCompletionStatus = async (task) => {
     let options = {
@@ -96,18 +100,20 @@ class ToDoList extends Component {
   };
 
   handleTaskAdding = async (taskTitle) => {
+    const { category } = this.props;
+
     //TODO: Change this to be an optimistic update (it's pessimistic currently)
     let options = {
       params: {
         title: taskTitle,
+        categoryId: category.categoryId,
       },
     };
 
     await axios
       .get('http://localhost:4000/task/add', options)
       .then(async () => {
-        const { data: tasks } = await axios.get('http://localhost:4000/tasks');
-        this.setState({ tasks });
+        this.getListTasks();
       });
   };
 
