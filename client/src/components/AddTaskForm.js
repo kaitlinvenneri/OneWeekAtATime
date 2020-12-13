@@ -31,7 +31,7 @@ class AddTaskForm extends Component {
           type="text"
           className="form-control"
           id="taskInput"
-          placeholder="Write grocery list."
+          placeholder="Task description"
           value={this.state.title}
           size="50"
           maxLength="50"

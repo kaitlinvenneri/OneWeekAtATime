@@ -3,11 +3,13 @@ import axios from 'axios';
 import ToDoItem from './ToDoItem';
 import AddTaskForm from './AddTaskForm';
 import MenuLines from './../svgs/MenuLines';
+import Check from './../svgs/Check';
 
 //To Do List Component on the To Do Page
 class ToDoList extends Component {
   state = {
     tasks: [],
+    color: 'blue',
   };
 
   async componentDidMount() {
@@ -93,39 +95,55 @@ class ToDoList extends Component {
         className="card mx-auto mt-4"
         style={{
           width: '30%',
-          border: '3px solid #0c66a6',
+          border: '2px solid #0c66a6',
         }}
       >
         <div
           className="card-header d-flex justify-content-between align-items-center px-2"
           style={{
-            borderBottom: '3px solid #0c66a6',
+            borderBottom: '2px solid #0c66a6',
             backgroundColor: '#e3f2fd',
             color: '#0c66a6',
           }}
         >
-          <h5 className="my-0">List Category</h5>
-          <MenuLines />
-          <div class="dropdown">
-            <button
-              class="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Dropdown button
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">
-                Action
+          <h5 className="my-0">General</h5>
+          <div className="dropdown">
+            <MenuLines />
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a className="dropdown-item" href="#">
+                Edit List Name
               </a>
-              <a class="dropdown-item" href="#">
-                Another action
+              <div className="dropdown-divider"></div>
+              <h6 className="dropdown-header">List Colour</h6>
+              <a className="dropdown-item" href="#">
+                <div className="d-flex justify-content-between">
+                  Gray
+                  {this.state.color === 'gray' && <Check />}
+                </div>
               </a>
-              <a class="dropdown-item" href="#">
-                Something else here
+              <a className="dropdown-item" href="#">
+                <div className="d-flex justify-content-between">
+                  Blue
+                  {this.state.color === 'blue' && <Check />}
+                </div>
+              </a>
+              <a className="dropdown-item" href="#">
+                <div className="d-flex justify-content-between">
+                  Pink
+                  {this.state.color === 'pink' && <Check />}
+                </div>
+              </a>
+              <a className="dropdown-item" href="#">
+                <div className="d-flex justify-content-between">
+                  Green
+                  {this.state.color === 'green' && <Check />}
+                </div>
+              </a>
+              <a className="dropdown-item" href="#">
+                <div className="d-flex justify-content-between">
+                  Orange
+                  {this.state.color === 'orange' && <Check />}
+                </div>
               </a>
             </div>
           </div>

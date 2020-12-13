@@ -7,8 +7,10 @@ class AddListButton extends Component {
 
     return (
       <button type="button" className="btn btn-success mt-2 ml-2">
-        <AddList />
-        New List
+        <div className="d-flex justify-content-center">
+          <AddList />
+          New List
+        </div>
       </button>
     );
   }

@@ -7,13 +7,15 @@ class MenuLines extends Component {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="1.5em"
-        height="1.5em"
+        width="1.7em"
+        height="1.7em"
         fill="currentColor"
         className="bi bi-list pt-1"
         viewBox="0 0 16 16"
         style={{ cursor: 'pointer' }}
-        onClick={onClick}
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        type="button"
       >
         <path
           fillRule="evenodd"
