@@ -26,7 +26,7 @@ class AddTaskForm extends Component {
 
   render() {
     return (
-      <div className="input-group my-3">
+      <div className="input-group">
         <input
           type="text"
           className="form-control"

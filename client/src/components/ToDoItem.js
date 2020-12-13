@@ -95,7 +95,7 @@ class ToDoItem extends Component {
 
     return (
       <div
-        className="mt-2 py-2 pl-2 pr-1 d-flex flex-row justify-content-between align-items-stretch"
+        className="mb-2 py-2 pl-2 pr-1 d-flex flex-row justify-content-between align-items-stretch"
         style={{
           borderStyle: 'solid',
           borderRadius: '5px',

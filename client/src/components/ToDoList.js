@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ToDoItem from './ToDoItem';
 import AddTaskForm from './AddTaskForm';
+import MenuLines from './../svgs/MenuLines';
 
 //To Do List Component on the To Do Page
 class ToDoList extends Component {
@@ -91,22 +92,23 @@ class ToDoList extends Component {
       <div
         className="card mx-auto mt-4"
         style={{
-          width: '50%',
+          width: '30%',
           border: '3px solid #0c66a6',
         }}
       >
-        <h5
-          className="card-header text-center"
+        <div
+          className="card-header d-flex justify-content-between align-items-center px-2"
           style={{
             borderBottom: '3px solid #0c66a6',
             backgroundColor: '#e3f2fd',
             color: '#0c66a6',
           }}
         >
-          CIS*4300
-        </h5>
+          <h5 className="my-0">List Category</h5>
+          <MenuLines />
+        </div>
         <div
-          className="card-body pl-2 pr-2 pb-2 pt-0"
+          className="card-body py-2 px-2"
           style={{ backgroundColor: '#e3f2fd' }}
         >
           {this.state.tasks.map((task) => (
