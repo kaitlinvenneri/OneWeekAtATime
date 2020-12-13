@@ -2,20 +2,33 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import NavBar from './../components/NavBar';
 import WeekView from './../components/WeekView';
-import ToDoList from '../components/ToDoList';
+//import ToDoList from '../components/ToDoList';
 import AddListButton from './../components/AddListButton';
+import Lists from './../components/Lists';
 
 //Planner Page Component
 class PlannerPage extends Component {
   state = {
+    categories: [],
     weekScheduled: [],
     weekdayAddingTo: {},
   };
 
   async componentDidMount() {
+    //Get list categories
+    this.getCategories();
+
     //Get current week and tasks associated
     this.getCurrentWeek();
   }
+
+  getCategories = async () => {
+    const { data: categories } = await axios.get(
+      'http://localhost:4000/categories'
+    );
+
+    this.setState({ categories });
+  };
 
   //Get week based on current date, and associated tasks
   getCurrentWeek = async () => {
@@ -118,10 +131,11 @@ class PlannerPage extends Component {
           onGoToDate={this.getWeekFromDate}
         />
         <AddListButton />
-        <ToDoList
+        <Lists categories={this.state.categories} />
+        {/* <ToDoList
           weekday={this.state.weekdayAddingTo}
           onAddToWeekday={this.handleAddingToWeekday}
-        />
+        /> */}
       </div>
     );
   }

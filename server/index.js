@@ -88,6 +88,23 @@ app.get('/categories', (req, res) => {
   });
 });
 
+//Endpoint to view all tasks associated with a category
+app.get('/category/tasks', (req, res) => {
+  const { categoryId } = req.query;
+
+  const SELECT_ALL_TASKS_FROM_CATEGORY_QUERY = `SELECT * FROM task WHERE categoryId = '${categoryId}' order by taskId asc;`;
+
+  connection.query(SELECT_ALL_TASKS_FROM_CATEGORY_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      //console.log(results);
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify(results));
+    }
+  });
+});
+
 //Endpoint to add a category
 app.get('/category/add', (req, res) => {
   const { category } = req.query;

@@ -9,16 +9,40 @@ import Check from './../svgs/Check';
 class ToDoList extends Component {
   state = {
     tasks: [],
-    color: 'blue',
+    color: this.props.category.color,
+    title: this.props.category.name,
   };
 
+  // //Update state if given new props from parent component
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (
+  //     this.props.category !== prevProps.category ||
+  //     this.props.category !== prevState.category
+  //   ) {
+  //     this.setState({
+  //       color: this.props.category.color,
+  //       title: this.props.category.name,
+  //     });
+  //   }
+  // }
+
   async componentDidMount() {
+    const { category } = this.props;
+
+    let options = {
+      params: {
+        categoryId: category.categoryId,
+      },
+    };
+
     //get tasks from the server
-    await axios.get('http://localhost:4000/tasks').then((response) => {
-      this.setState((state) => ({
-        tasks: response.data,
-      }));
-    });
+    await axios
+      .get('http://localhost:4000/category/tasks', options)
+      .then((response) => {
+        this.setState((state) => ({
+          tasks: response.data,
+        }));
+      });
   }
 
   handleChangingTaskCompletionStatus = async (task) => {
@@ -88,25 +112,46 @@ class ToDoList extends Component {
   };
 
   render() {
-    const { weekday, onAddToWeekday } = this.props;
+    const { category, weekday, onAddToWeekday } = this.props;
+
+    let backgroundColor = 'white';
+    let borderColor = 'black';
+
+    // TODO: Make this into a map that comes from another file
+    if (category.color === 'gray') {
+      backgroundColor = '#e1e6ea';
+      borderColor = '#4b5968';
+    } else if (category.color === 'blue') {
+      backgroundColor = '#e3f2fd';
+      borderColor = '#0c66a6';
+    } else if (category.color === 'pink') {
+      backgroundColor = '#ffcce6';
+      borderColor = '#cc0069';
+    } else if (category.color === 'green') {
+      backgroundColor = '#b3e6b3';
+      borderColor = '#194d33';
+    } else if (category.color === 'orange') {
+      backgroundColor = '#ffe0b3';
+      borderColor = '#e68a00';
+    }
 
     return (
       <div
         className="card mx-auto mt-4"
         style={{
           width: '30%',
-          border: '2px solid #0c66a6',
+          border: `2px solid ${borderColor}`,
         }}
       >
         <div
           className="card-header d-flex justify-content-between align-items-center px-2"
           style={{
-            borderBottom: '2px solid #0c66a6',
-            backgroundColor: '#e3f2fd',
-            color: '#0c66a6',
+            borderBottom: `2px solid ${borderColor}`,
+            backgroundColor: `${backgroundColor}`,
+            color: `${borderColor}`,
           }}
         >
-          <h5 className="my-0">General</h5>
+          <h5 className="my-0">{this.state.title}</h5>
           <div className="dropdown">
             <MenuLines />
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -150,7 +195,7 @@ class ToDoList extends Component {
         </div>
         <div
           className="card-body py-2 px-2"
-          style={{ backgroundColor: '#e3f2fd' }}
+          style={{ backgroundColor: `${backgroundColor}` }}
         >
           {this.state.tasks.map((task) => (
             <ToDoItem
