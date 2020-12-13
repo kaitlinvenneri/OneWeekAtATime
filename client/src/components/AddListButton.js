@@ -6,7 +6,7 @@ class AddListButton extends Component {
     const { onClick } = this.props;
 
     return (
-      <button type="button" class="btn btn-success mt-2 ml-2">
+      <button type="button" className="btn btn-success mt-2 ml-2">
         <AddList />
         New List
       </button>

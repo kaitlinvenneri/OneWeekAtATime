@@ -26,17 +26,29 @@ class AddTaskForm extends Component {
 
   render() {
     return (
-      <div
-        className="d-flex flex-row align-items-stretch mt-2 p-2"
-        style={{
-          borderStyle: 'solid',
-          borderRadius: '5px',
-          borderColor: '#3f4d5a',
-          borderWidth: '1px',
-          backgroundColor: 'white',
-        }}
-      >
+      <div className="input-group my-3">
         <input
+          type="text"
+          className="form-control"
+          id="taskInput"
+          placeholder="Write grocery list."
+          value={this.state.title}
+          size="50"
+          maxLength="50"
+          onChange={(e) => this.setState({ title: e.target.value })}
+          onKeyDown={this.handleKeyDown}
+        />
+        <div className="input-group-append">
+          <button
+            onClick={this.handleAddClick}
+            type="submit"
+            className="btn btn-primary"
+            disabled={this.state.title.length === 0}
+          >
+            Add
+          </button>
+        </div>
+        {/* <input
           type="text"
           className="form-control"
           id="taskInput"
@@ -48,7 +60,7 @@ class AddTaskForm extends Component {
             fontSize: '20px',
             height: '35px',
             color: 'black',
-            borderColor: 'grey',
+            borderColor: 'white',
           }}
           onChange={(e) => this.setState({ title: e.target.value })}
           onKeyDown={this.handleKeyDown}
@@ -60,7 +72,7 @@ class AddTaskForm extends Component {
           disabled={this.state.title.length === 0}
         >
           Add
-        </button>
+        </button> */}
       </div>
     );
   }

@@ -118,10 +118,10 @@ class PlannerPage extends Component {
           onGoToDate={this.getWeekFromDate}
         />
         <AddListButton />
-        {/* <ToDoList
+        <ToDoList
           weekday={this.state.weekdayAddingTo}
           onAddToWeekday={this.handleAddingToWeekday}
-        /> */}
+        />
       </div>
     );
   }
