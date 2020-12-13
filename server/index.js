@@ -181,10 +181,9 @@ app.get('/scheduled-tasks', (req, res) => {
 
 //Endpoint to add a task
 app.get('/task/add', (req, res) => {
-  const { title, category } = req.query;
+  const { title, categoryId } = req.query;
 
   let formattedTitle = '';
-  let formattedCategory = '';
 
   //Ensure title is sent in
   if (title) {
@@ -211,22 +210,28 @@ app.get('/task/add', (req, res) => {
   }
 
   //Ensure category is sent in
-  if (category) {
-    formattedCategory = mysql_real_escape_string(category);
+  if (categoryId) {
+    const GET_CATEGORY_BY_ID_QUERY = `SELECT * FROM category WHERE categoryId = '${categoryId}';`;
 
-    //Prevent categories with invalid lengths from being added to the database
-    if (formattedCategory.length === 0 || formattedCategory.length > 20) {
-      let error =
-        'Task could not be added. The category must be between 1 and 20 characters to be added.';
+    connection.query(GET_CATEGORY_BY_ID_QUERY, (err, results) => {
+      if (err) {
+        return res.send(err);
+      } else {
+        if (results.length === 0) {
+          //If the category does not exist, send back error message
+          let error =
+            'This task cannot be added, since there is no category corresponding to the category ID provided.';
 
-      res.send(error);
+          res.send(error);
 
-      //throw new error
-      throw new Error(error);
-    }
+          //throw new error
+          throw new Error(error);
+        }
+      }
+    });
   } else {
-    //If no category is provided, send back error message
-    let error = 'A task must have a category to be added.';
+    //If no category ID is provided, send back error message
+    let error = 'A task must have a category ID to be added.';
 
     res.send(error);
 
@@ -234,9 +239,7 @@ app.get('/task/add', (req, res) => {
     throw new Error(error);
   }
 
-  //TODO: Check if the category exists in the category table?
-
-  const INSERT_TASK_QUERY = `INSERT INTO task(title, category) VALUES('${formattedTitle}', '${formattedCategory}')`;
+  const INSERT_TASK_QUERY = `INSERT INTO task(title, categoryId) VALUES('${formattedTitle}', '${categoryId}')`;
 
   connection.query(INSERT_TASK_QUERY, (err) => {
     if (err) {
