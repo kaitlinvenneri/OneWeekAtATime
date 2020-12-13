@@ -143,9 +143,9 @@ class ToDoList extends Component {
 
     return (
       <div
-        className="card mx-auto mt-4"
+        className="card"
         style={{
-          width: '30%',
+          width: '400px',
           border: `2px solid ${borderColor}`,
         }}
       >

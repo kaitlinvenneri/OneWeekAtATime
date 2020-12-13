@@ -3,8 +3,9 @@ import axios from 'axios';
 import NavBar from './../components/NavBar';
 import WeekView from './../components/WeekView';
 //import ToDoList from '../components/ToDoList';
-import AddListButton from './../components/AddListButton';
 import Lists from './../components/Lists';
+import AddListButton from './../components/AddListButton';
+import AddListModal from './../components/AddListModal';
 
 //Planner Page Component
 class PlannerPage extends Component {
@@ -130,12 +131,14 @@ class PlannerPage extends Component {
           onAddToWeekday={this.handleChooseToAddToWeekday}
           onGoToDate={this.getWeekFromDate}
         />
-        <AddListButton />
-        <Lists categories={this.state.categories} />
-        {/* <ToDoList
-          weekday={this.state.weekdayAddingTo}
-          onAddToWeekday={this.handleAddingToWeekday}
-        /> */}
+        <div
+          className="d-flex flex-row align-items-start mt-3"
+          style={{ width: '100%' }}
+        >
+          <AddListButton />
+          <Lists categories={this.state.categories} />
+        </div>
+        <AddListModal />
       </div>
     );
   }

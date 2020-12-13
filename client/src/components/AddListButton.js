@@ -6,8 +6,16 @@ class AddListButton extends Component {
     const { onClick } = this.props;
 
     return (
-      <button type="button" className="btn btn-success mt-2 ml-2">
-        <div className="d-flex justify-content-center">
+      <button
+        type="button"
+        data-toggle="modal"
+        data-target="#addListModal"
+        className="btn btn-success mx-2"
+      >
+        <div
+          className="d-flex justify-content-center"
+          style={{ width: '100%' }}
+        >
           <AddList />
           New List
         </div>
