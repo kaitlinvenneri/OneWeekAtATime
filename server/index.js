@@ -74,6 +74,83 @@ app.get('/', (req, res) => {
   res.send('homepage');
 });
 
+//Endpoint to view all categories
+app.get('/categories', (req, res) => {
+  const SELECT_ALL_CATEGORIES_QUERY = `SELECT * FROM category order by name asc;`;
+
+  connection.query(SELECT_ALL_CATEGORIES_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify(results));
+    }
+  });
+});
+
+//Endpoint to add a category
+app.get('/category/add', (req, res) => {
+  const { category } = req.query;
+
+  let formattedCategory = '';
+
+  //Ensure category is sent in
+  if (category) {
+    formattedCategory = mysql_real_escape_string(category);
+
+    //Prevent categories with invalid lengths from being added to the database
+    if (formattedCategory.length === 0 || formattedCategory.length > 20) {
+      let error =
+        'Task could not be added. The category must be between 1 and 20 characters to be added.';
+
+      res.send(error);
+
+      //throw new error
+      throw new Error(error);
+    }
+  } else {
+    //If no category is provided, send back error message
+    let error = 'A task must have a category to be added.';
+
+    res.send(error);
+
+    //throw new error
+    throw new Error(error);
+  }
+
+  const GET_CATEGORY_QUERY = `SELECT * FROM category WHERE name = '${category}';`;
+
+  connection.query(GET_CATEGORY_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      if (results.length !== 0) {
+        //If the category already exists, send back error message
+        let error = 'This category already exists.';
+
+        res.send(error);
+
+        //throw new error
+        throw new Error(error);
+      }
+    }
+  });
+
+  const INSERT_CATEGORY_QUERY = `INSERT INTO category(name) VALUES(${formattedCategory}')`;
+
+  connection.query(INSERT_CATEGORY_QUERY, (err) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send('successfully added category');
+    }
+  });
+});
+
+// TODO - Create an endpoint to delete a category
+
+// TODO - Create an endpoint to edit a category
+
 //Endpoint to view all tasks
 app.get('/tasks', (req, res) => {
   const SELECT_ALL_TASKS_QUERY = `SELECT * FROM task order by taskId asc;`;
@@ -104,11 +181,14 @@ app.get('/scheduled-tasks', (req, res) => {
 
 //Endpoint to add a task
 app.get('/task/add', (req, res) => {
-  const { title } = req.query;
+  const { title, category } = req.query;
+
+  let formattedTitle = '';
+  let formattedCategory = '';
 
   //Ensure title is sent in
   if (title) {
-    const formattedTitle = mysql_real_escape_string(title);
+    formattedTitle = mysql_real_escape_string(title);
 
     //Prevent titles with invalid lengths from being added to the database
     if (formattedTitle.length === 0 || formattedTitle.length > 50) {
@@ -119,16 +199,6 @@ app.get('/task/add', (req, res) => {
 
       //throw new error
       throw new Error(error);
-    } else {
-      const INSERT_TASK_QUERY = `INSERT INTO task(title) VALUES('${formattedTitle}')`;
-
-      connection.query(INSERT_TASK_QUERY, (err) => {
-        if (err) {
-          return res.send(err);
-        } else {
-          return res.send('successfully added task');
-        }
-      });
     }
   } else {
     //If no title is provided, send back error message
@@ -139,6 +209,42 @@ app.get('/task/add', (req, res) => {
     //throw new error
     throw new Error(error);
   }
+
+  //Ensure category is sent in
+  if (category) {
+    formattedCategory = mysql_real_escape_string(category);
+
+    //Prevent categories with invalid lengths from being added to the database
+    if (formattedCategory.length === 0 || formattedCategory.length > 20) {
+      let error =
+        'Task could not be added. The category must be between 1 and 20 characters to be added.';
+
+      res.send(error);
+
+      //throw new error
+      throw new Error(error);
+    }
+  } else {
+    //If no category is provided, send back error message
+    let error = 'A task must have a category to be added.';
+
+    res.send(error);
+
+    //throw new error
+    throw new Error(error);
+  }
+
+  //TODO: Check if the category exists in the category table?
+
+  const INSERT_TASK_QUERY = `INSERT INTO task(title, category) VALUES('${formattedTitle}', '${formattedCategory}')`;
+
+  connection.query(INSERT_TASK_QUERY, (err) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send('successfully added task');
+    }
+  });
 });
 
 //Endpoint to schedule a task
