@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import TodoAdd from './../svgs/TodoAdd';
 
 //Component for adding a task to the To Do List
 class AddTaskForm extends Component {
@@ -37,9 +36,6 @@ class AddTaskForm extends Component {
           backgroundColor: 'white',
         }}
       >
-        {/* <div>
-          <TodoAdd />
-        </div> */}
         <input
           type="text"
           className="form-control"

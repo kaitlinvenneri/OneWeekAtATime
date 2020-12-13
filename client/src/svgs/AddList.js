@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class TodoAdd extends Component {
+class AddList extends Component {
   render() {
     return (
       <svg
         width="1.7em"
         height="1.7em"
         viewBox="0 0 16 16"
-        className="bi bi-journal-plus"
+        className="bi bi-journal-plus mr-2"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -25,4 +25,4 @@ class TodoAdd extends Component {
   }
 }
 
-export default TodoAdd;
+export default AddList;

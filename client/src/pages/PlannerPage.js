@@ -3,6 +3,7 @@ import axios from 'axios';
 import NavBar from './../components/NavBar';
 import WeekView from './../components/WeekView';
 import ToDoList from '../components/ToDoList';
+import AddListButton from './../components/AddListButton';
 
 //Planner Page Component
 class PlannerPage extends Component {
@@ -116,10 +117,11 @@ class PlannerPage extends Component {
           onAddToWeekday={this.handleChooseToAddToWeekday}
           onGoToDate={this.getWeekFromDate}
         />
-        <ToDoList
+        <AddListButton />
+        {/* <ToDoList
           weekday={this.state.weekdayAddingTo}
           onAddToWeekday={this.handleAddingToWeekday}
-        />
+        /> */}
       </div>
     );
   }
