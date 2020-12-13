@@ -40,4 +40,17 @@ connection.connect(function (err) {
     if (err) throw err;
     console.log('Task Table Dropped');
   });
+
+  const DROP_CATEGORY_TABLE_QUERY = `DROP TABLE IF EXISTS ${dbName}.category;`;
+
+  connection.query(DROP_CATEGORY_TABLE_QUERY, function (err) {
+    if (err) throw err;
+    console.log('Category Table Dropped');
+  });
+
+  connection.end();
+});
+
+process.on('exit', function (code) {
+  return console.log(`About to exit with code ${code}`);
 });

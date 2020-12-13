@@ -44,6 +44,13 @@ connection.connect(function (err) {
     console.log('Task Table Dropped');
   });
 
+  const DROP_CATEGORY_TABLE_QUERY = `DROP TABLE IF EXISTS ${dbName}.category;`;
+
+  connection.query(DROP_CATEGORY_TABLE_QUERY, function (err) {
+    if (err) throw err;
+    console.log('Category Table Dropped');
+  });
+
   if (!grading) {
     const DROP_DATABASE_QUERY = `DROP DATABASE IF EXISTS ${dbName};`;
 
@@ -52,4 +59,10 @@ connection.connect(function (err) {
       console.log('One Week at a Time Database Dropped');
     });
   }
+
+  connection.end();
+});
+
+process.on('exit', function (code) {
+  return console.log(`About to exit with code ${code}`);
 });
