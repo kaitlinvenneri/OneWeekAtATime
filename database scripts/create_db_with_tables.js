@@ -34,11 +34,18 @@ connection.connect(function (err) {
     console.log('Database created');
   });
 
-  const CREATE_CATEGORY_TABLE_QUERY = `CREATE TABLE IF NOT EXISTS ${dbName}.category ( categoryId int NOT NULL AUTO_INCREMENT, name varchar(20) NOT NULL UNIQUE, PRIMARY KEY (categoryId));`;
+  const CREATE_CATEGORY_TABLE_QUERY = `CREATE TABLE IF NOT EXISTS ${dbName}.category ( categoryId int NOT NULL AUTO_INCREMENT, name varchar(20) NOT NULL UNIQUE, color varchar(20) NOT NULL DEFAULT 'gray', PRIMARY KEY (categoryId));`;
 
   connection.query(CREATE_CATEGORY_TABLE_QUERY, function (err) {
     if (err) throw err;
     console.log('Category Table created');
+  });
+
+  const INSERT_CATEGORY_QUERY = `INSERT INTO ${dbName}.category(name) VALUES('General')`;
+
+  connection.query(INSERT_CATEGORY_QUERY, (err) => {
+    if (err) throw err;
+    console.log('Default Category added to db');
   });
 
   const CREATE_TASK_TABLE_QUERY = `CREATE TABLE IF NOT EXISTS ${dbName}.task ( taskId int NOT NULL AUTO_INCREMENT, title varchar(50) NOT NULL, completionStatus int DEFAULT 0, categoryId int NOT NULL, PRIMARY KEY (taskId), FOREIGN KEY (categoryId) REFERENCES ${dbName}.category(categoryId) ON DELETE CASCADE);`;
@@ -46,6 +53,13 @@ connection.connect(function (err) {
   connection.query(CREATE_TASK_TABLE_QUERY, function (err) {
     if (err) throw err;
     console.log('Task Table created');
+  });
+
+  const INSERT_TASK_QUERY = `INSERT INTO ${dbName}.task(title, categoryId) VALUES('My first task', 1)`;
+
+  connection.query(INSERT_TASK_QUERY, (err) => {
+    if (err) throw err;
+    console.log('Added default task to default category');
   });
 
   CREATE_SCHEDULED_TASK_TABLE_QUERY = `CREATE TABLE IF NOT EXISTS ${dbName}.scheduledTask ( scheduledId int NOT NULL AUTO_INCREMENT, taskId int NOT NULL, scheduledDate date DEFAULT null, completionStatus int DEFAULT 0, PRIMARY KEY (scheduledId), FOREIGN KEY (taskId) REFERENCES ${dbName}.task(taskId) ON DELETE CASCADE);`;

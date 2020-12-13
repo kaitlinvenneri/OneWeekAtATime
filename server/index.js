@@ -118,7 +118,7 @@ app.get('/category/add', (req, res) => {
     throw new Error(error);
   }
 
-  const GET_CATEGORY_QUERY = `SELECT * FROM category WHERE name = '${category}';`;
+  const GET_CATEGORY_QUERY = `SELECT * FROM category WHERE name = '${formattedCategory}';`;
 
   connection.query(GET_CATEGORY_QUERY, (err, results) => {
     if (err) {
@@ -136,7 +136,7 @@ app.get('/category/add', (req, res) => {
     }
   });
 
-  const INSERT_CATEGORY_QUERY = `INSERT INTO category(name) VALUES(${formattedCategory}')`;
+  const INSERT_CATEGORY_QUERY = `INSERT INTO category(name) VALUES('${formattedCategory}')`;
 
   connection.query(INSERT_CATEGORY_QUERY, (err) => {
     if (err) {
