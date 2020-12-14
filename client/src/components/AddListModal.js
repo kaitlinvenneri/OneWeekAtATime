@@ -15,13 +15,13 @@ class AddListModal extends Component {
     });
   };
 
-  // //Handle adding the List if user hits the enter key
-  // handleKeyDown = (e) => {
-  //   //Prevent list from being added if no name has been entered
-  //   if (e.key === 'Enter' && this.state.name.length > 0) {
-  //     this.handleAddClick();
-  //   }
-  // };
+  //Handle adding the List if user hits the enter key
+  handleKeyDown = (e) => {
+    //Prevent list from being added if no name has been entered
+    if (e.key === 'Enter' && this.state.name.length > 0) {
+      this.handleAddClick();
+    }
+  };
 
   render() {
     return (
@@ -58,7 +58,7 @@ class AddListModal extends Component {
                 size="20"
                 maxLength="20"
                 onChange={(e) => this.setState({ name: e.target.value })}
-                //onKeyDown={this.handleKeyDown}
+                onKeyDown={this.handleKeyDown}
               />
 
               <div>
