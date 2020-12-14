@@ -143,7 +143,7 @@ class ToDoList extends Component {
 
     return (
       <div
-        className="card"
+        className="card mx-2 mb-3"
         style={{
           width: '400px',
           border: `2px solid ${borderColor}`,
@@ -160,7 +160,7 @@ class ToDoList extends Component {
           <h5 className="my-0">{this.state.title}</h5>
           <div className="dropdown">
             <MenuLines />
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {/* <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a className="dropdown-item" href="#">
                 Edit List Name
               </a>
@@ -196,7 +196,7 @@ class ToDoList extends Component {
                   {this.state.color === 'orange' && <Check />}
                 </div>
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
         <div
@@ -214,7 +214,10 @@ class ToDoList extends Component {
               onAddToWeekday={onAddToWeekday}
             />
           ))}
-          <AddTaskForm onAdd={this.handleTaskAdding} />
+          <AddTaskForm
+            categoryId={category.categoryId}
+            onAdd={this.handleTaskAdding}
+          />
         </div>
       </div>
     );

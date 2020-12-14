@@ -31,6 +31,19 @@ class PlannerPage extends Component {
     this.setState({ categories });
   };
 
+  handleAddingList = async (categoryName, categoryColor) => {
+    let options = {
+      params: {
+        name: categoryName,
+        color: categoryColor,
+      },
+    };
+
+    await axios.get('http://localhost:4000/category/add', options);
+
+    await this.getCategories();
+  };
+
   //Get week based on current date, and associated tasks
   getCurrentWeek = async () => {
     const { data: weekScheduled } = await axios.get(
@@ -138,7 +151,7 @@ class PlannerPage extends Component {
           <AddListButton />
           <Lists categories={this.state.categories} />
         </div>
-        <AddListModal />
+        <AddListModal onAdd={this.handleAddingList} />
       </div>
     );
   }

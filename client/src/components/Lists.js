@@ -16,7 +16,7 @@ class Lists extends Component {
 
   render() {
     return (
-      <div>
+      <div className="d-flex flex-row flex-wrap">
         {this.state.categories.map((category) => (
           <ToDoList key={category.categoryId} category={category} />
         ))}

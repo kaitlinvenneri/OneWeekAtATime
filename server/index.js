@@ -107,18 +107,20 @@ app.get('/category/tasks', (req, res) => {
 
 //Endpoint to add a category
 app.get('/category/add', (req, res) => {
-  const { category } = req.query;
+  const { name, color } = req.query;
 
-  let formattedCategory = '';
+  // console.log(name, color);
+
+  let formattedName = '';
 
   //Ensure category is sent in
-  if (category) {
-    formattedCategory = mysql_real_escape_string(category);
+  if (name) {
+    formattedName = mysql_real_escape_string(name);
 
     //Prevent categories with invalid lengths from being added to the database
-    if (formattedCategory.length === 0 || formattedCategory.length > 20) {
+    if (formattedName.length === 0 || formattedName.length > 20) {
       let error =
-        'Task could not be added. The category must be between 1 and 20 characters to be added.';
+        'Category could not be added. The category name must be between 1 and 20 characters to be added.';
 
       res.send(error);
 
@@ -126,8 +128,8 @@ app.get('/category/add', (req, res) => {
       throw new Error(error);
     }
   } else {
-    //If no category is provided, send back error message
-    let error = 'A task must have a category to be added.';
+    //If no category name is provided, send back error message
+    let error = 'A category must have a name to be added.';
 
     res.send(error);
 
@@ -135,7 +137,7 @@ app.get('/category/add', (req, res) => {
     throw new Error(error);
   }
 
-  const GET_CATEGORY_QUERY = `SELECT * FROM category WHERE name = '${formattedCategory}';`;
+  const GET_CATEGORY_QUERY = `SELECT * FROM category WHERE name = '${formattedName}';`;
 
   connection.query(GET_CATEGORY_QUERY, (err, results) => {
     if (err) {
@@ -143,7 +145,7 @@ app.get('/category/add', (req, res) => {
     } else {
       if (results.length !== 0) {
         //If the category already exists, send back error message
-        let error = 'This category already exists.';
+        let error = 'A category with this name already exists.';
 
         res.send(error);
 
@@ -153,7 +155,7 @@ app.get('/category/add', (req, res) => {
     }
   });
 
-  const INSERT_CATEGORY_QUERY = `INSERT INTO category(name) VALUES('${formattedCategory}')`;
+  const INSERT_CATEGORY_QUERY = `INSERT INTO category(name, color) VALUES('${formattedName}', '${color}')`;
 
   connection.query(INSERT_CATEGORY_QUERY, (err) => {
     if (err) {

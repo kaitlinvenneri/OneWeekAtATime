@@ -25,12 +25,13 @@ class AddTaskForm extends Component {
   };
 
   render() {
+    const { categoryId } = this.props;
     return (
       <div className="input-group">
         <input
           type="text"
           className="form-control"
-          id="taskInput"
+          id={categoryId + 'taskInput'}
           placeholder="Task description"
           value={this.state.title}
           size="50"

@@ -3,22 +3,16 @@ import AddList from '../svgs/AddList';
 
 class AddListButton extends Component {
   render() {
-    const { onClick } = this.props;
-
     return (
       <button
         type="button"
         data-toggle="modal"
         data-target="#addListModal"
         className="btn btn-success mx-2"
+        style={{ width: '340px' }}
       >
-        <div
-          className="d-flex justify-content-center"
-          style={{ width: '100%' }}
-        >
-          <AddList />
-          New List
-        </div>
+        <AddList />
+        New List
       </button>
     );
   }
