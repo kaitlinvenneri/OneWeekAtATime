@@ -44,6 +44,20 @@ class PlannerPage extends Component {
     await this.getCategories();
   };
 
+  handleDeletingList = async (categoryId) => {
+    let options = {
+      params: {
+        categoryId: categoryId,
+      },
+    };
+
+    await axios.get('http://localhost:4000/category/delete', options);
+
+    await this.getCategories();
+
+    //TODO: Also need to get scheduled tasks again, once I do this
+  };
+
   //Get week based on current date, and associated tasks
   getCurrentWeek = async () => {
     const { data: weekScheduled } = await axios.get(
@@ -149,7 +163,10 @@ class PlannerPage extends Component {
           style={{ width: '100%' }}
         >
           <AddListButton />
-          <Lists categories={this.state.categories} />
+          <Lists
+            categories={this.state.categories}
+            onDeleteList={this.handleDeletingList}
+          />
         </div>
         <AddListModal onAdd={this.handleAddingList} />
       </div>

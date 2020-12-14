@@ -166,7 +166,20 @@ app.get('/category/add', (req, res) => {
   });
 });
 
-// TODO - Create an endpoint to delete a category
+//Endpoint to delete a category
+app.get('/category/delete', (req, res) => {
+  const { categoryId } = req.query;
+
+  const DELETE_CATEGORY_QUERY = `DELETE from category WHERE categoryId = '${categoryId}';`;
+
+  connection.query(DELETE_CATEGORY_QUERY, (err) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send('successfully deleted category');
+    }
+  });
+});
 
 // TODO - Create an endpoint to edit a category
 

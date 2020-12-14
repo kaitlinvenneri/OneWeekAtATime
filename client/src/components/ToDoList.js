@@ -3,6 +3,8 @@ import axios from 'axios';
 import ToDoItem from './ToDoItem';
 import AddTaskForm from './AddTaskForm';
 import MenuLines from './../svgs/MenuLines';
+import DeleteListModal from './DeleteListModal';
+
 //To Do List Component on the To Do Page
 class ToDoList extends Component {
   state = {
@@ -116,7 +118,7 @@ class ToDoList extends Component {
   };
 
   render() {
-    const { category, weekday, onAddToWeekday } = this.props;
+    const { onDelete, category, weekday, onAddToWeekday } = this.props;
 
     let backgroundColor = 'white';
     let borderColor = 'black';
@@ -161,7 +163,12 @@ class ToDoList extends Component {
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <button className="dropdown-item btn btn-light">Edit List</button>
               <div className="dropdown-divider"></div>
-              <button className="dropdown-item btn btn-light">
+              <button
+                className="dropdown-item btn btn-light"
+                type="button"
+                data-toggle="modal"
+                data-target={'#deleteListModal' + category.categoryId}
+              >
                 Delete List
               </button>
             </div>
@@ -186,6 +193,7 @@ class ToDoList extends Component {
             categoryId={category.categoryId}
             onAdd={this.handleTaskAdding}
           />
+          <DeleteListModal onDelete={onDelete} category={category} />
         </div>
       </div>
     );

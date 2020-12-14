@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 class AddListModal extends Component {
   state = {
     name: '',
@@ -15,23 +16,9 @@ class AddListModal extends Component {
     });
   };
 
-  //Handle adding the List if user hits the enter key
-  handleKeyDown = (e) => {
-    //Prevent list from being added if no name has been entered
-    if (e.key === 'Enter' && this.state.name.length > 0) {
-      this.handleAddClick();
-    }
-  };
-
   render() {
     return (
-      <div
-        className="modal fade"
-        id="addListModal"
-        tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
+      <div className="modal fade" id="addListModal" tabIndex="-1">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -58,7 +45,6 @@ class AddListModal extends Component {
                 size="20"
                 maxLength="20"
                 onChange={(e) => this.setState({ name: e.target.value })}
-                onKeyDown={this.handleKeyDown}
               />
 
               <div>
