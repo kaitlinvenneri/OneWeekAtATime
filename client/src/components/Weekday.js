@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import WeekViewTask from './WeekViewTask';
-import AddTaskToWeekday from '../svgs/AddTaskToWeekday';
+//import AddTaskToWeekday from '../svgs/AddTaskToWeekday';
 
 //Weekday component within WeekView on Planner Page
 class Weekday extends Component {

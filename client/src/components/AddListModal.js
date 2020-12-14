@@ -53,7 +53,7 @@ class AddListModal extends Component {
               <b>List name</b>
               <input
                 type="text"
-                className="form-control my-1"
+                className="form-control mt-1 mb-3"
                 id="newListNameInput"
                 placeholder="To Do List"
                 value={this.state.name}

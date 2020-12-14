@@ -9,7 +9,7 @@ class AddListButton extends Component {
         data-toggle="modal"
         data-target="#addListModal"
         className="btn btn-success mx-2"
-        style={{ width: '340px' }}
+        style={{ width: '150px' }}
       >
         <AddList />
         New List

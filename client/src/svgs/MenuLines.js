@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 class MenuLines extends Component {
   render() {
-    const { onClick } = this.props;
-
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"

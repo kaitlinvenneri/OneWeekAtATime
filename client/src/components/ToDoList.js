@@ -3,8 +3,6 @@ import axios from 'axios';
 import ToDoItem from './ToDoItem';
 import AddTaskForm from './AddTaskForm';
 import MenuLines from './../svgs/MenuLines';
-import Check from './../svgs/Check';
-
 //To Do List Component on the To Do Page
 class ToDoList extends Component {
   state = {
@@ -161,13 +159,11 @@ class ToDoList extends Component {
           <div className="dropdown">
             <MenuLines />
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a className="dropdown-item" href="#">
-                Edit List
-              </a>
-              <div class="dropdown-divider"></div>
-              <a className="dropdown-item" href="#">
+              <button className="dropdown-item btn btn-light">Edit List</button>
+              <div className="dropdown-divider"></div>
+              <button className="dropdown-item btn btn-light">
                 Delete List
-              </a>
+              </button>
             </div>
           </div>
         </div>
