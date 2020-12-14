@@ -21,7 +21,7 @@ class DeleteListModal extends Component {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
-                Delete
+                List Deletion Confirmation
               </h5>
               <button
                 type="button"
@@ -33,7 +33,18 @@ class DeleteListModal extends Component {
               </button>
             </div>
             <div className="modal-body">
-              Are you sure you want to delete {category.name}?
+              <p>
+                Are you sure you want to delete your <b>{category.name}</b>{' '}
+                list?
+              </p>
+              <p>
+                Please note that this will also <b>delete all tasks</b> on this
+                list, including <b>scheduled instances</b> of those tasks in the{' '}
+                <b>planner</b>.
+              </p>
+              <p style={{ color: 'red' }}>
+                <b>This cannot be undone.</b>
+              </p>
             </div>
             <div className="modal-footer">
               <button
