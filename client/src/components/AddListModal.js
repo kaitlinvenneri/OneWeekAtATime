@@ -15,8 +15,6 @@ class AddListModal extends Component {
     });
   };
 
-  handleRadioButtonChange = () => {};
-
   // //Handle adding the List if user hits the enter key
   // handleKeyDown = (e) => {
   //   //Prevent list from being added if no name has been entered
@@ -60,7 +58,7 @@ class AddListModal extends Component {
                 size="20"
                 maxLength="20"
                 onChange={(e) => this.setState({ name: e.target.value })}
-                onKeyDown={this.handleKeyDown}
+                //onKeyDown={this.handleKeyDown}
               />
 
               <div>
@@ -74,6 +72,7 @@ class AddListModal extends Component {
                   id="grayRadioButton"
                   value="gray"
                   defaultChecked
+                  onClick={(e) => this.setState({ color: e.target.value })}
                 />
                 <label className="form-check-label" htmlFor="grayRadioButton">
                   Gray
@@ -86,6 +85,7 @@ class AddListModal extends Component {
                   name="inlineRadioOptions"
                   id="blueRadioButton"
                   value="blue"
+                  onClick={(e) => this.setState({ color: e.target.value })}
                 />
                 <label className="form-check-label" htmlFor="blueRadioButton">
                   Blue
@@ -98,6 +98,7 @@ class AddListModal extends Component {
                   name="inlineRadioOptions"
                   id="pinkRadioButton"
                   value="pink"
+                  onClick={(e) => this.setState({ color: e.target.value })}
                 />
                 <label className="form-check-label" htmlFor="pinkRadioButton">
                   Pink
@@ -110,6 +111,7 @@ class AddListModal extends Component {
                   name="inlineRadioOptions"
                   id="greenRadioButton"
                   value="green"
+                  onClick={(e) => this.setState({ color: e.target.value })}
                 />
                 <label className="form-check-label" htmlFor="greenRadioButton">
                   Green
@@ -122,6 +124,7 @@ class AddListModal extends Component {
                   name="inlineRadioOptions"
                   id="orangeRadioButton"
                   value="orange"
+                  onClick={(e) => this.setState({ color: e.target.value })}
                 />
                 <label className="form-check-label" htmlFor="orangeRadioButton">
                   Orange
