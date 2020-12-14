@@ -160,43 +160,15 @@ class ToDoList extends Component {
           <h5 className="my-0">{this.state.title}</h5>
           <div className="dropdown">
             <MenuLines />
-            {/* <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a className="dropdown-item" href="#">
-                Edit List Name
+                Edit List
               </a>
-              <div className="dropdown-divider"></div>
-              <h6 className="dropdown-header">List Colour</h6>
+              <div class="dropdown-divider"></div>
               <a className="dropdown-item" href="#">
-                <div className="d-flex justify-content-between">
-                  Gray
-                  {this.state.color === 'gray' && <Check />}
-                </div>
+                Delete List
               </a>
-              <a className="dropdown-item" href="#">
-                <div className="d-flex justify-content-between">
-                  Blue
-                  {this.state.color === 'blue' && <Check />}
-                </div>
-              </a>
-              <a className="dropdown-item" href="#">
-                <div className="d-flex justify-content-between">
-                  Pink
-                  {this.state.color === 'pink' && <Check />}
-                </div>
-              </a>
-              <a className="dropdown-item" href="#">
-                <div className="d-flex justify-content-between">
-                  Green
-                  {this.state.color === 'green' && <Check />}
-                </div>
-              </a>
-              <a className="dropdown-item" href="#">
-                <div className="d-flex justify-content-between">
-                  Orange
-                  {this.state.color === 'orange' && <Check />}
-                </div>
-              </a>
-            </div> */}
+            </div>
           </div>
         </div>
         <div
