@@ -61,7 +61,6 @@ class AddListModal extends Component {
                 maxLength="20"
                 onChange={(e) => this.setState({ name: e.target.value })}
                 onKeyDown={this.handleKeyDown}
-                autoFocus
               />
 
               <div>
