@@ -3,12 +3,15 @@ import axios from 'axios';
 import TodoChecked from './../svgs/TodoChecked';
 import TodoUnchecked from './../svgs/TodoUnchecked';
 import TodoEdit from './../svgs/TodoEdit';
+import TodoSchedule from '../svgs/TodoSchedule';
 import TodoDelete from '../svgs/TodoDelete';
+import ScheduleTaskForm from './ScheduleTaskForm';
 
 //Component for To Do Item within the To Do List
 class ToDoItem extends Component {
   state = {
     inEditState: false,
+    scheduling: false,
     newTitle: this.props.task.title,
     task: this.props.task,
   };
@@ -65,6 +68,22 @@ class ToDoItem extends Component {
     );
   };
 
+  handleScheduling = (taskId, date) => {
+    const { onSchedule } = this.props;
+
+    this.setState({ scheduling: false });
+
+    onSchedule(taskId, date);
+  };
+
+  handleScheduleButton = () => {
+    this.setState({ scheduling: true });
+  };
+
+  handleCancelScheduling = () => {
+    this.setState({ scheduling: false });
+  };
+
   handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       this.handleEditSave();
@@ -114,6 +133,7 @@ class ToDoItem extends Component {
             ) : (
               <TodoUnchecked
                 editing={this.state.inEditState}
+                scheduling={this.state.scheduling}
                 onClick={onChangeCompletion}
                 task={this.state.task}
               />
@@ -165,13 +185,27 @@ class ToDoItem extends Component {
               <div className="d-flex flex-row align-items-center">
                 <TodoEdit
                   editing={this.state.inEditState}
+                  scheduling={this.state.scheduling}
                   onClick={this.handleEditButton}
+                />
+                {this.state.scheduling && (
+                  <ScheduleTaskForm
+                    task={this.state.task}
+                    onSchedule={this.handleScheduling}
+                    onCancelScheduling={this.handleCancelScheduling}
+                  />
+                )}
+                <TodoSchedule
+                  scheduling={this.state.scheduling}
+                  editing={this.state.inEditState}
+                  onClick={this.handleScheduleButton}
                 />
               </div>
             )}
             <div className="d-flex flex-row align-items-center">
               <TodoDelete
                 editing={this.state.inEditState}
+                scheduling={this.state.scheduling}
                 onDelete={onDelete}
                 task={this.state.task}
               />

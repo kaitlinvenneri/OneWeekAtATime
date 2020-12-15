@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class TodoUnchecked extends Component {
   render() {
-    const { editing, onClick, task } = this.props;
+    const { editing, scheduling, onClick, task } = this.props;
 
     let classString = '';
 
@@ -18,10 +18,16 @@ class TodoUnchecked extends Component {
         height="1.25em"
         viewBox="0 0 16 16"
         className={classString}
-        fill={editing === false ? 'currentColor' : 'grey'}
+        fill={
+          editing === false && scheduling === false ? 'currentColor' : 'grey'
+        }
         xmlns="http://www.w3.org/2000/svg"
-        style={editing === false ? { cursor: 'pointer' } : {}}
-        onClick={editing === false ? () => onClick(task) : null}
+        style={
+          editing === false && scheduling === false ? { cursor: 'pointer' } : {}
+        }
+        onClick={
+          editing === false && scheduling === false ? () => onClick(task) : null
+        }
       >
         <path
           fillRule="evenodd"

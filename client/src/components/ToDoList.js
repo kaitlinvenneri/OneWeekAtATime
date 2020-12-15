@@ -141,7 +141,7 @@ class ToDoList extends Component {
       <div
         className="card mx-2 mb-3"
         style={{
-          width: '400px',
+          //width: '400px',
           border: `2px solid ${borderColor}`,
         }}
       >
