@@ -150,6 +150,7 @@ class PlannerPage extends Component {
         <Lists
           categories={this.state.categories}
           onDeleteList={this.handleDeletingList}
+          updateWeekview={this.getCurrentWeek}
         />
         <AddListModal onAdd={this.handleAddingList} />
       </div>

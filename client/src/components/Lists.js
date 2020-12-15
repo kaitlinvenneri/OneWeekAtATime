@@ -15,7 +15,7 @@ class Lists extends Component {
   }
 
   render() {
-    const { onDeleteList } = this.props;
+    const { onDeleteList, updateWeekview } = this.props;
 
     return (
       <div className="d-flex flex-row flex-wrap mt-3">
@@ -24,6 +24,7 @@ class Lists extends Component {
             key={category.categoryId}
             category={category}
             onDelete={onDeleteList}
+            updateWeekview={updateWeekview}
           />
         ))}
       </div>
