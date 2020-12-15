@@ -12,7 +12,6 @@ class PlannerPage extends Component {
   state = {
     categories: [],
     weekScheduled: [],
-    weekdayAddingTo: {},
   };
 
   async componentDidMount() {
@@ -129,24 +128,6 @@ class PlannerPage extends Component {
     this.setState({ weekScheduled });
   };
 
-  handleChooseToAddToWeekday = (day) => {
-    this.setState(
-      (state) => ({
-        weekdayAddingTo: day,
-      }),
-      () => {
-        this.setState({ addingToWeekday: true });
-      }
-    );
-  };
-
-  //Add task to chosen day of the week
-  handleAddingToWeekday = () => {
-    this.getWeekFromDate(this.state.weekScheduled[0].date);
-
-    this.setState({ addingToWeekday: false });
-  };
-
   render() {
     return (
       <div>
@@ -157,7 +138,6 @@ class PlannerPage extends Component {
           onPreviousWeekClick={this.handleSwitchingToPreviousWeek}
           onNextWeekClick={this.handleSwitchingToNextWeek}
           onGoToTodayClick={this.getCurrentWeek}
-          onAddToWeekday={this.handleChooseToAddToWeekday}
           onGoToDate={this.getWeekFromDate}
         />
 

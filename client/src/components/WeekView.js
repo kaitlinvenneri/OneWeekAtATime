@@ -33,7 +33,6 @@ class WeekView extends Component {
       onPreviousWeekClick,
       onNextWeekClick,
       onGoToTodayClick,
-      onAddToWeekday,
     } = this.props;
 
     let firstDay;
@@ -69,12 +68,7 @@ class WeekView extends Component {
 
         <div className="d-flex flex-row">
           {weekScheduled.map((day) => (
-            <Weekday
-              key={day.date}
-              day={day}
-              onDelete={onDelete}
-              onAddToWeekday={onAddToWeekday}
-            />
+            <Weekday key={day.date} day={day} onDelete={onDelete} />
           ))}
         </div>
       </>

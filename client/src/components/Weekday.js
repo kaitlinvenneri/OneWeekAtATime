@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import AddTaskToWeekday from '../svgs/AddTaskToWeekday';
 import ScheduledList from './ScheduledList';
 
 //Weekday component within WeekView on Planner Page
@@ -100,7 +99,6 @@ class Weekday extends Component {
             ))
           )}
         </div>
-        {/* <AddTaskToWeekday onClick={this.handleAddTaskToWeekday} /> */}
       </div>
     );
   }
