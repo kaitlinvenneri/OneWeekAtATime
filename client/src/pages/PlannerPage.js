@@ -64,7 +64,7 @@ class PlannerPage extends Component {
       'http://localhost:4000/current-week'
     );
 
-    console.log(weekScheduled);
+    //console.log(weekScheduled);
 
     this.setState({ weekScheduled });
   };

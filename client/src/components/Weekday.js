@@ -72,7 +72,7 @@ class Weekday extends Component {
     };
     categories.push(category);
 
-    console.log(categories);
+    //console.log(categories);
 
     return (
       <div
