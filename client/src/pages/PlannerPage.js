@@ -54,7 +54,7 @@ class PlannerPage extends Component {
 
     await this.getCategories();
 
-    //TODO: Also need to get scheduled tasks again, once I do this
+    await this.getCurrentWeek();
   };
 
   //Get week based on current date, and associated tasks
