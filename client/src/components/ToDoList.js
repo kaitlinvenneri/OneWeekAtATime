@@ -27,7 +27,7 @@ class ToDoList extends Component {
   // }
 
   async componentDidMount() {
-    this.getListTasks();
+    await this.getListTasks();
   }
 
   getListTasks = async () => {
@@ -64,11 +64,7 @@ class ToDoList extends Component {
     }
 
     //Retrieve updated tasks
-    await axios.get('http://localhost:4000/tasks').then((response) => {
-      this.setState((state) => ({
-        tasks: response.data,
-      }));
-    });
+    await this.getListTasks();
   };
 
   handleTaskDelete = async (taskId) => {
