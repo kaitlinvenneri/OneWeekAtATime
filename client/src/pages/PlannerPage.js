@@ -158,16 +158,17 @@ class PlannerPage extends Component {
           onAddToWeekday={this.handleChooseToAddToWeekday}
           onGoToDate={this.getWeekFromDate}
         />
+
         <div
-          className="d-flex flex-row align-items-start mt-3"
+          className="d-flex flex-row justify-content-center mt-3"
           style={{ width: '100%' }}
         >
           <AddListButton />
-          <Lists
-            categories={this.state.categories}
-            onDeleteList={this.handleDeletingList}
-          />
         </div>
+        <Lists
+          categories={this.state.categories}
+          onDeleteList={this.handleDeletingList}
+        />
         <AddListModal onAdd={this.handleAddingList} />
       </div>
     );

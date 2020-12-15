@@ -161,8 +161,8 @@ class ToDoList extends Component {
           <div className="dropdown">
             <MenuLines />
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <button className="dropdown-item btn btn-light">Edit List</button>
-              <div className="dropdown-divider"></div>
+              {/* <button className="dropdown-item btn btn-light">Edit List</button>
+              <div className="dropdown-divider"></div> */}
               <button
                 className="dropdown-item btn btn-light"
                 type="button"
