@@ -18,7 +18,7 @@ class Lists extends Component {
     const { onDeleteList } = this.props;
 
     return (
-      <div className="d-flex flex-row flex-wrap mt-2">
+      <div className="d-flex flex-row flex-wrap mt-3">
         {this.state.categories.map((category) => (
           <ToDoList
             key={category.categoryId}

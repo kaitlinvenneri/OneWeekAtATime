@@ -569,7 +569,6 @@ getScheduledTasksFromDBAndReturnResponse = (
   longDateStrings,
   res
 ) => {
-  //const GET_SCHEDULED_TASKS_IN_RANGE_QUERY = `SELECT scheduledTask.*, task.title FROM scheduledTask LEFT JOIN task ON scheduledTask.taskId = task.taskId WHERE scheduledDate between '${dateStrings[0]}' and '${dateStrings[6]}' order by scheduledDate asc;`;
   const GET_SCHEDULED_TASKS_IN_RANGE_QUERY = `SELECT scheduledTask.*, task.title, category.* FROM scheduledTask LEFT JOIN task ON scheduledTask.taskId = task.taskId LEFT JOIN category ON task.categoryId = category.categoryId WHERE scheduledDate between '${dateStrings[0]}' and '${dateStrings[6]}' order by scheduledDate asc, category.name asc, task.taskId;`;
 
   connection.query(GET_SCHEDULED_TASKS_IN_RANGE_QUERY, (err, results) => {
