@@ -56,6 +56,7 @@ class WeekViewTask extends Component {
           borderRadius: '5px',
           borderColor: '#3f4d5a',
           borderWidth: '1px',
+          backgroundColor: 'white',
         }}
       >
         <div className="d-flex flex-row">

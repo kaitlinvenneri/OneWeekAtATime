@@ -17,10 +17,10 @@ class PlannerPage extends Component {
 
   async componentDidMount() {
     //Get list categories
-    this.getCategories();
+    await this.getCategories();
 
     //Get current week and tasks associated
-    this.getCurrentWeek();
+    await this.getCurrentWeek();
   }
 
   getCategories = async () => {
@@ -63,6 +63,8 @@ class PlannerPage extends Component {
     const { data: weekScheduled } = await axios.get(
       'http://localhost:4000/current-week'
     );
+
+    console.log(weekScheduled);
 
     this.setState({ weekScheduled });
   };

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import WeekViewTask from './WeekViewTask';
 //import AddTaskToWeekday from '../svgs/AddTaskToWeekday';
+import ScheduledList from './ScheduledList';
 
 //Weekday component within WeekView on Planner Page
 class Weekday extends Component {
@@ -12,6 +12,68 @@ class Weekday extends Component {
 
   render() {
     const { day, onDelete } = this.props;
+
+    let categories = [];
+    let category = {};
+    let currCategoryInfo = {};
+    let currTaskArray = [];
+
+    if (day.scheduledTasks.length > 0) {
+      let firstTask = day.scheduledTasks[0];
+
+      //Initialize category info
+      currCategoryInfo = {
+        categoryId: firstTask.categoryId,
+        color: firstTask.color,
+        name: firstTask.name,
+      };
+    }
+
+    for (let i = 0; i < day.scheduledTasks.length; i++) {
+      let task = day.scheduledTasks[i];
+
+      if (task.categoryId === currCategoryInfo.categoryId) {
+        let taskObj = {
+          completionStatus: task.completionStatus,
+          scheduledId: task.scheduledId,
+          title: task.title,
+        };
+        currTaskArray.push(taskObj);
+      } else {
+        category = {
+          categoryId: currCategoryInfo.categoryId,
+          color: currCategoryInfo.color,
+          name: currCategoryInfo.name,
+          scheduledTasks: currTaskArray,
+        };
+        categories.push(category);
+
+        currCategoryInfo = {
+          categoryId: task.categoryId,
+          color: task.color,
+          name: task.name,
+        };
+
+        let taskObj = {
+          completionStatus: task.completionStatus,
+          scheduledId: task.scheduledId,
+          title: task.title,
+        };
+        currTaskArray = [];
+        currTaskArray.push(taskObj);
+      }
+    }
+
+    category = {
+      categoryId: currCategoryInfo.categoryId,
+      color: currCategoryInfo.color,
+      name: currCategoryInfo.name,
+      scheduledTasks: currTaskArray,
+    };
+    categories.push(category);
+
+    console.log(categories);
+
     return (
       <div
         className="card mx-auto"
@@ -29,11 +91,11 @@ class Weekday extends Component {
           {day.scheduledTasks.length === 0 ? (
             <div className="p-5"></div>
           ) : (
-            day.scheduledTasks.map((task) => (
-              <WeekViewTask
-                task={task}
+            categories.map((cat) => (
+              <ScheduledList
+                category={cat}
                 onDelete={onDelete}
-                key={task.scheduledId}
+                key={cat.categoryId}
               />
             ))
           )}
