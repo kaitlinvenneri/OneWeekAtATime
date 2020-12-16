@@ -146,6 +146,7 @@ class ToDoList extends Component {
         className="card mx-2 mb-3"
         style={{
           //width: '400px',
+          backgroundColor: `${backgroundColor}`,
           border: `2px solid ${borderColor}`,
         }}
       >
@@ -174,10 +175,7 @@ class ToDoList extends Component {
             </div>
           </div>
         </div>
-        <div
-          className="card-body py-2 px-2"
-          style={{ backgroundColor: `${backgroundColor}` }}
-        >
+        <div className="card-body py-2 px-2">
           {this.state.tasks.map((task) => (
             <ToDoItem
               key={task.taskId}

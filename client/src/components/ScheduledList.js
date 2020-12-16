@@ -32,13 +32,14 @@ class ScheduledList extends Component {
       <div
         className="card mx-2 my-2"
         style={{
-          border: `2px solid ${borderColor}`,
+          backgroundColor: `${backgroundColor}`,
+          border: `1px solid ${borderColor}`,
         }}
       >
         <div
           className="card-header d-flex justify-content-between align-items-center px-2 py-2"
           style={{
-            borderBottom: `2px solid ${borderColor}`,
+            borderBottom: `1px solid ${borderColor}`,
             backgroundColor: `${backgroundColor}`,
             color: `${borderColor}`,
           }}
@@ -47,7 +48,7 @@ class ScheduledList extends Component {
         </div>
         <div
           className="card-body pt-2 pb-0 px-2"
-          style={{ backgroundColor: `${backgroundColor}` }}
+          //style={{ backgroundColor: `${backgroundColor}` }}
         >
           {this.props.category.scheduledTasks.map((task) => (
             <WeekViewTask
