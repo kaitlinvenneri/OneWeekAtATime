@@ -6,8 +6,8 @@ class WeekViewTaskChecked extends Component {
 
     return (
       <svg
-        width="1.1em"
-        height="1.1em"
+        width="1em"
+        height="1em"
         viewBox="0 0 16 16"
         className="bi bi-check-square-fill mr-2"
         fill="currentColor"
