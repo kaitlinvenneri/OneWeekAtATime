@@ -18,7 +18,7 @@ class Lists extends Component {
     const { onDeleteList, updateWeekview } = this.props;
 
     return (
-      <div className="d-flex flex-row flex-wrap mt-3 mx-2 align-items-start">
+      <div className="d-flex flex-row flex-wrap mt-3 align-items-start">
         {this.state.categories.map((category) => (
           <ToDoList
             key={category.categoryId}
