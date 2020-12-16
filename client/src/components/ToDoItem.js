@@ -107,9 +107,7 @@ class ToDoItem extends Component {
     //Set label style based on if the task is completed or not
     if (this.state.task.completionStatus === 1) {
       //if task is completed, cross it out
-      labelStyle = { fontSize: '20px', textDecoration: 'line-through' };
-    } else {
-      labelStyle = { fontSize: '20px' };
+      labelStyle = { textDecoration: 'line-through' };
     }
 
     return (
@@ -146,13 +144,12 @@ class ToDoItem extends Component {
                 className="form-control"
                 id="taskEditInput"
                 value={this.state.newTitle}
-                size="31"
+                size={this.state.newTitle.length}
                 maxLength="50"
                 style={{
-                  fontSize: '20px',
                   height: '35px',
                   color: 'black',
-                  borderColor: 'grey',
+                  borderColor: 'black',
                 }}
                 onChange={(e) => this.setState({ newTitle: e.target.value })}
                 onKeyDown={this.handleKeyDown}

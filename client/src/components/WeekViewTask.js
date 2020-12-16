@@ -43,14 +43,12 @@ class WeekViewTask extends Component {
     let labelStyle = {};
 
     if (task.completionStatus === 1) {
-      labelStyle = { fontSize: '18px', textDecoration: 'line-through' };
-    } else {
-      labelStyle = { fontSize: '18px' };
+      labelStyle = { textDecoration: 'line-through' };
     }
 
     return (
       <div
-        className="mt-2 pt-1 pl-2 pr-1 d-flex flex-column"
+        className="mb-2 pt-1 pl-2 pr-1 d-flex flex-column"
         style={{
           borderStyle: 'solid',
           borderRadius: '5px',
@@ -67,11 +65,7 @@ class WeekViewTask extends Component {
               <WeekViewTaskChecked onClick={this.changeSelectedState} />
             )}
           </div>
-          <label
-            className="label"
-            style={labelStyle}
-            //style={task.completionStatus === 1 ? labelStyle : null}
-          >
+          <label className="label" style={labelStyle}>
             {task.title}
           </label>
         </div>

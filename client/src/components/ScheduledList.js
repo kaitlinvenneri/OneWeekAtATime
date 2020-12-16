@@ -36,17 +36,17 @@ class ScheduledList extends Component {
         }}
       >
         <div
-          className="card-header d-flex justify-content-between align-items-center px-2"
+          className="card-header d-flex justify-content-between align-items-center px-2 py-2"
           style={{
             borderBottom: `2px solid ${borderColor}`,
             backgroundColor: `${backgroundColor}`,
             color: `${borderColor}`,
           }}
         >
-          <h5 className="my-0">{this.props.category.name}</h5>
+          <h6 className="my-0">{this.props.category.name}</h6>
         </div>
         <div
-          className="card-body py-2 px-2"
+          className="card-body pt-2 pb-0 px-2"
           style={{ backgroundColor: `${backgroundColor}` }}
         >
           {this.props.category.scheduledTasks.map((task) => (

@@ -86,7 +86,7 @@ class Weekday extends Component {
           <br />
           {day.dateString}
         </h5>
-        <div className="card-body pl-2 pr-2 pb-2 pt-0">
+        <div className="card-body pl-0 pr-0 pb-0 pt-0">
           {day.scheduledTasks.length === 0 ? (
             <div className="p-5"></div>
           ) : (

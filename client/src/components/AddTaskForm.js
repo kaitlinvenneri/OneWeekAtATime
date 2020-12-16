@@ -38,6 +38,7 @@ class AddTaskForm extends Component {
           maxLength="50"
           onChange={(e) => this.setState({ title: e.target.value })}
           onKeyDown={this.handleKeyDown}
+          style={{ color: 'black', borderColor: 'black' }}
         />
         <div className="input-group-append">
           <button
@@ -45,6 +46,7 @@ class AddTaskForm extends Component {
             type="submit"
             className="btn btn-primary"
             disabled={this.state.title.length === 0}
+            style={{ borderColor: 'black' }}
           >
             Add
           </button>
