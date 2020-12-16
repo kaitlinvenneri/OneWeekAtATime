@@ -74,10 +74,7 @@ class Weekday extends Component {
     //console.log(categories);
 
     return (
-      <div
-        className="card mx-auto border-dark"
-        style={{ width: '14%', border: '1px solid black' }}
-      >
+      <div className="card mx-auto shadow border-0" style={{ width: '14%' }}>
         <h5
           className="card-header text-center py-1 border-0"
           style={{ backgroundColor: '#0c66a6' }}
