@@ -50,7 +50,10 @@ class AddListModal extends Component {
               <div>
                 <b>List Color</b>
               </div>
-              <div className="form-check form-check-inline">
+              <div
+                className="form-check form-check-inline"
+                style={{ cursor: 'pointer' }}
+              >
                 <input
                   className="form-check-input"
                   type="radio"
@@ -59,12 +62,20 @@ class AddListModal extends Component {
                   value="gray"
                   defaultChecked
                   onClick={(e) => this.setState({ color: e.target.value })}
+                  style={{ cursor: 'pointer' }}
                 />
-                <label className="form-check-label" htmlFor="grayRadioButton">
+                <label
+                  className="form-check-label"
+                  htmlFor="grayRadioButton"
+                  style={{ cursor: 'pointer' }}
+                >
                   Gray
                 </label>
               </div>
-              <div className="form-check form-check-inline">
+              <div
+                className="form-check form-check-inline"
+                style={{ cursor: 'pointer' }}
+              >
                 <input
                   className="form-check-input"
                   type="radio"
@@ -72,12 +83,20 @@ class AddListModal extends Component {
                   id="blueRadioButton"
                   value="blue"
                   onClick={(e) => this.setState({ color: e.target.value })}
+                  style={{ cursor: 'pointer' }}
                 />
-                <label className="form-check-label" htmlFor="blueRadioButton">
+                <label
+                  className="form-check-label"
+                  htmlFor="blueRadioButton"
+                  style={{ cursor: 'pointer' }}
+                >
                   Blue
                 </label>
               </div>
-              <div className="form-check form-check-inline">
+              <div
+                className="form-check form-check-inline"
+                style={{ cursor: 'pointer' }}
+              >
                 <input
                   className="form-check-input"
                   type="radio"
@@ -85,12 +104,20 @@ class AddListModal extends Component {
                   id="pinkRadioButton"
                   value="pink"
                   onClick={(e) => this.setState({ color: e.target.value })}
+                  style={{ cursor: 'pointer' }}
                 />
-                <label className="form-check-label" htmlFor="pinkRadioButton">
+                <label
+                  className="form-check-label"
+                  htmlFor="pinkRadioButton"
+                  style={{ cursor: 'pointer' }}
+                >
                   Pink
                 </label>
               </div>
-              <div className="form-check form-check-inline">
+              <div
+                className="form-check form-check-inline"
+                style={{ cursor: 'pointer' }}
+              >
                 <input
                   className="form-check-input"
                   type="radio"
@@ -98,12 +125,20 @@ class AddListModal extends Component {
                   id="greenRadioButton"
                   value="green"
                   onClick={(e) => this.setState({ color: e.target.value })}
+                  style={{ cursor: 'pointer' }}
                 />
-                <label className="form-check-label" htmlFor="greenRadioButton">
+                <label
+                  className="form-check-label"
+                  htmlFor="greenRadioButton"
+                  style={{ cursor: 'pointer' }}
+                >
                   Green
                 </label>
               </div>
-              <div className="form-check form-check-inline">
+              <div
+                className="form-check form-check-inline"
+                style={{ cursor: 'pointer' }}
+              >
                 <input
                   className="form-check-input"
                   type="radio"
@@ -111,8 +146,13 @@ class AddListModal extends Component {
                   id="orangeRadioButton"
                   value="orange"
                   onClick={(e) => this.setState({ color: e.target.value })}
+                  style={{ cursor: 'pointer' }}
                 />
-                <label className="form-check-label" htmlFor="orangeRadioButton">
+                <label
+                  className="form-check-label"
+                  htmlFor="orangeRadioButton"
+                  style={{ cursor: 'pointer' }}
+                >
                   Orange
                 </label>
               </div>
