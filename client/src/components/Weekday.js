@@ -80,13 +80,13 @@ class Weekday extends Component {
       >
         <h5
           className="card-header text-center py-1 border-0"
-          style={{ backgroundColor: '#efeff5' }}
+          style={{ backgroundColor: '#0c66a6' }}
         >
           <div className="d-flex flex-row align-items-center justify-content-center">
-            <b style={{ color: '#29293d', fontSize: '30px' }} className="mr-2">
+            <b style={{ fontSize: '30px' }} className="mr-2">
               {day.dayOfMonth}
             </b>
-            <span style={{ color: '#3d5c5c' }}>{day.weekday}</span>
+            <span style={{ color: 'white' }}>{day.weekday}</span>
           </div>
         </h5>
         <div className="card-body pl-0 pr-0 pb-0 pt-0">
