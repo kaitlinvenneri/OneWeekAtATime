@@ -6,7 +6,7 @@ class TodoDelete extends Component {
     return (
       <svg
         width="1.1em"
-        height="1.1em"
+        height="1.25em"
         viewBox="0 0 16 16"
         className="bi bi-trash"
         fill={
