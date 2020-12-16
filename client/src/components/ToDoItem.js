@@ -146,7 +146,7 @@ class ToDoItem extends Component {
                 className="form-control"
                 id="taskEditInput"
                 value={this.state.newTitle}
-                size="50"
+                size="31"
                 maxLength="50"
                 style={{
                   fontSize: '20px',

@@ -34,7 +34,7 @@ class AddTaskForm extends Component {
           id={categoryId + 'taskInput'}
           placeholder="Task description"
           value={this.state.title}
-          size="50"
+          size="30"
           maxLength="50"
           onChange={(e) => this.setState({ title: e.target.value })}
           onKeyDown={this.handleKeyDown}
