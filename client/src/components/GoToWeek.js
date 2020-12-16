@@ -23,13 +23,19 @@ class GoToWeek extends Component {
       <div className="d-flex">
         <input
           type="date"
-          value={this.state.date}
-          onChange={(e) => onDateSelection(e.target.value)}
+          defaultValue={this.state.date}
+          onChange={(e) => this.setState({ date: e.target.value })}
         />
+        <button
+          className="btn btn-info ml-2"
+          onClick={() => onDateSelection(this.state.date)}
+        >
+          Go to Date
+        </button>
         <button
           onClick={onCancelGoToWeek}
           type="submit"
-          className="btn btn-outline-danger btn-sm ml-2"
+          className="btn btn-danger btn-sm ml-2"
         >
           Cancel
         </button>
