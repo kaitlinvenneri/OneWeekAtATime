@@ -139,7 +139,7 @@ class ToDoItem extends Component {
           </div>
           {this.state.inEditState === true ? (
             <div className="d-flex flex-row align-items-center mt-1">
-              <div className="input-group input-group-sm mr-0">
+              <div className="input-group input-group-sm">
                 <input
                   type="text"
                   className="form-control pl-1 border border-dark rounded"
@@ -175,11 +175,11 @@ class ToDoItem extends Component {
           )}
         </div>
         {
-          <div className="d-inline-flex flex-row ml-1 mt-1">
+          <div className="d-inline-flex flex-row ml-1 mt-1 align-items-center">
             {this.state.task.completionStatus === 1 ? (
               <></>
             ) : (
-              <div className="d-flex flex-row">
+              <div className="d-flex flex-row align-items-center">
                 <TodoEdit
                   editing={this.state.inEditState}
                   scheduling={this.state.scheduling}
@@ -199,7 +199,7 @@ class ToDoItem extends Component {
                 />
               </div>
             )}
-            <div className="d-flex flex-row">
+            <div className="d-flex flex-row align-items-center">
               <TodoDelete
                 editing={this.state.inEditState}
                 scheduling={this.state.scheduling}
