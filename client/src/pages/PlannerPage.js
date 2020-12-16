@@ -6,12 +6,14 @@ import WeekView from './../components/WeekView';
 import Lists from './../components/Lists';
 import AddListButton from './../components/AddListButton';
 import AddListModal from './../components/AddListModal';
+import ShowListsButton from '../components/ShowListsButton';
 
 //Planner Page Component
 class PlannerPage extends Component {
   state = {
     categories: [],
     weekScheduled: [],
+    listSectionShowing: true,
   };
 
   async componentDidMount() {
@@ -128,6 +130,12 @@ class PlannerPage extends Component {
     this.setState({ weekScheduled });
   };
 
+  handleListSectionShowHide = () => {
+    let sectionShowing = !this.state.listSectionShowing;
+
+    this.setState({ listSectionShowing: sectionShowing });
+  };
+
   render() {
     return (
       <div>
@@ -141,18 +149,23 @@ class PlannerPage extends Component {
           onGoToDate={this.getWeekFromDate}
         />
 
-        <div
-          className="d-flex flex-row justify-content-center mt-3"
-          style={{ width: '100%' }}
-        >
-          <AddListButton />
+        <div className="mx-2 mt-3">
+          <div className="d-flex flex-row" style={{ width: '100%' }}>
+            <ShowListsButton
+              listsShowing={this.state.listSectionShowing}
+              onClick={this.handleListSectionShowHide}
+            />
+            {this.state.listSectionShowing && <AddListButton />}
+          </div>
+          {this.state.listSectionShowing && (
+            <Lists
+              categories={this.state.categories}
+              onDeleteList={this.handleDeletingList}
+              updateWeekview={this.getCurrentWeek}
+            />
+          )}
+          <AddListModal onAdd={this.handleAddingList} />
         </div>
-        <Lists
-          categories={this.state.categories}
-          onDeleteList={this.handleDeletingList}
-          updateWeekview={this.getCurrentWeek}
-        />
-        <AddListModal onAdd={this.handleAddingList} />
       </div>
     );
   }

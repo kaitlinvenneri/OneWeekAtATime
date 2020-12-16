@@ -27,7 +27,7 @@ class GoToWeek extends Component {
           onChange={(e) => this.setState({ date: e.target.value })}
         />
         <button
-          className="btn btn-info ml-2"
+          className="btn btn-info btn-sm ml-2"
           onClick={() => onDateSelection(this.state.date)}
         >
           Go to Date
