@@ -6,8 +6,8 @@ class TodoChecked extends Component {
 
     return (
       <svg
-        width="1.25em"
-        height="1.25em"
+        width="1em"
+        height="1em"
         viewBox="0 0 16 16"
         className="bi bi-check-square-fill mr-2"
         fill="currentColor"

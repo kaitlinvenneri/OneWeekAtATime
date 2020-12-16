@@ -5,8 +5,8 @@ class TodoSchedule extends Component {
     const { editing, onClick, scheduling } = this.props;
     return (
       <svg
-        width="1.25em"
-        height="1.25em"
+        width="1.1em"
+        height="1.1em"
         viewBox="0 0 16 16"
         className="bi bi-calendar-plus mx-1"
         fill={

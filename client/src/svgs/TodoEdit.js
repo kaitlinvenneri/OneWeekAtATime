@@ -6,8 +6,8 @@ class TodoEdit extends Component {
 
     return (
       <svg
-        width="1.5em"
-        height="1.5em"
+        width="1.1em"
+        height="1.1em"
         viewBox="0 0 16 16"
         className="bi bi-pencil-square mr-1"
         xmlns="http://www.w3.org/2000/svg"

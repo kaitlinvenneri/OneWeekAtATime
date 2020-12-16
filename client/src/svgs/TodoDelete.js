@@ -5,8 +5,8 @@ class TodoDelete extends Component {
     const { editing, scheduling, onDelete, task } = this.props;
     return (
       <svg
-        width="1.5em"
-        height="1.5em"
+        width="1.1em"
+        height="1.1em"
         viewBox="0 0 16 16"
         className="bi bi-trash"
         fill={
