@@ -502,6 +502,20 @@ getWeekdayStringArray = () => {
   return weekdayStrings;
 };
 
+//Helper function to return day of month strings
+getDayOfMonthStrings = (dateStrings) => {
+  let dayOfMonthStrings = [];
+
+  for (i = 0; i < dateStrings.length; i++) {
+    let dateComps = dateStrings[i].split('-');
+    let day = dateComps[2];
+
+    dayOfMonthStrings.push(day);
+  }
+
+  return dayOfMonthStrings;
+};
+
 //Helper function to return week of dates as strings
 getLongDateStringArray = (dateStrings) => {
   let longDateStrings = [];
@@ -564,6 +578,7 @@ getLongDateStringArray = (dateStrings) => {
 //Helper function to get scheduled tasks from the database for a given week of dates
 //This function also sends a response from the request sent in as an argument
 getScheduledTasksFromDBAndReturnResponse = (
+  dayOfMonthStrings,
   dateStrings,
   weekdayStrings,
   longDateStrings,
@@ -592,6 +607,7 @@ getScheduledTasksFromDBAndReturnResponse = (
       for (i = 0; i < dateStrings.length; i++) {
         let dateObj = {
           weekday: weekdayStrings[i],
+          dayOfMonth: dayOfMonthStrings[i],
           date: dateStrings[i],
           dateString: longDateStrings[i],
           scheduledTasks: dateMap.get(dateStrings[i]),
@@ -611,9 +627,12 @@ getWeekAndHandleResponding = (date, res) => {
 
   let weekdayStrings = getWeekdayStringArray();
 
+  let dayOfMonthStrings = getDayOfMonthStrings(dateStrings);
+
   let longDateStrings = getLongDateStringArray(dateStrings);
 
   getScheduledTasksFromDBAndReturnResponse(
+    dayOfMonthStrings,
     dateStrings,
     weekdayStrings,
     longDateStrings,
