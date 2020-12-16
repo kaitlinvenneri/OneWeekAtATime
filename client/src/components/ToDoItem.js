@@ -121,7 +121,7 @@ class ToDoItem extends Component {
           backgroundColor: 'white',
         }}
       >
-        <div className="d-inline-flex flex-row">
+        <div className="d-inline-flex flex-row align-items-center">
           <div>
             {this.state.task.completionStatus === 1 ? (
               <TodoChecked
@@ -138,44 +138,44 @@ class ToDoItem extends Component {
             )}
           </div>
           {this.state.inEditState === true ? (
-            <div className="d-flex flex-row">
-              <input
-                type="text"
-                className="form-control pl-1"
-                id="taskEditInput"
-                value={this.state.newTitle}
-                size={this.state.newTitle.length}
-                maxLength="50"
-                style={{
-                  height: '35px',
-                  color: 'black',
-                  borderColor: 'black',
-                }}
-                onChange={(e) => this.setState({ newTitle: e.target.value })}
-                onKeyDown={this.handleKeyDown}
-              ></input>
+            <div className="d-flex flex-row align-items-center mt-1">
+              <div className="input-group input-group-sm mr-0">
+                <input
+                  type="text"
+                  className="form-control pl-1 border border-dark rounded"
+                  id="taskEditInput"
+                  value={this.state.newTitle}
+                  size={this.state.newTitle.length}
+                  maxLength="50"
+                  style={{
+                    color: 'black',
+                  }}
+                  onChange={(e) => this.setState({ newTitle: e.target.value })}
+                  onKeyDown={this.handleKeyDown}
+                ></input>
+              </div>
               <button
-                className="btn btn-sm btn-success ml-2"
+                className="btn btn-sm btn-success ml-1"
                 onClick={this.handleEditSave}
                 disabled={this.state.newTitle.length === 0}
               >
                 Save
               </button>
               <button
-                className="btn btn-sm btn-danger ml-2"
+                className="btn btn-sm btn-danger ml-1"
                 onClick={this.handleEditCancel}
               >
                 Cancel
               </button>
             </div>
           ) : (
-            <div className="" style={labelStyle}>
+            <div className="mr-1" style={labelStyle}>
               {this.state.task.title}
             </div>
           )}
         </div>
         {
-          <div className="d-inline-flex flex-row ml-3 mt-1">
+          <div className="d-inline-flex flex-row ml-1 mt-1">
             {this.state.task.completionStatus === 1 ? (
               <></>
             ) : (
