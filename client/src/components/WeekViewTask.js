@@ -48,7 +48,7 @@ class WeekViewTask extends Component {
 
     return (
       <div
-        className="mb-2 pt-1 pl-2 pr-1 d-flex flex-column"
+        className="mb-2 pt-1 px-2 d-flex flex-column"
         style={{
           borderStyle: 'solid',
           borderRadius: '5px',
