@@ -137,23 +137,23 @@ app.get('/category/add', (req, res) => {
     throw new Error(error);
   }
 
-  const GET_CATEGORY_QUERY = `SELECT * FROM category WHERE name = '${formattedName}';`;
+  // const GET_CATEGORY_QUERY = `SELECT * FROM category WHERE name = '${formattedName}';`;
 
-  connection.query(GET_CATEGORY_QUERY, (err, results) => {
-    if (err) {
-      return res.send(err);
-    } else {
-      if (results.length !== 0) {
-        //If the category already exists, send back error message
-        let error = 'A category with this name already exists.';
+  // connection.query(GET_CATEGORY_QUERY, (err, results) => {
+  //   if (err) {
+  //     return res.send(err);
+  //   } else {
+  //     if (results.length !== 0) {
+  //       //If the category already exists, send back error message
+  //       let error = 'A category with this name already exists.';
 
-        res.send(error);
+  //       res.send(error);
 
-        //throw new error
-        throw new Error(error);
-      }
-    }
-  });
+  //       //throw new error
+  //       throw new Error(error);
+  //     }
+  //   }
+  // });
 
   const INSERT_CATEGORY_QUERY = `INSERT INTO category(name, color) VALUES('${formattedName}', '${color}')`;
 
