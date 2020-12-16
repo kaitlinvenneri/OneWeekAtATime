@@ -75,16 +75,19 @@ class Weekday extends Component {
 
     return (
       <div
-        className="card mx-auto"
-        style={{ width: '14%', borderColor: '#083a5e' }}
+        className="card mx-auto border-dark"
+        style={{ width: '14%', border: '1px solid black' }}
       >
         <h5
-          className="card-header text-center"
-          style={{ backgroundColor: '#0c66a6', color: 'white' }}
+          className="card-header text-center py-1 border-0"
+          style={{ backgroundColor: '#0c66a6' }}
         >
-          {day.weekday}
-          <br />
-          {day.dateString}
+          <div className="d-flex flex-row align-items-center justify-content-center">
+            <b style={{ fontSize: '30px' }} className="mr-2">
+              {day.dayOfMonth}
+            </b>
+            <span style={{ color: 'white' }}>{day.weekday}</span>
+          </div>
         </h5>
         <div className="card-body pl-0 pr-0 pb-0 pt-0">
           {day.scheduledTasks.length === 0 ? (
