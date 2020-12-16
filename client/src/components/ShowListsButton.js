@@ -10,18 +10,17 @@ class ShowListsButton extends Component {
       <button
         type="button"
         className="btn btn-secondary mx-2"
-        style={{ width: '150px' }}
         onClick={onClick}
       >
         {listsShowing ? (
           <>
             <ClosedEye />
-            Hide Lists
+            Hide Task Lists
           </>
         ) : (
           <>
             <OpenEye />
-            Show Lists
+            Show Task Lists
           </>
         )}
       </button>
