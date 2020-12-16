@@ -38,7 +38,9 @@ class WeekViewTask extends Component {
   };
 
   render() {
-    const { task, onDelete } = this.props;
+    const { backgroundColor, borderColor, task, onDelete } = this.props;
+
+    //console.log(backgroundColor, borderColor);
 
     let labelStyle = {};
 
@@ -50,13 +52,16 @@ class WeekViewTask extends Component {
 
     return (
       <div
-        className="mt-2 pt-1 pl-2 pr-1 d-flex flex-column"
+        className="mt-2 pt-1 px-2 d-flex flex-column"
         style={{
           borderStyle: 'solid',
           borderRadius: '5px',
-          borderColor: '#3f4d5a',
+          //borderColor: '#3f4d5a',
+          borderColor: `${borderColor}`,
           borderWidth: '1px',
-          backgroundColor: 'white',
+          //backgroundColor: 'white',
+          backgroundColor: `${backgroundColor}`,
+          color: `${borderColor}`,
         }}
       >
         <div className="d-flex flex-row">

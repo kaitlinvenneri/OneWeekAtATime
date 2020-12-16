@@ -30,27 +30,41 @@ class ScheduledList extends Component {
 
     return (
       <div
-        className="card mx-2 my-2"
-        style={{
-          border: `2px solid ${borderColor}`,
-        }}
+        className="card mx-2 my-2 border-0"
+        //style={{
+        //border: `2px solid ${borderColor}`,
+        //}}
       >
-        <div
-          className="card-header d-flex justify-content-between align-items-center px-2"
+        {/* <div
+          className="card-header d-flex justify-content-between align-items-center px-2 border-0"
           style={{
-            borderBottom: `2px solid ${borderColor}`,
-            backgroundColor: `${backgroundColor}`,
+            //borderBottom: `2px solid ${borderColor}`,
+            //backgroundColor: `${backgroundColor}`,
+            backgroundColor: 'white',
             color: `${borderColor}`,
           }}
         >
           <h5 className="my-0">{this.props.category.name}</h5>
-        </div>
+        </div> */}
         <div
-          className="card-body py-2 px-2"
-          style={{ backgroundColor: `${backgroundColor}` }}
+          className="card-body py-2 px-0"
+          //style={{ backgroundColor: `${backgroundColor}` }}
         >
+          <h5
+            className="my-0"
+            style={{
+              //borderBottom: `2px solid ${borderColor}`,
+              //backgroundColor: `${backgroundColor}`,
+              backgroundColor: 'white',
+              color: `${borderColor}`,
+            }}
+          >
+            {this.props.category.name}
+          </h5>
           {this.props.category.scheduledTasks.map((task) => (
             <WeekViewTask
+              backgroundColor={backgroundColor}
+              borderColor={borderColor}
               task={task}
               onDelete={onDelete}
               key={task.scheduledId}
