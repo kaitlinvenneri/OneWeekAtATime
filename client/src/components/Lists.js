@@ -19,7 +19,7 @@ class Lists extends Component {
     const { onDeleteList, updateWeekview } = this.props;
 
     return (
-      <div className="d-flex flex-column mt-3 px-3 border-0 rounded-lg shadow mx-1">
+      <div className="d-flex flex-column my-3 px-3 border-0 rounded-lg shadow mx-1">
         <h3 className="d-inline-flex justify-content-center pb-2 mt-2 border-bottom">
           Your Task Lists
         </h3>
