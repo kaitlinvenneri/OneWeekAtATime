@@ -57,15 +57,15 @@ class WeekViewTask extends Component {
           backgroundColor: 'white',
         }}
       >
-        <div className="d-flex flex-row">
-          <div>
+        <div className="d-flex flex-row align-items-center">
+          <div className="d-flex flex-row align-items-center">
             {this.state.completionStatus === 0 ? (
               <WeekViewTaskUnchecked onClick={this.changeSelectedState} />
             ) : (
               <WeekViewTaskChecked onClick={this.changeSelectedState} />
             )}
           </div>
-          <label className="label" style={labelStyle}>
+          <label className="label mt-1" style={labelStyle}>
             {task.title}
           </label>
         </div>

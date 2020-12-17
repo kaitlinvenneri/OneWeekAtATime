@@ -169,7 +169,7 @@ class ToDoItem extends Component {
               </button>
             </div>
           ) : (
-            <div className="mr-1" style={labelStyle}>
+            <div className="mr-1 mt-1" style={labelStyle}>
               {this.state.task.title}
             </div>
           )}
