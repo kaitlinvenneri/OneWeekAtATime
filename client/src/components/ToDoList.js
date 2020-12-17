@@ -68,6 +68,8 @@ class ToDoList extends Component {
   };
 
   handleTaskDelete = async (taskId) => {
+    const { updateWeekview } = this.props;
+
     let options = {
       params: {
         id: taskId,
@@ -81,6 +83,8 @@ class ToDoList extends Component {
 
     //Delete task on the server
     await axios.get('http://localhost:4000/task/delete', options);
+
+    await updateWeekview();
   };
 
   handleTaskScheduling = async (taskId, taskDate) => {
