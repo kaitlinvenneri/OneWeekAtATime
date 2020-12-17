@@ -4,7 +4,6 @@ import NavBar from './../components/NavBar';
 import WeekView from './../components/WeekView';
 //import ToDoList from '../components/ToDoList';
 import Lists from './../components/Lists';
-import AddListButton from './../components/AddListButton';
 import AddListModal from './../components/AddListModal';
 import ShowListsButton from '../components/ShowListsButton';
 
@@ -149,23 +148,22 @@ class PlannerPage extends Component {
           onGoToDate={this.getWeekFromDate}
         />
 
-        <div className="mx-2 mt-3">
-          <div className="d-flex flex-row" style={{ width: '100%' }}>
-            <ShowListsButton
-              listsShowing={this.state.listSectionShowing}
-              onClick={this.handleListSectionShowHide}
-            />
-            {this.state.listSectionShowing && <AddListButton />}
-          </div>
-          {this.state.listSectionShowing && (
-            <Lists
-              categories={this.state.categories}
-              onDeleteList={this.handleDeletingList}
-              updateWeekview={this.getCurrentWeek}
-            />
-          )}
-          <AddListModal onAdd={this.handleAddingList} />
+        <div className="d-flex flex-row align-items-center justify-content-center mx-2 mt-4">
+          <ShowListsButton
+            listsShowing={this.state.listSectionShowing}
+            onClick={this.handleListSectionShowHide}
+          />
         </div>
+
+        {this.state.listSectionShowing && (
+          <Lists
+            categories={this.state.categories}
+            onDeleteList={this.handleDeletingList}
+            updateWeekview={this.getCurrentWeek}
+          />
+        )}
+
+        <AddListModal onAdd={this.handleAddingList} />
       </div>
     );
   }

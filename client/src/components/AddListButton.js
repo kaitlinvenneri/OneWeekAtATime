@@ -8,10 +8,10 @@ class AddListButton extends Component {
         type="button"
         data-toggle="modal"
         data-target="#addListModal"
-        className="btn btn-success mx-2"
+        className="btn btn-success"
       >
         <AddList />
-        New List
+        New Task List
       </button>
     );
   }
