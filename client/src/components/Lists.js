@@ -19,13 +19,11 @@ class Lists extends Component {
     const { onDeleteList, updateWeekview } = this.props;
 
     return (
-      <div className="d-flex flex-column mt-3 px-3 border rounded-lg shadow mx-1">
+      <div className="d-flex flex-column mt-3 px-3 border-0 rounded-lg shadow mx-1">
         <h3 className="d-inline-flex justify-content-center pb-2 mt-2 border-bottom">
           Your Task Lists
         </h3>
-        <div className="d-inline-flex justify-content-center pb-2 mt-2">
-          <AddListButton />
-        </div>
+
         <div className="d-flex flex-row flex-wrap mt-2 align-items-start justify-content-center">
           {this.state.categories.map((category) => (
             <ToDoList
@@ -35,6 +33,10 @@ class Lists extends Component {
               updateWeekview={updateWeekview}
             />
           ))}
+        </div>
+
+        <div className="d-inline-flex justify-content-center pb-2 mb-2">
+          <AddListButton />
         </div>
       </div>
     );
