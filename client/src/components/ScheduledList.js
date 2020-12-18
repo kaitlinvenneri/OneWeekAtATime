@@ -25,7 +25,7 @@ class ScheduledList extends Component {
       borderColor = '#194d33';
     } else if (category.color === 'orange') {
       backgroundColor = '#ffe0b3';
-      borderColor = '#e68a00';
+      borderColor = '#e65c00';
     }
 
     return (
