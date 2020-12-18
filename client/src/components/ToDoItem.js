@@ -32,6 +32,8 @@ class ToDoItem extends Component {
 
   //Handle editing the title of a task
   handleEditSave = async () => {
+    const { updateWeekview } = this.props;
+
     let updatedTask = this.state.task;
     updatedTask.title = this.state.newTitle;
 
@@ -54,6 +56,8 @@ class ToDoItem extends Component {
 
     //Save updated title of task to the database
     await axios.get('http://localhost:4000/task/update-title', options);
+
+    await updateWeekview();
   };
 
   handleEditCancel = () => {

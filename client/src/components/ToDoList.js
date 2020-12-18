@@ -122,7 +122,13 @@ class ToDoList extends Component {
   };
 
   render() {
-    const { onDelete, category, weekday, onAddToWeekday } = this.props;
+    const {
+      onDelete,
+      category,
+      weekday,
+      onAddToWeekday,
+      updateWeekview,
+    } = this.props;
 
     let backgroundColor = 'white';
     let borderColor = 'black';
@@ -189,6 +195,7 @@ class ToDoList extends Component {
               onSchedule={this.handleTaskScheduling}
               weekday={weekday}
               onAddToWeekday={onAddToWeekday}
+              updateWeekview={updateWeekview}
             />
           ))}
           <AddTaskForm
