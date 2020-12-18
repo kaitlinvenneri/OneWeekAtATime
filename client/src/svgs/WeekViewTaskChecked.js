@@ -9,7 +9,7 @@ class WeekViewTaskChecked extends Component {
         width="1em"
         height="1em"
         viewBox="0 0 16 16"
-        className="bi bi-check-square-fill mr-2"
+        className="bi bi-check-square-fill mr-2 mt-1"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
         onClick={onClick}
