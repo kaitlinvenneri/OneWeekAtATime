@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import WeekViewTaskChecked from './../svgs/WeekViewTaskChecked';
+import WeekViewTaskChecked from '../svgs/WeekViewTaskChecked';
 import WeekViewTaskUnchecked from '../svgs/WeekViewTaskUnchecked';
 import WeekViewTaskDelete from '../svgs/WeekViewTaskDelete';
 
