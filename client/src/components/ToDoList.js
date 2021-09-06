@@ -4,6 +4,7 @@ import ToDoItem from './ToDoItem';
 import AddTaskForm from './AddTaskForm';
 import MenuLines from './../svgs/MenuLines';
 import DeleteListModal from './DeleteListModal';
+import { categoryColors } from '../styling/CategoryColors';
 
 //To Do List Component on the To Do Page
 class ToDoList extends Component {
@@ -122,34 +123,16 @@ class ToDoList extends Component {
   };
 
   render() {
-    const {
-      onDelete,
-      category,
-      weekday,
-      onAddToWeekday,
-      updateWeekview,
-    } = this.props;
+    const { onDelete, category, weekday, onAddToWeekday, updateWeekview } =
+      this.props;
 
+    //Default background color and border color (just in case)
     let backgroundColor = 'white';
     let borderColor = 'black';
 
-    // TODO: Make this into a map that comes from another file
-    if (category.color === 'gray') {
-      backgroundColor = '#e1e6ea';
-      borderColor = '#4b5968';
-    } else if (category.color === 'blue') {
-      backgroundColor = '#e3f2fd';
-      borderColor = '#0c66a6';
-    } else if (category.color === 'pink') {
-      backgroundColor = '#ffcce6';
-      borderColor = '#cc0069';
-    } else if (category.color === 'green') {
-      backgroundColor = '#b3e6b3';
-      borderColor = '#194d33';
-    } else if (category.color === 'orange') {
-      backgroundColor = '#ffe0b3';
-      borderColor = '#e65c00';
-    }
+    //Setting the backgroung color and border color from category color map
+    backgroundColor = categoryColors.get(category.color).backgroundColor;
+    borderColor = categoryColors.get(category.color).borderColor;
 
     return (
       <div

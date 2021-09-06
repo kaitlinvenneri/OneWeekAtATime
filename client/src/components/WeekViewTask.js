@@ -3,6 +3,7 @@ import axios from 'axios';
 import WeekViewTaskChecked from '../svgs/WeekViewTaskChecked';
 import WeekViewTaskUnchecked from '../svgs/WeekViewTaskUnchecked';
 import WeekViewTaskDelete from '../svgs/WeekViewTaskDelete';
+import { categoryColors } from '../styling/CategoryColors';
 
 //WeekViewTask component within the Weekday of the Weekview on the Planner Page
 class WeekViewTask extends Component {
@@ -42,26 +43,13 @@ class WeekViewTask extends Component {
 
     //console.log(task);
 
+    //Default background color and border color (just in case)
     let backgroundColor = 'white';
     let borderColor = 'black';
 
-    // TODO: Make this into a map that comes from another file
-    if (task.color === 'gray') {
-      backgroundColor = '#e1e6ea';
-      borderColor = '#4b5968';
-    } else if (task.color === 'blue') {
-      backgroundColor = '#e3f2fd';
-      borderColor = '#0c66a6';
-    } else if (task.color === 'pink') {
-      backgroundColor = '#ffcce6';
-      borderColor = '#cc0069';
-    } else if (task.color === 'green') {
-      backgroundColor = '#b3e6b3';
-      borderColor = '#194d33';
-    } else if (task.color === 'orange') {
-      backgroundColor = '#ffe0b3';
-      borderColor = '#e65c00';
-    }
+    //Setting the backgroung color and border color from category color map
+    backgroundColor = categoryColors.get(task.color).backgroundColor;
+    borderColor = categoryColors.get(task.color).borderColor;
 
     let labelStyle = {};
 
