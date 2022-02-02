@@ -1,4 +1,4 @@
-## Planning App
+## One Week at a Time
 
 **This application is intended to help folks with weekly planning by allowing users to add tasks, and schedule them on an ongoing basis to gradually complete over time.**
 
