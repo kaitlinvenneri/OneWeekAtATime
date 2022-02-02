@@ -7,7 +7,6 @@
 <ins> Technologies Used: </ins>
 
 Database:
-
 > MySQL
 
 Backend:
@@ -22,14 +21,7 @@ Frontend:
 
 <ins>Getting Started:</ins>
 
-1. Git clone this project
-2. Setup the database if running locally - if grading, the database already exists and should be empty.
-3. Navigate to the database scripts directory if you are testing/grading anything pertatining to the database.
-4. Navigate to the server directory if you are testing/grading the server or client.
-5. Navigate to the client directory if you are testing/grading the client.
-
-<hr>
-
-**Instructions for database scripts, server, and client are provided in their respective directory READMEs.**
-
-<hr>
+1. Clone this repository.
+2. Setup the database per the instructions within the database scripts folder of this repo.
+3. Run the server per the instructions within the server folder of this repo.
+4. Run the client per the instructions within the client folder of this repo.
