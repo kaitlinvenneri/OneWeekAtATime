@@ -11,7 +11,7 @@ Database:
 
 Backend:
 
-> Node.js, Express,js
+> Node.js, Express.js
 
 Frontend:
 
