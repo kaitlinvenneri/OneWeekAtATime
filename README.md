@@ -1,25 +1,20 @@
 ## One Week at a Time
 
-**This application is intended to help folks with weekly planning by allowing users to add tasks, and schedule them on an ongoing basis to gradually complete over time.**
+**This is a full stack web application that is intended to help folks with weekly planning by allowing users to add tasks, and schedule them on an ongoing basis.**
+
+This project was originally aimed to help me expand on my React skills. This means that the backend is in need of refactoring and bug fixes, as I was focussing primarily on frontend development here.
 
 <hr>
 
-<ins> Technologies Used: </ins>
+### Technical Stack:
 
-Database:
-> MySQL
-
-Backend:
-
-> Node.js, Express.js
-
-Frontend:
-
-> REACT.js
+- Node.js, Express.js
+- MySQL
+- React.js
 
 <hr>
 
-<ins>Getting Started:</ins>
+### Getting Started:
 
 1. Clone this repository.
 2. Setup the database per the instructions within the database scripts folder of this repo.
