@@ -14,6 +14,12 @@ This project was originally aimed to help me expand on my React skills. This mea
 
 <hr>
 
+### Frontend Preview:
+
+![OWaaT Frontend](https://user-images.githubusercontent.com/31687662/155443760-75d2cbfb-62b5-4fce-a8c4-34f3bc1f75ac.png)
+
+<hr>
+
 ### Getting Started:
 
 1. Clone this repository.
